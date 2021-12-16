@@ -1,6 +1,8 @@
 import React, { useRef } from 'react';
 import '../../../styles/pages/Login.css'
 import '../../../styles/pages/Home.css'
+import axios from 'axios';
+import { serverURL } from '../../../Global';
 
 const Login = ({ openModal }) => {
 
@@ -13,8 +15,10 @@ const Login = ({ openModal }) => {
 
         const submittedLoginForm = {
             loginEmail: loginUserEmail.current.value,
-            password: loginUserPassword.current.value
+            loginPassword: loginUserPassword.current.value
         }
+
+        axios.post(`${serverURL}/api/login_user`, submittedLoginForm);
     };
 
     // GUEST LOGIN FORM METHODS
@@ -26,7 +30,6 @@ const Login = ({ openModal }) => {
         const submittedGuestLogin = {
             nickname: guestNickname.current.value
         };
-
     };
 
     return (
