@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#schools {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+    #schools .link {
+        color: rgba(0, 0, 255, 0.6);
+    }
+
+        #schools .link:hover {
+            color: rgba(0, 0, 255);
+            transition: ease 200ms all;
+        }
+
+    #searchBox {
+        width: 100%;
+        text-align: left;
+    }

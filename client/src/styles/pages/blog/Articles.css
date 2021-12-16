@@ -1,0 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#articles {
+    width: 60%;
+    border: 2px solid blue;
+}

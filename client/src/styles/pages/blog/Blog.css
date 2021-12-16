@@ -1,0 +1,10 @@
+* {
+    margin:  0;
+    padding: 0;
+}
+
+#blogContainer {
+    display: flex;
+    flex: 1;
+    flex-wrap: nowrap;
+}

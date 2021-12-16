@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#blogMembers {
+    width: 30%;
+    height: auto;
+    margin-left: 5%;
+    margin-right: 5%;
+
+    border: 1px purple solid;
+}

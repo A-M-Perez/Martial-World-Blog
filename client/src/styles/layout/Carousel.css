@@ -1,0 +1,7 @@
+.carousel {
+    width: 100vw;
+    height: 220px;
+    margin-top: 80px;
+    margin-bottom: 50px;
+    border: 1px solid rgb(65, 31, 185);
+}
