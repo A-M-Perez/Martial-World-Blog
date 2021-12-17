@@ -19,9 +19,10 @@ const Login = ({ openModal }) => {
         }
 
         axios.post(`${serverURL}/api/login_user`, submittedLoginForm);
+
     };
 
-    // GUEST LOGIN FORM METHODS
+    // GUEST USER LOGIN FORM METHODS
     let guestNickname = useRef();
 
     function getGuestLoginForm(e) {
@@ -30,6 +31,9 @@ const Login = ({ openModal }) => {
         const submittedGuestLogin = {
             nickname: guestNickname.current.value
         };
+
+        axios.post(`${serverURL}/api/login_guestUser`, submittedGuestLogin);
+
     };
 
     return (

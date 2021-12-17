@@ -14,7 +14,7 @@ const SignUpModal = ({ closeModal }) => {
         e.preventDefault();
 
         if (signInUserPassword.current.value === signInUserPasswordCheck.current.value) {
-
+        
             const submittedSignUpForm = {
                 email: signInUserEmail.current.value,
                 name: signInUserName.current.value,
