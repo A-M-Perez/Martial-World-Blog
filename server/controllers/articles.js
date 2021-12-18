@@ -13,6 +13,9 @@ const controller = {
         db.query(sqlGetArticle, (err, res) => {
             console.log(res[0].title);
         });
+    },
+    postArticle: (req, res) => {
+
     }
 };
 
