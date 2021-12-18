@@ -13,6 +13,7 @@ const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const clientURL = require('../src/Global');
+const schoolsRoutes = require('./routes/schools');
 
 app.use(cors({
     origin: [clientURL],
@@ -97,3 +98,6 @@ app.get('/api/get_articles', (req, res) => {
         console.log(res[0].title);
     });
 });
+
+
+app.use(schoolsRoutes);

@@ -4,6 +4,8 @@ import '../../../styles/pages/Home.css'
 import axios from 'axios';
 import { serverURL } from '../../../Global';
 
+axios.defaults.withCredentials = true;
+
 const Login = ({ openModal }) => {
 
     // REGULAR LOGIN FORM METHODS
