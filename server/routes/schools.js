@@ -1,5 +1,3 @@
-'use stric';
-
 const express = require('express');
 const router = express.Router();
 const schoolController = require('../controllers/schools');
