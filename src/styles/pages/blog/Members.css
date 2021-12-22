@@ -4,10 +4,51 @@
 }
 
 #blogMembers {
-    width: 30%;
+    width: 15%;
     height: auto;
     margin-left: 5%;
     margin-right: 5%;
-
-    border: 1px purple solid;
+    text-align: center;
+    background-color: rgba(170, 170, 170, 1);
+    box-sizing: border-box;
+    padding: 1%;
+    border: 3px solid rgb(40, 40, 40);
+    outline: 3px solid rgb(170, 170, 170);
+    border-radius: 15px;
 }
+
+    #blogMembers h4 {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 1.5em;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    #blogMembers p {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1em;
+        margin-top: -10px;
+        margin-bottom: 15px;
+    }
+
+    #blogMembers h5 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.3em;
+        margin-bottom: 5px;
+    }
+
+    #blogMembers label {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 0.8em;
+        color: rgba(80, 80, 80, 1);
+    }
+
+    #blogMembers input {
+        margin-top: 10px;
+        width: 100%;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 1em;
+    }

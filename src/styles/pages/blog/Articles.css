@@ -7,3 +7,14 @@
     width: 60%;
     border: 2px solid blue;
 }
+
+#articlesBackground {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    box-sizing: border-box;
+    padding: 2%;
+    background-color: rgb(40, 40, 40);
+    margin-bottom: 100px;
+}

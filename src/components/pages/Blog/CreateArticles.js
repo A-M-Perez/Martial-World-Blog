@@ -62,10 +62,12 @@ const CreateArticles = () => {
                 <h2 id='createArticleTitle'>CREATE ARTICLE</h2>
                 <hr />
                 <form id='createArticleForm' onSubmit={postArticle}>
-                    <label htmlFor='articleTitle'>Title:&nbsp;<input type='text' name='articleTitle' placeholder="Enter article title here..." href={articleTitle} /></label>
-                    <label>Image:&nbsp;</label>
-                    <label htmlFor='articleText'>Article text:&nbsp;<textarea name='articleText' placeholder="Write your article here..." href={articleText} /></label>
-                    <button type='submit'>Post</button>
+                    <label htmlFor='articleTitle'>Title:&nbsp;</label>
+                    <input type='text' name='articleTitle' placeholder="Enter article title here..." href={articleTitle} /><br/><br/>
+                    <label>Image:&nbsp;</label><br/><br/>
+                    <label htmlFor='articleText'>Article text:&nbsp;</label>
+                    <textarea name='articleText' placeholder="Write your article here..." href={articleText} /><br/><br/>
+                    <button type='submit' id='login-btn'>Post</button>
                 </form>
             </div>
         </section>

@@ -6,9 +6,11 @@ import CreateArticles from './CreateArticles';
 const Blog = () => {
     return (
         <section id='blogContainer'>
-            <CreateArticles/>
-            {/* <Articles/>
-            <Members/> */}
+            {/* <CreateArticles/> */}            
+            <div id='articlesBackground'>
+                <Articles/>
+                <Members/>
+            </div>
         </section>
     );
 };
