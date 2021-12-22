@@ -3,17 +3,83 @@
     padding: 0;
 }
 
-/* CONTAINER -------------------------------------------------------------- */
-.createArticleContainer {
-    width: 100vw;
+/* CONTAINER -------------------------------------- */
+#createArticleContainer {
+    width: 100%;
+    height: auto;
     display: flex;
     flex-wrap: nowrap;
-    background: grey;
-};
+    box-sizing: border-box;
+    background-color: rgb(40, 40, 40);
+    margin-bottom: 100px;
+}
 
-    /* CREATE ARTICLE -------------------------------------------------------------- */
-    .createArticleSection {
-        width: 65%;
-        border: 1px solid blue;
-        color: green;
-    };
+    /* CODE OF CONDUCT ------------------------------- */
+    #codeOfConduct {
+        width: 25%;
+        height: 300px;
+        margin: 3%;
+        box-sizing: border-box;
+        padding: 1%;
+        background-color: rgba(170, 170, 170, 1);
+        border: 3px solid rgb(40, 40, 40);
+        outline: 3px solid rgb(240, 240, 240);
+        border-radius: 15px;
+    }
+
+        #cocTitle {
+            font-family: 'Open Sans', sans-serif;;
+            font-size: 1.2em;
+        }
+
+        #cocText {
+            margin-top: 10px;
+            height: 60%;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9em;
+            overflow-y: scroll;
+        }
+
+        #acknowledgeCheckBox {
+            margin-top: 20px;
+        }
+
+        #acknowledgeText {
+            margin-left: 10px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1em;
+        }
+
+    /* CREATE ARTICLE --------------------------- */
+    #createArticleSection {
+        width: 69%;
+        box-sizing: border-box;
+        color: rgb(230, 230, 230);
+    }
+
+        #createArticleTitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        #createArticleSection hr {
+            width: 95%;
+        }
+
+        #createArticleForm {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+            #createArticleForm label {
+                color: rgb(230, 230, 230);
+                display: flex;
+            }
+
+                #createArticleForm label input, textarea{
+                    width: 80%;
+                    margin-left: 15px;
+                    
+                }
