@@ -6,8 +6,8 @@
 #blogMembers {
     width: 15%;
     height: auto;
+    max-height: 310px;
     margin-left: 5%;
-    margin-right: 5%;
     text-align: center;
     background-color: rgba(170, 170, 170, 1);
     box-sizing: border-box;
