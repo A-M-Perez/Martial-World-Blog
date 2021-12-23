@@ -7,15 +7,12 @@ import ArticlesList from './ArticlesList';
 const Blog = () => {
     return (
         <section id='blogContainer'>
-            <div id='listOfArticles'>
-                <ArticlesList/>
-                <Members/>
-            </div>
-            {/* <CreateArticles/>             */}
-            {/* <div id='articlesBackground'>
-                <Article />
+            <div id='articlesBackground'>
+                <ArticlesList />
+                {/* <Article /> */}
                 <Members />
-            </div> */}
+            </div>
+            {/* <CreateArticles /> */}
         </section>
     );
 };

@@ -3,3 +3,49 @@
     padding: 0;
 }
 
+#articlesList {
+    width: 70%;
+    color: rgb(255,255,255);
+}
+
+#articlesList h2 {
+    margin-top: 0%;
+    margin-bottom: 15px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5em;
+    text-align: center;
+}
+
+    #articleSummary {
+        border-bottom: 2px double whitesmoke;
+    }
+
+        #articleImage {
+            width: 15%;
+            height: 110px;
+            float: left;
+        }
+
+        #articleImage:after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+
+        #articleSummary h5 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.5em;
+        }
+
+        #articleSummary h6 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1em;
+            font-weight: 400;
+        }
+
+        #articleSummary p {
+            margin-top: 1%;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.8em;
+            font-weight: 400;
+        }
