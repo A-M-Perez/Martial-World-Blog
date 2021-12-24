@@ -68,6 +68,8 @@
                 width: 150px;
                 height: 100px;
                 align-self: center;
+                box-sizing: border-box;
+                padding: 2%;
             }
 
             #schoolsSummary p{
