@@ -11,12 +11,8 @@ const controller = {
 
         try {
             const sqlGetSchool = "SELECT * FROM schools LIMIT 50;";
-            db.query(sqlGetSchool, (err, res) => {
-
-                if (err) {
-                    console.log('error');
-                }
-                console.log(res[0].name);
+            db.query(sqlGetSchool, (err, result) => {
+                res.send(result);
             });
         }
         catch {

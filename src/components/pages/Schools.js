@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import '../../styles/layout/Navbar.css';
 import '../../styles/pages/Schools.css';
@@ -7,23 +7,42 @@ import { serverURL } from "../../Global";
 
 const IndividualSchool = () => {
 
-    axios.get(`${serverURL}/api/get_school`).then((req, res) => {
+    const [schoolData, setSchoolData] = useState([]);
+    const [status, setStatus] = useState('Success');
 
-        console.log(req.body);
+    useEffect(
+        function getSchool() {
+            axios.get(`${serverURL}/api/get_school`)
+                .then((res) => {
+                    setSchoolData(res.data);
+                })
+                .catch(() => setStatus('Error'))
+        }, []);
 
-    });
-
-    return (
-        <div>
-            <img src='../../assets/img/schools/Shidokan.png' alt='School logo' />
-            <div>
-                <p>Name: Shidokan</p>
-                <p>Address: 2000 Castro Barros street, CABA</p>
-                <p>Training schedule: Mon-Wed-Fri 8-10pm</p>
-                <p>Brief description: In this school you will find...</p>
-            </div>
-        </div>
-    );
+    if (schoolData.length != 0) {
+        const listOfSchools = schoolData.map(school => {
+            return (
+                <div id='schoolsSummary'>
+                    <img src={school.logo} alt='School logo' />
+                    <div>
+                        <p><strong>Name:</strong> {school.name}</p>
+                        <p><strong>Address:</strong> {school.address}</p>
+                        <p><strong>Training schedule:</strong> {school.schedule}</p>
+                        <p><strong>Brief description:</strong> {school.description}</p>
+                    </div>
+                </div>
+            );
+        });
+        return (
+            <React.Fragment>
+                {listOfSchools}
+            </React.Fragment>
+        );
+    } else {
+        return (
+            <p id='loadingMessage'>Loading schools...</p>
+        )
+    };
 };
 
 const Schools = () => {
@@ -32,13 +51,12 @@ const Schools = () => {
             <h3>If you have a school and would like to include it in the site, please <NavLink to='/AboutUs' className='clickable link'>contact us</NavLink></h3>
 
             <label id="searchBox">Search for school:&nbsp;
+                <br />
                 <input type='text' name='searchSchool' href={'searchSchool'} />
             </label>
 
-            <section>
-
+            <section id='schoolsSummaryContainer'>
                 <IndividualSchool />
-
             </section>
         </section>
 

@@ -3,10 +3,9 @@
     padding: 0;
 }
 
-#schools {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1em;
+#schools {    
     text-align: center;
+    margin-bottom: 100px;
 }
 
     #schools .link {
@@ -18,7 +17,67 @@
             transition: ease 200ms all;
         }
 
+    #schools h3{
+        margin-bottom: 2%;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.2em;
+    }
+
     #searchBox {
         width: 100%;
         text-align: left;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 1.5em;
+        clear: both;
     }
+
+    #searchBox input{
+        width: 50%;
+        margin-bottom: 1%;
+    }
+
+    #schoolsSummaryContainer {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+        padding: 1%;
+        justify-content: space-evenly;
+    }
+
+        #schoolsSummary {
+            width: 23%;
+            display: flex;
+            text-align: left;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.8em;
+            background-color: rgb(245, 245, 245);
+            border-radius: 10px;
+            border: 1px solid rgb(150, 150, 150);
+            box-shadow: 0px 1px 2px 1px rgb(50, 50, 50);
+        }
+
+                #schoolsSummary:hover {
+                    cursor: pointer;
+                    transform: scale(1.05);
+                    transition: ease all 500ms;
+                }
+
+            #schoolsSummary img{
+                margin-right: 0;
+                width: 150px;
+                height: 100px;
+                align-self: center;
+            }
+
+            #schoolsSummary p{
+                margin-left: 5%;
+            }
+
+#loadingMessage {
+    margin-top: 5%;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2.5em;
+    color: black;
+}
