@@ -1,4 +1,3 @@
-
 const mysql = require('mysql2');
 const db = mysql.createPool({
     host: 'localhost',
@@ -10,8 +9,8 @@ const db = mysql.createPool({
 const controller = {
     getArticle: (req, res) => {
         const sqlGetArticle = "SELECT * FROM blog_articles LIMIT 100;";
-        db.query(sqlGetArticle, (err, res) => {
-            console.log(res[0].title);
+        db.query(sqlGetArticle, (err, result) => {
+            res.send(result);
         });
     },
     postArticle: (req, res) => {
