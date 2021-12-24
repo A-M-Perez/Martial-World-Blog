@@ -37,6 +37,10 @@
             font-size: 1.5em;
         }
 
+            #articleSummary h5:hover {
+                cursor: pointer;
+            }
+
         #articleSummary h6 {
             font-family: 'Open Sans', sans-serif;
             font-size: 1em;
