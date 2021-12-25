@@ -22,12 +22,12 @@ const ArticleSummary = ({ toggleView }) => {
     if (articleData.length != 0) {
         const listOfArticles = articleData.map(article => {
             return (
-                <div id='articleSummary'>
+                <div key={article.id} id='articleSummary'>
                     <img alt='Article image' id='articleImage' />
                     <h5 onClick={() => { toggleView('readArticle') }}>{article.title}</h5>
-                    <h6>{article.article_date}</h6>
-                    <h6>{article.author}</h6>
-                    <p>{article.article}
+                    <h6 >{article.article_date}</h6>
+                    <h6 >{article.author}</h6>
+                    <p >{article.article}
                     </p>
                 </div>
             );

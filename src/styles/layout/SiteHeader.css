@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#siteHeader {
+    width: 100vw;
+    height: 220px;
+    margin-top: 80px;
+    margin-bottom: 50px;
+    background-image: url('../../assets/img/carousel/background.jpg');
+    background-size: cover;
+    opacity: calc(0.7);
+    box-shadow: 0px 0px 10px 0px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+    .headerImage {
+        margin-top: 4%;
+        width: 10%;
+        height: 50%;
+        border-radius: 50%;
+        box-shadow: 0px 0px 10px 5px rgba(210, 210, 210, 0.5);
+        opacity: calc(0.5);
+    }
+
+        #index_2 {
+            transform: scale(1.7);
+            opacity: calc(1);
+            box-shadow: 0px 0px 15px 15px rgba(210, 210, 210, 0.5);
+        }

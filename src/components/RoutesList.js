@@ -1,6 +1,6 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./layout/Navbar";
-import Carousel from './layout/Carousel';
+import SiteHeader from './layout/SiteHeader';
 import Home from "./pages/Home";
 import Blog from "./pages/Blog/Blog";
 import Schools from "./pages/Schools";
@@ -9,19 +9,20 @@ import LoginContainer from "./pages/Login/LoginContainer";
 import Footer from './layout/Footer';
 
 const RoutesList = () => {
+
     return (
         <Router>
             <Navbar />
-            <Carousel/>
+            <SiteHeader />
             <Routes>
-                <Route path='/' exact element={<Home/>} />
-                <Route path='/Blog' exact element={<Blog/>} />
-                <Route path='/Schools' exact element={<Schools/>} />
-                <Route path='/AboutUs' exact element={<AboutUs/>} />
-                <Route path='/Login' exact element={<LoginContainer/>} />
+                <Route path='/' exact element={<Home />} />
+                <Route path='/Blog' exact element={<Blog />} />
+                <Route path='/Schools' exact element={<Schools />} />
+                <Route path='/AboutUs' exact element={<AboutUs />} />
+                <Route path='/Login' exact element={<LoginContainer />} />
             </Routes>
-            <Footer/>
-        </Router>
+            <Footer />
+        </Router >
     );
 }
 

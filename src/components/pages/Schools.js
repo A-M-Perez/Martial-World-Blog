@@ -22,7 +22,7 @@ const IndividualSchool = () => {
     if (schoolData.length != 0) {
         const listOfSchools = schoolData.map(school => {
             return (
-                <div id='schoolsSummary'>
+                <div key={school.name} id='schoolsSummary'>
                     <img src={require(`../../assets/img/schools/${school.logo}`)} alt='School logo' />
                     <div>
                         <p><strong>Name:</strong> {school.name}</p>
