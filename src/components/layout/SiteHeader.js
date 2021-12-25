@@ -12,22 +12,22 @@ const SiteHeader = () => {
 
         switch (location.pathname) {
             case '/':
-                setImagesForHeader(['about.jpg', 'login.jpg', 'home.jpg', 'blog.jpg', 'schools.jpg']);
+                setImagesForHeader(['about.jpg', 'login.jpg', 'home.png', 'blog.jpg', 'schools.jpg']);
                 break;
             case '/Blog':
-                setImagesForHeader(['login.jpg', 'home.jpg', 'blog.jpg', 'schools.jpg', 'about.jpg']);
+                setImagesForHeader(['login.jpg', 'home.png', 'blog.jpg', 'schools.jpg', 'about.jpg']);
                 break;
             case '/Schools':
-                setImagesForHeader(['home.jpg', 'blog.jpg', 'schools.jpg', 'about.jpg', 'login.jpg']);
+                setImagesForHeader(['home.png', 'blog.jpg', 'schools.jpg', 'about.jpg', 'login.jpg']);
                 break;
             case '/AboutUs':
-                setImagesForHeader(['blog.jpg', 'schools.jpg', 'about.jpg', 'login.jpg', 'home.jpg']);
+                setImagesForHeader(['blog.jpg', 'schools.jpg', 'about.jpg', 'login.jpg', 'home.png']);
                 break;
             case '/Login':
-                setImagesForHeader(['schools.jpg', 'about.jpg', 'login.jpg', 'home.jpg', 'blog.jpg']);
+                setImagesForHeader(['schools.jpg', 'about.jpg', 'login.jpg', 'home.png', 'blog.jpg']);
                 break;
             default:
-                setImagesForHeader(['about.jpg', 'login.jpg', 'home.jpg', 'blog.jpg', 'schools.jpg']);
+                setImagesForHeader(['about.jpg', 'login.jpg', 'home.png', 'blog.jpg', 'schools.jpg']);
                 break;
         }
     }, [location.pathname])
