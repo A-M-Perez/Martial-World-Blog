@@ -1,14 +1,14 @@
 import React, { useRef } from 'react';
 import '../../styles/pages/AboutUs.css';
 import '../../styles/pages/Home.css';
+import axios from 'axios';
+import { serverURL } from '../../Global';
 
 const AboutUs = () => {
 
     let contactEmailRef = useRef();
     let contactSubjectRef = useRef();
     let contactMessageRef = useRef();
-
-    // const [contactForm, setContactForm] = useState({});
 
     function getContactForm(e) {
         e.preventDefault();
@@ -19,7 +19,8 @@ const AboutUs = () => {
             message: contactMessageRef.current.value
         }
 
-        // console.log(submittedContactForm);
+        axios.post(`${serverURL}/api/send_message`, submittedContactForm);
+
     };
 
     return (

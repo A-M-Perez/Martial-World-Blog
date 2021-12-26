@@ -12,22 +12,28 @@ const SiteHeader = () => {
 
         switch (location.pathname) {
             case '/':
-                setImagesForHeader(['about.jpg', 'login.jpg', 'home.png', 'blog.jpg', 'schools.jpg']);
+                setImagesForHeader([{image: 'about.jpg', name: 'ABOUT US'}, {image: 'login.jpg', name: 'LOGIN'}, {image: 'home.png', name: 'HOME'},
+                 {image: 'blog.jpg', name: 'BLOG'}, {image: 'schools.jpg', name: 'SCHOOLS'}]);
                 break;
             case '/Blog':
-                setImagesForHeader(['login.jpg', 'home.png', 'blog.jpg', 'schools.jpg', 'about.jpg']);
+                setImagesForHeader([{image: 'login.jpg', name: 'LOGIN'}, {image: 'home.png', name: 'HOME'},
+                {image: 'blog.jpg', name: 'BLOG'}, {image: 'schools.jpg', name: 'SCHOOLS'}, {image: 'about.jpg', name: 'ABOUT US'}]);
                 break;
             case '/Schools':
-                setImagesForHeader(['home.png', 'blog.jpg', 'schools.jpg', 'about.jpg', 'login.jpg']);
+                setImagesForHeader([{image: 'home.png', name: 'HOME'}, {image: 'blog.jpg', name: 'BLOG'}, {image: 'schools.jpg', name: 'SCHOOLS'},
+                {image: 'about.jpg', name: 'ABOUT US'}, {image: 'login.jpg', name: 'LOGIN'}]);
                 break;
             case '/AboutUs':
-                setImagesForHeader(['blog.jpg', 'schools.jpg', 'about.jpg', 'login.jpg', 'home.png']);
+                setImagesForHeader([{image: 'blog.jpg', name: 'BLOG'}, {image: 'schools.jpg', name: 'SCHOOLS'}, {image: 'about.jpg', name: 'ABOUT US'},
+                {image: 'login.jpg', name: 'LOGIN'}, {image: 'home.png', name: 'HOME'}]);
                 break;
             case '/Login':
-                setImagesForHeader(['schools.jpg', 'about.jpg', 'login.jpg', 'home.png', 'blog.jpg']);
+                setImagesForHeader([{image: 'schools.jpg', name: 'SCHOOLS'}, {image: 'about.jpg', name: 'ABOUT US'}, {image: 'login.jpg', name: 'LOGIN'},
+                {image: 'home.png', name: 'HOME'}, {image: 'blog.jpg', name: 'BLOG'}]);
                 break;
             default:
-                setImagesForHeader(['about.jpg', 'login.jpg', 'home.png', 'blog.jpg', 'schools.jpg']);
+                setImagesForHeader([{image: 'about.jpg', name: 'ABOUT US'}, {image: 'login.jpg', name: 'LOGIN'}, {image: 'home.png', name: 'HOME'},
+                 {image: 'blog.jpg', name: 'BLOG'}, {image: 'schools.jpg', name: 'SCHOOLS'}]);
                 break;
         }
     }, [location.pathname])
@@ -36,9 +42,10 @@ const SiteHeader = () => {
         <section id='siteHeader' location={location}>
             {imagesForHeader.map(image => {
                 return (
-                    <React.Fragment key={image}>
-                        <img className='headerImage' id={`index_${imagesForHeader.indexOf(image)}`} src={require(`../../assets/img/carousel/${image}`)} alt='Header Images' />
-                    </React.Fragment>
+                    <div id='headerImageContainer' key={image.image}>
+                        <img className='headerImage' id={`index_${imagesForHeader.indexOf(image)}`} src={require(`../../assets/img/carousel/${image.image}`)} alt='Header Images' />
+                        <div className='siteHeaderTitle' id={`indexName_${imagesForHeader.indexOf(image)}`}>{image.name}</div>
+                    </div>
                 )
             })}
         </section>

@@ -1,5 +1,8 @@
 const express = require('express');
 const app = express();
+//MAIL PORT
+const app2 = express();
+
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mysql = require('mysql2');
@@ -12,6 +15,13 @@ const db = mysql.createPool({
 const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const nodemailer = require('nodemailer');
+require('dotenv').config();
+
+//MAIL PORT
+app2.listen(465, (req, res) => {
+    console.log('Running on Port 587 for email');
+})
 
 //SERVER
 app.listen(3001, (req, res) => {
@@ -23,6 +33,7 @@ const clientURL = require('../src/Global');
 const schoolsRoutes = require('./routes/schools');
 const loginRoutes = require('./routes/login');
 const articleRoutes = require('./routes/articles');
+const contactRoutes = require('./routes/contactus');
 
 
 app.use(cors({
@@ -47,3 +58,4 @@ app.use(session({
 app.use(schoolsRoutes);
 app.use(loginRoutes);
 app.use(articleRoutes);
+app.use(contactRoutes);

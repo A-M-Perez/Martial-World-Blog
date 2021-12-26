@@ -14,32 +14,71 @@
     box-shadow: 0px 0px 10px 0px;
     display: flex;
     justify-content: space-between;
-    
 }
 
-    .headerImage {
+    #headerImageContainer{
         margin-top: 4%;
         width: 10%;
         height: 50%;
-        border-radius: 50%;
-        box-shadow: 0px 0px 10px 5px rgba(210, 210, 210, 0.5);
-        opacity: calc(0.5);
+        position: relative;
     }
 
-        #index_2 {
-            animation: showInCenter 1s;
-            animation-fill-mode: forwards;
-            transition-timing-function: step-end;
+        .headerImage {
+            margin-top: 4%;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            box-shadow: 0px 0px 10px 5px rgba(210, 210, 210, 0.5);
+            opacity: 0.4;
         }
 
-            @keyframes showInCenter {
-                0% {
-                    box-shadow: 0px 0px 10px 5px rgba(210, 210, 210, 0.5);
-                    opacity: calc(0.5);
+            #index_2 {
+                animation: showInCenter 1s;
+                animation-fill-mode: forwards;
+                transition-timing-function: step-end;
+            }
+
+                @keyframes showInCenter {
+                    0% {
+                        box-shadow: 0px 0px 10px 5px rgba(210, 210, 210, 0.5);
+                        opacity: 0.4;
+                    }
+
+                    100% {
+                        transform: scale(1.7);
+                        opacity: 0.8;
+                        box-shadow: 0px 0px 15px 15px rgba(210, 210, 210, 0.5);}
+                    }
+
+            .siteHeaderTitle {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-family: 'Cormorant Garamond', serif;
+                font-size: 2em;
+                font-weight: 700;
+                white-space: nowrap;
+                text-shadow: 2px 2px 5px whitesmoke;
+                opacity: 0.4;
+                color: black;
+                z-index: 10;
+            }
+
+                #indexName_2 {
+                    animation: showNameInCenter 1s;
+                    animation-fill-mode: forwards;
+                    transition-timing-function: step-end;
                 }
 
-                100% {
-                    transform: scale(1.7);
-                    opacity: calc(1);
-                    box-shadow: 0px 0px 15px 15px rgba(210, 210, 210, 0.5);}
-                }
+                    @keyframes showNameInCenter {
+                        0% {
+                            font-size: 2em;
+                            opacity: 0.4;
+                        }
+
+                        100% {
+                            font-size: 4em;
+                            opacity: 1;
+                        }
+                    }
