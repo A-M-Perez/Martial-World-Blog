@@ -4,28 +4,27 @@ require('dotenv').config();
 const controller = {
     sendEmail: async (req, res) => {
 
-        try {
-            const { emailFrom, emailSubject, emailBody } = req.body;
+        const { email, subject, message } = req.body;
 
+        try {
             const emailData = {
-                from: `fromtest@test.com`,
-                to: 'totest@test.com',
-                subject: `Hi`,
-                text: `body`
+                from: `${email}`,
+                to: 'admin@MartialWorldForTesting.com',
+                subject: `${subject}`,
+                text: `${message}`
             };
 
             const transport = nodemailer.createTransport({
                 host: process.env.MAIL_HOST,
                 port: process.env.MAIL_PORT,
                 secure: false,
-                authorization: {
+                auth: {
                     user: process.env.MAIL_USER,
                     pass: process.env.MAIL_PASS
                 },
                 connectionTimeout: 3 * 60 * 1000,
                 debug: true,
                 logger: true,
-                tls: {rejectUnauthorized: false}
             });
 
             await transport.sendMail(emailData);

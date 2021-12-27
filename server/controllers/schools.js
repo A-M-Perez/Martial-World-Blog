@@ -4,6 +4,7 @@ const controller = {
     getSchool: (req, res) => {
 
         try {
+
             const sqlGetSchool = "SELECT * FROM schools LIMIT 50;";
             db.query(sqlGetSchool, (err, result) => {
                 res.send(result);
