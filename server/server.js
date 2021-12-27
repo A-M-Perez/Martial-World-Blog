@@ -19,7 +19,7 @@ const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 //MAIL PORT
-app2.listen(465, (req, res) => {
+app2.listen(587, (req, res) => {
     console.log('Running on Port 587 for email');
 })
 

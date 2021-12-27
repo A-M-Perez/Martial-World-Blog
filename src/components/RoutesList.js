@@ -7,6 +7,7 @@ import Schools from "./pages/Schools";
 import AboutUs from "./pages/AboutUs";
 import LoginContainer from "./pages/Login/LoginContainer";
 import Footer from './layout/Footer';
+import ConfirmationMessage from "./pages/ConfirmationMsg";
 
 const RoutesList = () => {
 
@@ -21,6 +22,7 @@ const RoutesList = () => {
                 <Route path='/AboutUs' exact element={<AboutUs />} />
                 <Route path='/Login' exact element={<LoginContainer />} />
             </Routes>
+            {/* <ConfirmationMessage /> */}
             <Footer />
         </Router >
     );

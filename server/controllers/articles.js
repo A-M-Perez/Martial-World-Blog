@@ -1,9 +1,10 @@
+require('dotenv').config();
 const mysql = require('mysql2');
 const db = mysql.createPool({
-    host: 'localhost',
-    user: 'Martin',
-    password: 'password',
-    database: 'martialworld'
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASS,
+    database: process.env.MYSQL_DATABASE
 });
 
 const controller = {

@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#confirmationScreen {
+    position: absolute;
+    width: 40%;
+    height: 20%;
+    background-color: rgba(41, 170, 41);
+    border: 4px solid whitesmoke;
+    outline: 3px solid  rgba(41, 170, 41);
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2.5em;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 1.5%;
+    border-radius: 20px;
+
+    z-index: 50;
+    animation: messageBounce 1.5s;
+    animation-fill-mode: forwards;
+    transition-timing-function: step-end;
+}
+
+    @keyframes messageBounce {
+        0% {top: 0%;
+            left: 50%;
+            transform: translate(-50%, -50%);}
+        50% {top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        60% {top: 52%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        70% {top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        80%{top: 54%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        100%{top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
