@@ -2,21 +2,15 @@ const express = require('express');
 const app = express();
 //MAIL PORT
 const app2 = express();
-
+//delete line above
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const mysql = require('mysql2');
-const db = mysql.createPool({
-    host: 'localhost',
-    user: 'Martin',
-    password: 'password',
-    database: 'martialworld'
-});
 const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
+const db = require('./database');
 
 //MAIL PORT
 app2.listen(587, (req, res) => {
