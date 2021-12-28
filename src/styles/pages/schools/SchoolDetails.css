@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#schoolContainer {
+    width: 100vw;
+    margin-bottom: 100px;
+}
+
+    #schoolHeader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 3%;
+    }
+
+        #schoolLogo {
+            width: 10%;
+            height: 100%;
+            margin-right: 2%;
+        }
+
+        #schoolHeader h3 {
+            height: 100%;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3em;
+            text-align: center;
+            text-shadow: 1px 1px 2px grey;
+            margin-bottom: 2%;
+        }
+
+    #schoolInfoContainer {
+        display: flex;
+        border-top: 2px double black;
+    }
+
+        #addressSection h6 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1em;
+            font-weight: 400;
+            text-align: center;
+            padding: 5%;
+        }
+
+        #infoSection {
+            box-sizing: border-box;
+            padding-top: 1%;
+            padding-left: 5%;
+        }
+
+            #infoSummary {
+                font-family: 'Open Sans', sans-serif;
+                font-size: 1em;
+                font-weight: 400;
+            }
+
+                #infoSummary li {
+                    margin-top: 4%;
+                    text-align: justify;
+                    box-sizing: border-box;
+                    padding-right: 5%;
+                }
+
+    #schoolMapContainer {
+        width: 500px;
+        height: 400px;
+        border: 1px solid rgb(120, 120, 120);
+        box-shadow: -1px 1px 5px black;
+        margin-left: 5%;
+    }

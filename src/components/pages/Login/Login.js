@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import '../../../styles/pages/Login.css'
+import '../../../styles/pages/login/Login.css'
 import '../../../styles/pages/Home.css'
 import axios from 'axios';
 import { serverURL } from '../../../Global';

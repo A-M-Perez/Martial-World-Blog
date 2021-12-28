@@ -4,20 +4,23 @@
 }
 
 #confirmationScreen {
-    position: absolute;
-    width: 40%;
-    height: 20%;
-    background-color: rgba(41, 170, 41);
-    border: 4px solid whitesmoke;
-    outline: 3px solid  rgba(41, 170, 41);
-    color: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 200px;
+    background-color: rgb(35, 23, 150);
+    border: 4px solid rgb(160, 160, 160);
+    outline: 3px solid  rgb(71, 61, 211);
+    color: rgb(240, 240, 240);
     font-family: 'Open Sans', sans-serif;
     font-size: 2.5em;
     text-align: center;
     box-sizing: border-box;
     padding: 1.5%;
     border-radius: 20px;
-
+    box-shadow: 0px 0px 10px 5px white;
     z-index: 50;
     animation: messageBounce 1.5s;
     animation-fill-mode: forwards;
@@ -28,7 +31,7 @@
         0% {top: 0%;
             left: 50%;
             transform: translate(-50%, -50%);}
-        50% {top: 55%;
+        45% {top: 55%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
@@ -40,7 +43,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
-        80%{top: 54%;
+        85%{top: 54%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
@@ -49,3 +52,20 @@
             transform: translate(-50%, -50%);
         }
     }
+
+    #confirmationBtn {
+        width: 30%;
+        height: 25%;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 0.6em;
+        font-weight: 700;
+        border: 2px double black;
+        border-radius: 25px;
+        background-color: rgb(200, 200, 200);
+    }
+
+        #confirmationBtn:hover {
+            cursor: pointer;
+            box-shadow: 1px 1px 2px 0px black;
+            transform: scale(1.05);
+        }

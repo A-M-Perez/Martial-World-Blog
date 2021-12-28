@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import '../../styles/layout/Navbar.css';
-import '../../styles/pages/Schools.css';
+import '../../../styles/layout/Navbar.css';
+import '../../../styles/pages/schools/Schools.css';
 import axios from 'axios';
-import { serverURL } from "../../Global";
+import { serverURL } from "../../../Global";
 
 const IndividualSchool = () => {
 
@@ -23,7 +23,7 @@ const IndividualSchool = () => {
         const listOfSchools = schoolData.map(school => {
             return (
                 <div key={school.name} id='schoolsSummary'>
-                    <img src={require(`../../assets/img/schools/${school.logo}`)} alt='School logo' />
+                    <img src={require(`../../../assets/img/schools/${school.logo}`)} alt='School logo' />
                     <div>
                         <p><strong>Name:</strong> {school.name}</p>
                         <p><strong>Address:</strong> {school.address}</p>

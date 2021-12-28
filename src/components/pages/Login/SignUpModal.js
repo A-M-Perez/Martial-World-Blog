@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useRef } from 'react';
-import '../../../styles/pages/SignUp.css'
+import '../../../styles/pages/login/SignUp.css'
 import { serverURL } from '../../../Global';
 
 axios.defaults.withCredentials = true;
