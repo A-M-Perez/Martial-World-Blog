@@ -18,12 +18,13 @@
 
     #articleSummary {
         border-bottom: 2px double whitesmoke;
+        margin-bottom: 10px;
         clear: both;
     }
 
         #articleImage {
             width: 15%;
-            height: 110px;
+            height: 120px;
             float: left;
         }
 
@@ -38,10 +39,6 @@
             font-size: 1.5em;
         }
 
-            #articleSummary h5:hover {
-                cursor: pointer;
-            }
-
         #articleSummary h6 {
             font-family: 'Open Sans', sans-serif;
             font-size: 1em;
@@ -50,10 +47,30 @@
 
         #articleSummary p {
             margin-top: 1%;
+            margin-bottom: 10px;
             font-family: 'Open Sans', sans-serif;
             font-size: 0.8em;
             font-weight: 400;
         }
+
+        #readMoreBtn {
+            width: 100px;
+            height: 20px;
+            margin-top: 0px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.7em;
+            font-weight: 400;
+            
+        }
+
+            #readMoreBtn:hover {
+                cursor: pointer;
+                font-weight: 700;
+                transform: scale(1.1);
+                transition:  all 100ms ease-in-out;
+            }
 
 #loadingMessage {
     margin-top: 10%;

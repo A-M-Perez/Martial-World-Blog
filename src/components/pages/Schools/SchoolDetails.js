@@ -1,15 +1,35 @@
+import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import '../../../styles/pages/schools/SchoolDetails.css';
 import Geocode from 'react-geocode';
 import SchoolMap from './SchoolMap';
 // require('dotenv').config();
+import { serverURL } from "../../../Global";
+import axios from 'axios';
 Geocode.setApiKey('AIzaSyBWvJqmvWnh1wwYT53iNIGM_bZdRpc2k94');
 Geocode.setLanguage('en');
 Geocode.setRegion('es');
 
+
 const SchoolDetails = () => {
 
-    const schoolAddress = 'Avenida Corrientes 3800, Buenos Aires, Argentina';
+    const params = useParams();
+    const schoolId = params.id;
+
+    const [schoolData, setSchoolData] = useState([]);
+    const [status, setStatus] = useState('Success');
+
+    useEffect(
+        function getSchoolById(props) {
+
+            axios.get(`${serverURL}/api/get_school/${schoolId}`)
+                .then((res) => {
+                    setSchoolData(res.data[0]);
+                })
+                .catch(() => setStatus('Error'))
+        }, []);        
+        
+    const schoolAddress = schoolData.address;
     const [schoolLocation, setSchoolLocation] = useState();
 
     useEffect(() => {
@@ -18,16 +38,16 @@ const SchoolDetails = () => {
                 setSchoolLocation(res.results[0].geometry.location);
             },
                 (err) => {
-                    console.log(err);
+                    console.log('Error: ' + err);
                 })
     }
         , [schoolAddress])
 
     return (
-        <section id='schoolContainer'>
+        <section key={schoolData.id} id='schoolContainer'>
             <div id='schoolHeader'>
-                <img id='schoolLogo' src={require('../../../assets/img/schools/IOGKF.png')} alt='School logo' />
-                <h3>I.O.G.K.F.</h3>
+                <img id='schoolLogo' src={require(`../../../assets/img/schools/IOGKF.png`)} alt='School logo' />
+                <h3>{schoolData.name}</h3>
             </div>
             <div id='schoolInfoContainer'>
                 <div id='addressSection'>
@@ -36,12 +56,9 @@ const SchoolDetails = () => {
                 </div>
                 <div id='infoSection'>
                     <ul id='infoSummary'>
-                        <li><strong>Training Schedule:</strong> Mon-Wed-Fri 8-10pm</li>
+                        <li><strong>Training Schedule:</strong> {schoolData.schedule}</li>
                         <li><strong>Description:</strong><br /><br />
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, illum! Eius voluptate distinctio autem quae nemo ratione iste rem repellat enim cum laborum, optio, odio quos commodi! Dolores, modi suscipit.
-                            Asperiores laudantium quisquam error modi eveniet beatae rem repellendus? Maxime saepe nostrum, ipsum beatae porro dicta ratione error, sed voluptatibus aliquid non velit delectus voluptatem sint dignissimos. Blanditiis, dolorem facere.
-                            Harum, facilis exercitationem officia reiciendis atque suscipit, qui quaerat expedita culpa sit rerum, iste ullam nobis dignissimos labore quidem architecto vero? Eveniet ullam optio omnis odio eius reiciendis repellendus mollitia.
-                            Et, odit a deserunt voluptatem quae quas tenetur laborum libero hic aperiam dolor reiciendis non sequi nobis possimus perspiciatis, saepe numquam excepturi praesentium nesciunt impedit omnis officiis neque recusandae. Cum.</li>
+                            {schoolData.description}</li>
                         <li><strong>Contact information:</strong>
                             <ul>
                                 <li>Email: fakeemail@test.com</li>

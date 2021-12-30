@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Moment from 'react-moment';
 import React, { useEffect, useState } from 'react';
 import '../../../styles/pages/blog/ArticlesList.css';
 import { serverURL } from '../../../Global';
@@ -24,11 +25,17 @@ const ArticleSummary = ({ toggleView }) => {
             return (
                 <div key={article.id} id='articleSummary'>
                     <img alt='Article image' id='articleImage' />
-                    <h5 onClick={() => { toggleView('readArticle') }}>{article.title}</h5>
-                    <h6 >{article.article_date}</h6>
+                    <h5>{article.title}</h5>
+                    <h6 >
+                        <Moment
+                            fromNow>
+                            {article.article_date}
+                        </Moment>
+                    </h6>
                     <h6 >{article.author}</h6>
                     <p >{article.article}
                     </p>
+                    <button onClick={() => { toggleView('readArticle') }} id='readMoreBtn'>Read more...</button>
                 </div>
             );
         });

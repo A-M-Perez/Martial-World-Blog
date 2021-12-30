@@ -45,8 +45,14 @@
         justify-content: space-evenly;
     }
 
+        
+    .schoolNavLink {
+        all: initial;
+        width: 23%;
+    }
+
         #schoolsSummary {
-            width: 23%;
+            width: 100%;
             display: flex;
             text-align: left;
             font-family: 'Open Sans', sans-serif;

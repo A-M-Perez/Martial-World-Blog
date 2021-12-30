@@ -22,15 +22,17 @@ const IndividualSchool = () => {
     if (schoolData.length != 0) {
         const listOfSchools = schoolData.map(school => {
             return (
-                <div key={school.name} id='schoolsSummary'>
-                    <img src={require(`../../../assets/img/schools/${school.logo}`)} alt='School logo' />
-                    <div>
-                        <p><strong>Name:</strong> {school.name}</p>
-                        <p><strong>Address:</strong> {school.address}</p>
-                        <p><strong>Training schedule:</strong> {school.schedule}</p>
-                        <p><strong>Brief description:</strong> {school.description}</p>
+                <NavLink to={`/Schools/School/${school.id}`} className='schoolNavLink'>
+                    <div key={school.name} id='schoolsSummary'>
+                        <img src={require(`../../../assets/img/schools/${school.logo}`)} alt='School logo' />
+                        <div>
+                            <p><strong>Name:</strong> {school.name}</p>
+                            <p><strong>Address:</strong> {school.address}</p>
+                            <p><strong>Training schedule:</strong> {school.schedule}</p>
+                            <p><strong>Brief description:</strong> {school.description}</p>
+                        </div>
                     </div>
-                </div>
+                </NavLink>
             );
         });
         return (
