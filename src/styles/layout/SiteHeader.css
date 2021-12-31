@@ -82,3 +82,223 @@
                             opacity: 1;
                         }
                     }
+
+/* RESPONSIVE DESIGN */
+
+/* GOING UP FROM 1250 */
+@media screen and (min-width: 1300px) {
+    #headerImageContainer{
+        margin-top: 4%;
+        width: 9%;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    #headerImageContainer{
+        margin-top: 3.5%;
+        width: 8.5%;
+    }
+}
+
+@media screen and (min-width: 1500px) {
+    #headerImageContainer{
+        width: 8%;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    #headerImageContainer{
+        width: 7.5%;
+    }
+}
+
+@media screen and (min-width: 1700px) {
+    #headerImageContainer{
+        margin-top: 3%;
+        width: 7.2%;
+    }
+
+    #siteHeader {
+        justify-content: space-evenly;
+    }
+}
+
+@media screen and (min-width: 1800px) {
+    #headerImageContainer{
+        margin-top: 2.8%;
+        width: 6.7%;
+    }
+}
+
+@media screen and (min-width: 1900px) {
+    #headerImageContainer{
+        margin-top: 2.5%;
+        width: 6.5%;
+    }
+}
+
+@media screen and (min-width: 2000px) {
+    #headerImageContainer{
+        width: 6%;
+    }
+}
+
+@media screen and (min-width: 2200px) {
+    #headerImageContainer{
+        margin-top: 2.3%;
+        width: 5.5%;
+    }
+}
+
+@media screen and (min-width: 2400px) {
+    #headerImageContainer{
+        margin-top: 2%;
+        width: 5%;
+    }
+}
+
+/* GOING DOWN FROM 1250 */
+@media screen and (max-width: 1150px) {
+    #headerImageContainer{
+        margin-top: 4%;
+        width: 11%;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    #headerImageContainer{
+        margin-top: 4.8%;
+        height: 48%;
+        
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    #headerImageContainer{
+        margin-top: 5%;
+        height: 48%;
+        width: 12%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #headerImageContainer{
+        margin-top: 5.5%;
+        height: 45%;
+        width: 12.5%;
+    }
+
+    .siteHeaderTitle {
+        font-size: 1.5em;
+    }
+
+    @keyframes showNameInCenter {
+        0% {
+            font-size: 1.5em;
+            opacity: 0.4;
+        }
+
+        100% {
+            font-size: 3.5em;
+            opacity: 1;
+        }
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #headerImageContainer{
+        margin-top: 7%;
+        height: 40%;
+        width: 12%;
+    }
+
+    .siteHeaderTitle {
+        font-size: 1.2em;
+    }
+
+    @keyframes showNameInCenter {
+        0% {
+            font-size: 1.2em;
+            opacity: 0.4;
+        }
+
+        100% {
+            font-size: 3.1em;
+            opacity: 1;
+        }
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #headerImageContainer{
+        margin-top: 7.5%;
+        height: 50%;
+        width: 18%;
+    }
+
+    .siteHeaderTitle {
+        font-size: 2em;
+    }
+
+    @keyframes showNameInCenter {
+        0% {
+            font-size: 2em;
+            opacity: 0.4;
+        }
+
+        100% {
+            font-size: 4em;
+            opacity: 1;
+        }
+    }
+    
+    .headerImage {
+        visibility: hidden;
+    }
+
+    .siteHeaderTitle {
+        visibility: hidden;
+    }
+
+    #index_2 {
+        visibility: visible;
+    }
+
+    #indexName_2 {
+        visibility: visible;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #headerImageContainer{
+        margin-top: 8%;
+        height: 48%;
+        width: 20%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #headerImageContainer{
+        position: absolute;
+        margin-top: 10%;
+        left: 40%;
+        height: 9%;
+        width: 24%;
+    }
+
+    .siteHeaderTitle {
+        font-size: 2em;
+    }
+
+    @keyframes showNameInCenter {
+        0% {
+            font-size: 2em;
+            opacity: 0.4;
+        }
+
+        100% {
+            font-size: 4em;
+            opacity: 1;
+        }
+    }
+}

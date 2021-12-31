@@ -5,7 +5,6 @@ import '../../../styles/pages/schools/Schools.css';
 import axios from 'axios';
 import { serverURL } from "../../../Global";
 
-//CHILD COMPONENT - 
 const IndividualSchool = ({ searchInput }) => {
 
     const [schoolData, setSchoolData] = useState([]);

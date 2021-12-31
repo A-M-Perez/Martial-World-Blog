@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./layout/Navbar";
 import SiteHeader from './layout/SiteHeader';
@@ -10,6 +11,8 @@ import Footer from './layout/Footer';
 import ConfirmationMessage from "./pages/ConfirmationMsg";
 import SchoolDetails from "./pages/Schools/SchoolDetails";
 import Article from './pages/Blog/Articles';
+import CreateArticles from "./pages/Blog/CreateArticles";
+import Members from "./pages/Blog/Members";
 
 const RoutesList = () => {
 
@@ -20,7 +23,8 @@ const RoutesList = () => {
             <Routes>
                 <Route path='/' exact element={<Home />} />
                 <Route path='/Blog' exact element={<Blog />} />
-                {/* <Route path='/Blog/Article/:id' exact element={<Article />} /> */}
+                <Route path='/Blog/Create_article' exact element={<CreateArticles />} />
+                {/* <Route path='/Blog/Articles/:id' exact element={[<Article />,<Members />]} /> */}
                 <Route path='/Schools' exact element={<Schools />} />
                 <Route path='/Schools/School/:id' exact element={<SchoolDetails />} />
                 <Route path='/AboutUs' exact element={<AboutUs />} />

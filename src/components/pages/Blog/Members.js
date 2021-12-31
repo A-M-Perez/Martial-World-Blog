@@ -6,8 +6,8 @@ const Members = ({toggleView}) => {
     return (
         <aside id='blogMembers'>
             <h4>MEMBERS ONLY</h4>
-            <button type='button' id='guest-login-btn' onClick={() => {toggleView('createArticle')}}>CREATE ARTICLE</button>
-            <p>Guests can create an article <span onClick={() => {toggleView('createArticle')}}>here</span></p>
+            <NavLink to={'/Blog/Create_article'}><button type='button' id='guest-login-btn'>CREATE ARTICLE</button></NavLink>
+            <NavLink className='BlogNavLink' to={'/Blog/Create_article'}><p>Guests can create an article <span onClick={() => {toggleView('createArticle')}}>here</span></p></NavLink>
             <hr />
             <h5>SEARCH</h5>
             <label htmlFor='searchArticle'>Find any article</label>

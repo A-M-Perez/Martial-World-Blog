@@ -3,6 +3,7 @@ import Moment from 'react-moment';
 import React, { useEffect, useState } from 'react';
 import '../../../styles/pages/blog/ArticlesList.css';
 import { serverURL } from '../../../Global';
+import { NavLink } from 'react-router-dom';
 
 const ArticleSummary = ({ toggleView }) => {
 
@@ -35,7 +36,7 @@ const ArticleSummary = ({ toggleView }) => {
                     <h6 >{article.author}</h6>
                     <p >{article.article}
                     </p>
-                    <button onClick={() => { toggleView('readArticle') }} id='readMoreBtn'>Read more...</button>
+                    <NavLink to={`/Blog/Articles/${article.id}`}><button onClick={() => { toggleView('readArticle') }} id='readMoreBtn'>Read more...</button></NavLink>
                 </div>
             );
         });

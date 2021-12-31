@@ -1,7 +1,5 @@
 import '../../../styles/pages/blog/Blog.css';
 import Members from './Members';
-import Article from './Articles';
-import CreateArticles from './CreateArticles';
 import ArticlesList from './ArticlesList';
 import { useState } from 'react';
 
@@ -30,13 +28,10 @@ const Blog = () => {
 
     return (
         <section id='blogContainer'>
-            {!createArticle &&
-                <div id='articlesBackground'>
-                    {articlesList && <ArticlesList toggleView={switchViews} />}
-                    {article && <Article />}
-                    <Members toggleView={switchViews} />
-                </div>}
-            {createArticle && <CreateArticles />}
+            <div id='articlesBackground'>
+                <ArticlesList />
+                <Members />
+            </div>
         </section>
     );
 };

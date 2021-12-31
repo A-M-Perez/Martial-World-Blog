@@ -8,7 +8,10 @@ const controller = {
         });
     },
     postArticle: (req, res) => {
-
+        const sqlPostArticle = "INSERT INTO blog_articles ;";
+        db.query(sqlPostArticle, (err, result) => {
+            res.send(result);
+        });
     }
 };
 

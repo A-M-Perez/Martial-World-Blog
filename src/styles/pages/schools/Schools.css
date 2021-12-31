@@ -105,3 +105,49 @@
     color: black;
 }
 
+/* RESPONSIVE DESIGN */
+@media screen and (max-width: 1300px) {
+    .schoolNavLink {
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    
+    #schoolsSummaryContainer {
+        justify-content: center;
+    }
+
+        .schoolNavLink {
+            width: 40%;
+        }
+}
+
+@media screen and (max-width: 750px) {
+    .schoolNavLink {
+        width: 60%;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .schoolNavLink {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .schoolNavLink {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 240px) {
+    .schoolNavLink {
+        width: 100%;
+        margin-bottom: 20px;
+        height: auto;
+    }
+}
