@@ -31,7 +31,8 @@
     "react-transition-group": "^4.4.2",
     "slick-carousel": "^1.8.1",
     "util": "^0.12.4",
-    "web-vitals": "^2.1.2"
+    "web-vitals": "^2.1.2",
+    "webpack": "^5.65.0"
   },
   "scripts": {
     "start": "concurrently \"nodemon ./server/server.js\" \"react-scripts start\"",

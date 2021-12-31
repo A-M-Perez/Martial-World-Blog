@@ -5,10 +5,12 @@ import '../../../styles/pages/schools/Schools.css';
 import axios from 'axios';
 import { serverURL } from "../../../Global";
 
-const IndividualSchool = () => {
+//CHILD COMPONENT - 
+const IndividualSchool = ({ searchInput }) => {
 
     const [schoolData, setSchoolData] = useState([]);
     const [status, setStatus] = useState('Success');
+    const [filteredSchoolData, setFilteredSchoolData] = useState([]);
 
     useEffect(
         function getSchool() {
@@ -19,8 +21,19 @@ const IndividualSchool = () => {
                 .catch(() => setStatus('Error'))
         }, []);
 
-    if (schoolData.length != 0) {
-        const listOfSchools = schoolData.map(school => {
+    useEffect(() => {
+        if (schoolData.length != 0) {
+            const filteredSchools = schoolData.filter(school => {
+                let name = school.name;
+                if (name.toLowerCase().includes(searchInput.toLowerCase(), 0)) { return school }
+            });
+            setFilteredSchoolData(filteredSchools);
+        }
+    }, [searchInput]);
+
+
+    if (filteredSchoolData.length != 0) {
+        const listOfSchools = filteredSchoolData.map(school => {
             return (
                 <NavLink to={`/Schools/School/${school.id}`} className='schoolNavLink'>
                     <div key={school.name} id='schoolsSummary'>
@@ -29,7 +42,7 @@ const IndividualSchool = () => {
                             <p><strong>Name:</strong> {school.name}</p>
                             <p><strong>Address:</strong> {school.address}</p>
                             <p><strong>Training schedule:</strong> {school.schedule}</p>
-                            <p><strong>Brief description:</strong> {school.description}</p>
+                            <p id='schoolDescription'><strong>Brief description:</strong> {school.description}</p>
                         </div>
                     </div>
                 </NavLink>
@@ -41,24 +54,37 @@ const IndividualSchool = () => {
             </React.Fragment>
         );
     } else {
-        return (
-            <p id='loadingMessage'>Loading schools...</p>
-        )
+        if (schoolData.length != 0 && searchInput !== '') {
+            return (
+                <p id='loadingMessage'>Sorry, there are no matching results</p>
+            )
+        } else {
+            return (
+                <p id='loadingMessage'>Loading schools...</p>
+            )
+        };
     };
 };
 
+//PARENT COMPONENT - 
 const Schools = () => {
+
+    const [searchInput, setSearchInput] = useState('');
+
+    function getSearchInput(e) {
+        setSearchInput(e.target.value);
+    };
+
     return (
         <section id='schools'>
             <h3>If you have a school and would like to include it in the site, please <NavLink to='/AboutUs' className='clickable link'>contact us</NavLink></h3>
 
-            <label id="searchBox">Search for school:&nbsp;
+            <label id="searchBox">Search for schools:&nbsp;
                 <br />
-                <input type='text' name='searchSchool' href={'searchSchool'} />
+                <input type='text' name='searchSchool' placeholder="School name..." href={'searchSchool'} onChange={getSearchInput} />
             </label>
-
             <section id='schoolsSummaryContainer'>
-                <IndividualSchool />
+                <IndividualSchool searchInput={searchInput} />
             </section>
         </section>
 
