@@ -36,7 +36,7 @@ const ArticleSummary = ({ toggleView }) => {
                     <h6 >{article.author}</h6>
                     <p >{article.article}
                     </p>
-                    <NavLink to={`/Blog/Articles/${article.id}`}><button onClick={() => { toggleView('readArticle') }} id='readMoreBtn'>Read more...</button></NavLink>
+                    <NavLink to={`/Blog/Articles/${article.id}`}><button id='readMoreBtn'>Read more...</button></NavLink>
                 </div>
             );
         });
