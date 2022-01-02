@@ -26,7 +26,6 @@ app.use(session({
     }
 }));
 
-
 const controller = {
     insertUser: async (req, res) => {
 
@@ -57,12 +56,10 @@ const controller = {
         };
 
         function rejectLogIn(error) {
-            if (error == 'a') {
+            if (error == 'passwordError') {
                 res.send({ status: 'wrongPassword' });
-                console.log('el password esta mal');
-            } else if (error == 'd') {
+            } else if (error == 'userError') {
                 res.send({ status: 'unknown' });
-                console.log('no existe el usuario')
             };
         };
 
@@ -79,18 +76,18 @@ const controller = {
                         req.session.name = name;
                         confirmLogIn(email, name);
                     } else {
-                        rejectLogIn('a');
+                        rejectLogIn('passwordError');
                     }
                 });
             } else {
-                rejectLogIn('d');
+                rejectLogIn('userError');
             }
         })
     },
     loginGuestUser: (req, res) => {
 
         req.session.nickname = req.body.nickname;
-        console.log(req.session.nickname);
+        res.send({ user: req.session.nickname, status: 'success' })
     }
 };
 
