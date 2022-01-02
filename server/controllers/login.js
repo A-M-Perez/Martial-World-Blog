@@ -58,32 +58,34 @@ const controller = {
 
         function rejectLogIn(error) {
             if (error == 'a') {
+                res.send({ status: 'wrongPassword' });
                 console.log('el password esta mal');
             } else if (error == 'd') {
+                res.send({ status: 'unknown' });
                 console.log('no existe el usuario')
             };
         };
 
-        db.query(sqlGetLoginUser, email)
-            .then((result) => {
-                if (result.length > 0) {
-                    bcrypt.compare(password, result[0].password, (response) => {
-                        console.log(password, result[0].password, response)
-                        if (response) {
-                            const name = result[0].name;
-                            req.session.name = name;
-                            confirmLogIn(email, name);
-                        } else {
-                            rejectLogIn('a');
-                        }
-                    });
-                } else {
-                    rejectLogIn('d');
-                };
-            })
-            .catch(() => {
+        db.query(sqlGetLoginUser, email, (err, result) => {
+
+            if (err) {
                 res.status(500);
-            });
+            }
+
+            if (result.length > 0) {
+                bcrypt.compare(password, result[0].password, (err, response) => {
+                    if (response) {
+                        const name = result[0].name;
+                        req.session.name = name;
+                        confirmLogIn(email, name);
+                    } else {
+                        rejectLogIn('a');
+                    }
+                });
+            } else {
+                rejectLogIn('d');
+            }
+        })
     },
     loginGuestUser: (req, res) => {
 
@@ -93,25 +95,3 @@ const controller = {
 };
 
 module.exports = controller;
-
-
-// db.query(sqlGetLoginUser, email, (err, result) => {
-
-//     if (err) {
-//         res.status(500);
-//     }
-
-//     if (result.length > 0) {
-//         bcrypt.compare(password, result[0].password, (err, response) => {
-//             if (response) {
-//                 req.session.name = result[0].name;
-//                 console.log(req.session.name);
-//             } else {
-//                 console.log('el password esta mal');
-//             }
-//         });
-
-//     } else {
-//         console.log('no existe el usuario')
-//     }
-// })

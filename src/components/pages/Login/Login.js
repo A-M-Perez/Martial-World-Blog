@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../../../styles/pages/login/Login.css'
 import '../../../styles/pages/Home.css'
 import axios from 'axios';
-import { serverURL, user } from '../../../Global';
+import { serverURL, user, userSignedIn } from '../../../Global';
 
 axios.defaults.withCredentials = true;
 
@@ -15,8 +15,23 @@ const Login = ({ openModal, message }) => {
     let loginUserPassword = useRef();
 
     useEffect(() => {
-        if (signInStatus === 'success') {
-            message('WELCOME', `${user}!`, true);
+
+        if (signInStatus) {
+            switch (signInStatus) {
+                case 'success':
+                    message('WELCOME', `${user}!`, true);
+                    userSignedIn = true;
+                    break;
+                case 'wrongPassword':
+                    message('SORRY', `Wrong password, please try again.`, true);
+                    break;
+                case 'unknown':
+                    message('SORRY', `User could not be found. Please try again.`, true);
+                    break;
+                default:
+                    message('SORRY', `Please try again.`, true);
+                    break;
+            };
         } else if ('' && signInStatus) {
             alert("Sorry, seems like there has been an error. Please reload the page and try again.");
         }
@@ -33,7 +48,7 @@ const Login = ({ openModal, message }) => {
         axios.post(`${serverURL}/api/login_user`, submittedLoginForm)
             .then((response) => {
                 setSignInStatus(response.data.status);
-                
+                user = response.data.name;
             })
             .catch((err) => {
                 alert(err);
@@ -58,7 +73,7 @@ const Login = ({ openModal, message }) => {
         <section id='login'>
 
             {/* REGULAR LOG IN FORM */}
-            <section id='login-form'>
+            {!userSignedIn && <section id='login-form'>
                 <h2>Sign in</h2>
                 <form id='user-login' onSubmit={getLoginForm}>
                     <label id='user' htmlFor='user'>User e-mail:&nbsp;</label>
@@ -70,7 +85,12 @@ const Login = ({ openModal, message }) => {
                 <span id='not-user'>Not an user yet?</span>
                 <br />
                 <button type='button' id='sign-up-btn' onClick={openModal}>Sign up</button>
-            </section>
+            </section>}
+
+            {userSignedIn && <section id='login-form'>
+                <p id='alreadySignedIn'>You are already signed in as <span id='userName'>{user}</span></p>
+            </section>}
+
             <div id='separator' />
 
             {/* LOG IN FORM FOR GUESTS */}
