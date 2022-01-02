@@ -9,7 +9,7 @@ const controller = {
         try {
             const emailData = {
                 from: `${email}`,
-                to: 'admin@MartialWorldForTesting.com',
+                to: 'aldomartinperez@hotmail.com',
                 subject: `${subject}`,
                 text: `${message}`
             };
@@ -27,7 +27,10 @@ const controller = {
                 logger: true,
             });
 
-            await transport.sendMail(emailData);
+            await transport.sendMail(emailData)
+            .then(()=>{
+                res.send({status: true});
+            });
 
         } catch (err) {
             res.status(500);

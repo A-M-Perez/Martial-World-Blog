@@ -6,8 +6,8 @@ import ConfirmationMessage from "../ConfirmationMsg";
 const LoginContainer = () => {
 
     const [modalOpen, setModalOpen] = useState(false);
-    const [messageTitle, setMessageTitle] = useState('titulo');
-    const [messageContent, setMessageContent] = useState('contenido');
+    const [messageTitle, setMessageTitle] = useState('');
+    const [messageContent, setMessageContent] = useState('');
     const [showConfirmationMessage, setShowConfirmationMessage] = useState(false);
 
     const openModal = () => {
