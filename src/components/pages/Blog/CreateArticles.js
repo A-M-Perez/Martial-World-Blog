@@ -28,7 +28,7 @@ const CodeOfConduct = () => {
                     <li>Rule #4</li>
                 </ul>
             </div>
-            <input type='checkbox' name='cocAcknowledgement' onChange={checkCodeOfConduct} id='acknowledgeCheckBox'/><label htmlFor='cocAcknowledgement' id='acknowledgeText'>I acknowledge the code of conduct for posting articles.</label>
+            <input type='checkbox' name='cocAcknowledgement' onChange={checkCodeOfConduct} id='acknowledgeCheckBox' /><label htmlFor='cocAcknowledgement' id='acknowledgeText'>I acknowledge the code of conduct for posting articles.</label>
         </aside>
     );
 };
@@ -39,13 +39,14 @@ const CreateArticles = () => {
     let articleText = useRef();
 
     function postArticle(e) {
-
         e.preventDefault();
+
+        const submittedArticleForm = {};
 
         if (cocAcknowledged === true) {
             const submittedArticleForm = {
-                articleTitle: articleTitle.current.value,
-                articleText: articleText.current.value
+                blogArticleTitle: articleTitle.current.value,
+                blogArticleText: articleText.current.value
             }
 
             axios.post(`${serverURL}/api/post_article`, submittedArticleForm);
@@ -63,10 +64,10 @@ const CreateArticles = () => {
                 <hr />
                 <form id='createArticleForm' onSubmit={postArticle}>
                     <label htmlFor='articleTitle'>Title:&nbsp;</label>
-                    <input type='text' name='articleTitle' placeholder="Enter article title here..." href={articleTitle} /><br/><br/>
-                    <label>Image:&nbsp;</label><br/><br/>
+                    <input type='text' name='articleTitle' placeholder="Enter article title here..." ref={articleTitle} /><br /><br />
+                    <label>Image:&nbsp;</label><br /><br />
                     <label htmlFor='articleText'>Article text:&nbsp;</label>
-                    <textarea name='articleText' placeholder="Write your article here..." href={articleText} /><br/><br/>
+                    <textarea name='articleText' placeholder="Write your article here..." ref={articleText} /><br /><br />
                     <button type='submit' id='login-btn'>Post</button>
                 </form>
             </div>

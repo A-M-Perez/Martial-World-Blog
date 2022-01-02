@@ -1,4 +1,3 @@
-require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -32,43 +31,59 @@ const controller = {
     insertUser: async (req, res) => {
 
         const { email, name, password } = req.body;
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const sqlInsertNewUser = "INSERT INTO users(email, name, password) VALUES(?, ?, ?);"
 
-        try {
-            const hashedPassword = await bcrypt.hash(password, 10);
+        function confirmUserCreation() {
+            res.send({ email: email, name: name, status: 'success' });
+        };
 
-            const sqlInsertNewUser = "INSERT INTO users(email, name, password) VALUES(?, ?, ?);"
-            db.query(sqlInsertNewUser, [email, name, hashedPassword]);
-        }
-        catch {
-            res.status(500);
-        }
+        db.query(sqlInsertNewUser, [email, name, hashedPassword])
+            .then(
+                confirmUserCreation()
+            )
+            .catch(
+                res.status(500)
+            );
     },
     loginUser: (req, res) => {
 
         const email = req.body.loginEmail;
         const password = req.body.loginPassword;
-
         const sqlGetLoginUser = "SELECT * FROM users WHERE email = ?";
-        db.query(sqlGetLoginUser, email, (err, result) => {
 
-            if (err) {
-                res.status(500);
-            }
+        function confirmLogIn(email, name) {
+            res.send({ email: email, name: name, status: 'success' });
+        };
 
-            if (result.length > 0) {
-                bcrypt.compare(password, result[0].password, (err, response) => {
-                    if (response) {
-                        req.session.name = result[0].name;
-                        console.log(req.session.name);
-                    } else {
-                        console.log('el password esta mal');
-                    }
-                });
-
-            } else {
+        function rejectLogIn(error) {
+            if (error == 'a') {
+                console.log('el password esta mal');
+            } else if (error == 'd') {
                 console.log('no existe el usuario')
-            }
-        });
+            };
+        };
+
+        db.query(sqlGetLoginUser, email)
+            .then((result) => {
+                if (result.length > 0) {
+                    bcrypt.compare(password, result[0].password, (response) => {
+                        console.log(password, result[0].password, response)
+                        if (response) {
+                            const name = result[0].name;
+                            req.session.name = name;
+                            confirmLogIn(email, name);
+                        } else {
+                            rejectLogIn('a');
+                        }
+                    });
+                } else {
+                    rejectLogIn('d');
+                };
+            })
+            .catch(() => {
+                res.status(500);
+            });
     },
     loginGuestUser: (req, res) => {
 
@@ -78,3 +93,25 @@ const controller = {
 };
 
 module.exports = controller;
+
+
+// db.query(sqlGetLoginUser, email, (err, result) => {
+
+//     if (err) {
+//         res.status(500);
+//     }
+
+//     if (result.length > 0) {
+//         bcrypt.compare(password, result[0].password, (err, response) => {
+//             if (response) {
+//                 req.session.name = result[0].name;
+//                 console.log(req.session.name);
+//             } else {
+//                 console.log('el password esta mal');
+//             }
+//         });
+
+//     } else {
+//         console.log('no existe el usuario')
+//     }
+// })

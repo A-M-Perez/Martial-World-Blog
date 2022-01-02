@@ -7,13 +7,11 @@ import Schools from "./pages/Schools/Schools";
 import AboutUs from "./pages/AboutUs";
 import LoginContainer from "./pages/Login/LoginContainer";
 import Footer from './layout/Footer';
-import ConfirmationMessage from "./pages/ConfirmationMsg";
 import SchoolDetails from "./pages/Schools/SchoolDetails";
 import Article from './pages/Blog/Articles';
 import CreateArticles from "./pages/Blog/CreateArticles";
 import Members from "./pages/Blog/Members";
 import ArticlesList from './pages/Blog/ArticlesList';
-
 import '../../src/styles/pages/blog/Blog.css';
 
 const RoutesList = () => {
@@ -46,7 +44,6 @@ const RoutesList = () => {
                 <Route path='/AboutUs' exact element={<AboutUs />} />
                 <Route path='/Login' exact element={<LoginContainer />} />
             </Routes>
-            {/* <ConfirmationMessage /> */}
             <Footer />
         </Router >
     );

@@ -8,8 +8,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 400px;
-    height: 200px;
+    width: auto;
+    height: auto;
     background-color: rgb(35, 23, 150);
     border: 4px solid rgb(160, 160, 160);
     outline: 3px solid  rgb(71, 61, 211);

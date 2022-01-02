@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import '../../../styles/pages/blog/Articles.css'
+import { serverURL } from "../../../Global";
+import axios from 'axios';
+import Moment from 'react-moment';
 
 const RelatedArticle = () => {
     return (
@@ -22,26 +26,37 @@ const RelatedArticlesList = () => {
 };
 
 const Article = () => {
+
+    const params = useParams();
+    const articlelId = params.id;
+
+    const [articleData, setArticleData] = useState([]);
+    const [status, setStatus] = useState('Success');
+
+    useEffect(
+        function getArticleById(props) {
+
+            axios.get(`${serverURL}/api/get_article/${articlelId}`)
+                .then((res) => {
+                    setArticleData(res.data[0]);
+                })
+                .catch(() => setStatus('Error'))
+        }, []);
+
     return (
         <React.Fragment>
             <RelatedArticlesList />
-            <section id='article'>
+            <section id='article' key={articleData.id}>
                 <img alt="Article Image" id="articleImage" />
-                <h2>Article Title</h2>
-                <h5>article date and author</h5>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae tempore voluptatum aliquid quod, illum sequi nihil, cupiditate, soluta incidunt officiis at fugiat! Quas debitis itaque nesciunt dolor quam asperiores et!
-                    Sapiente temporibus aperiam iste saepe at soluta sint nulla? Aliquid placeat molestias excepturi iure non optio quas eaque enim qui. Culpa doloremque modi amet rerum, sunt exercitationem quisquam sit obcaecati.
-                    Tempora accusantium provident explicabo nemo, ipsum veritatis corporis ea, unde, perferendis tenetur reiciendis porro saepe qui. Repellendus nemo voluptatibus consequuntur fugit officia, voluptatem tempora cupiditate corrupti fugiat, sapiente fuga architecto.
-                    Voluptatem optio odit voluptate quae ipsa dolore dolorem aliquam unde. Consequuntur, hic. Numquam tenetur consectetur, perspiciatis alias incidunt est eligendi nam architecto modi odit quod velit laudantium deserunt itaque deleniti.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae tempore voluptatum aliquid quod, illum sequi nihil, cupiditate, soluta incidunt officiis at fugiat! Quas debitis itaque nesciunt dolor quam asperiores et!
-                    Sapiente temporibus aperiam iste saepe at soluta sint nulla? Aliquid placeat molestias excepturi iure non optio quas eaque enim qui. Culpa doloremque modi amet rerum, sunt exercitationem quisquam sit obcaecati.
-                    Tempora accusantium provident explicabo nemo, ipsum veritatis corporis ea, unde, perferendis tenetur reiciendis porro saepe qui. Repellendus nemo voluptatibus consequuntur fugit officia, voluptatem tempora cupiditate corrupti fugiat, sapiente fuga architecto.
-                    Voluptatem optio odit voluptate quae ipsa dolore dolorem aliquam unde. Consequuntur, hic. Numquam tenetur consectetur, perspiciatis alias incidunt est eligendi nam architecto modi odit quod velit laudantium deserunt itaque deleniti.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae tempore voluptatum aliquid quod, illum sequi nihil, cupiditate, soluta incidunt officiis at fugiat! Quas debitis itaque nesciunt dolor quam asperiores et!
-                    Sapiente temporibus aperiam iste saepe at soluta sint nulla? Aliquid placeat molestias excepturi iure non optio quas eaque enim qui. Culpa doloremque modi amet rerum, sunt exercitationem quisquam sit obcaecati.
-                    Tempora accusantium provident explicabo nemo, ipsum veritatis corporis ea, unde, perferendis tenetur reiciendis porro saepe qui. Repellendus nemo voluptatibus consequuntur fugit officia, voluptatem tempora cupiditate corrupti fugiat, sapiente fuga architecto.
-                    Voluptatem optio odit voluptate quae ipsa dolore dolorem aliquam unde. Consequuntur, hic. Numquam tenetur consectetur, perspiciatis alias incidunt est eligendi nam architecto modi odit quod velit laudantium deserunt itaque deleniti.
-                </p>
+                <h2>{articleData.title}</h2>
+                <h5>
+                    <Moment
+                        fromNow>
+                        {articleData.article_date}
+                    </Moment>
+                    &nbsp;- {articleData.author}
+                </h5>
+                <p>{articleData.article}</p>
             </section>
         </React.Fragment>
     );

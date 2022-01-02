@@ -1,14 +1,16 @@
 import '../../styles/pages/ConfirmationMsg.css';
 
-const ConfirmationMessage = (props) => {
+const ConfirmationMessage = ({messageTitle, messageContent, visibility}) => {
 
     return (
         <div id='confirmationScreen'>
             <h6>
-                THANK YOU!<br />
-                Your message has been successfully sent
+                {messageTitle}<br />
+                <span id='text'>{messageContent}</span>
             </h6>
-            <button type='button' id='confirmationBtn'>OK</button>
+            <button type='button' id='confirmationBtn' onClick={()=>{
+                visibility('', '', false);
+            }}>OK</button>
         </div>
     )
 };
