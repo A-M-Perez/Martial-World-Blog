@@ -17,18 +17,16 @@ const SchoolDetails = () => {
     const schoolId = params.id;
 
     const [schoolData, setSchoolData] = useState([]);
-    const [status, setStatus] = useState('Success');
 
-    useEffect(
-        function getSchoolById(props) {
+    useEffect(() => {
+        axios.get(`${serverURL}/api/get_school/${schoolId}`)
+            .then((response) => {
+                setSchoolData(response.data[0]);
+            })
+            .catch((err) => alert(err))
+    }, []);
 
-            axios.get(`${serverURL}/api/get_school/${schoolId}`)
-                .then((res) => {
-                    setSchoolData(res.data[0]);
-                })
-                .catch(() => setStatus('Error'))
-        }, []);        
-    
+    //GEOCODE AND MAP DATA
     const schoolAddress = schoolData.address;
     const [schoolLocation, setSchoolLocation] = useState();
 
@@ -41,37 +39,51 @@ const SchoolDetails = () => {
                     console.log('GeoCode API: ' + err);
                 })
     }
-        , [schoolAddress])
+        ,);
 
-    return (
-        <section id='schoolContainer'>
-            <div key={schoolData.id} id='schoolHeader'>
-                <img id='schoolLogo' src={require('../../../assets/img/schools/Okikukai.png')} alt='School logo' />
-                <h3>{schoolData.name}</h3>
-            </div>
-            <div id='schoolInfoContainer'>
-                <div id='addressSection'>
-                    <h6><strong>Address:</strong> {schoolAddress}</h6>
-                    <SchoolMap location={schoolLocation} />
+    if (schoolData.length !== 0) {
+        return (
+            <section id='schoolContainer'>
+                <div key={schoolData.id} id='schoolHeader'>
+                    <img id='schoolLogo' src={require(`../../../assets/img/schools/${schoolData.logo}`)} alt='School logo' />
+                    <h3>{schoolData.name}</h3>
                 </div>
-                <div id='infoSection'>
-                    <ul key={schoolData.id} id='infoSummary'>
-                        <li><strong>Training Schedule:</strong> {schoolData.schedule}</li>
-                        <li><strong>Description:</strong><br /><br />
-                            {schoolData.description}</li>
-                        <li><strong>Contact information:</strong>
-                            <ul key={schoolData.name}>
-                                <li>Email: {schoolData.email}</li>
-                                <li>Phone #: {schoolData.phone}</li>
-                                <li>Website: {schoolData.website}</li>
-                            </ul>
-                        </li>
-                    </ul>
+                <div id='schoolInfoContainer'>
+                    <div id='addressSection'>
+                        <h6><strong>Address:</strong> {schoolAddress}</h6>
+                        {schoolLocation && <SchoolMap location={schoolLocation} />}
+                        {!schoolLocation &&
+                            <>
+                                <SchoolMap location={schoolLocation} />
+                                <p>Loading actual location...</p>
+                            </>}
+                    </div>
+                    <div id='infoSection'>
+                        <ul key={schoolData.id} id='infoSummary'>
+                            <li><strong>Training Schedule:</strong> {schoolData.schedule}</li>
+                            <li><strong>Description:</strong><br /><br />
+                                {schoolData.description}</li>
+                            <li><strong>Contact information:</strong>
+                                <ul key={schoolData.name}>
+                                    <li>Email: {schoolData.email}</li>
+                                    <li>Phone #: {schoolData.phone}</li>
+                                    <li>Website: {schoolData.website}</li>
+                                </ul>
+                            </li>
+                        </ul>
 
+                    </div>
                 </div>
-            </div>
-        </section>
-    );
+            </section>
+        );
+    } else {
+        return (
+            <section id='schoolContainer'>
+                <p id='loadingMessage'>Loading school information...<br /><br />
+                    <span id='subLoadingMessage'>Please wait a few moments or refresh the page</span></p>
+            </section>
+        );
+    };
 };
 
 export default SchoolDetails;

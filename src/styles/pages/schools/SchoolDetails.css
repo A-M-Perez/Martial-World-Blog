@@ -8,6 +8,18 @@
     margin-bottom: 100px;
 }
 
+    #loadingMessage {
+        text-align: center;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 3em;
+        font-weight: 700;
+    }
+
+    #subLoadingMessage {
+        font-size: 0.8em;
+        font-weight: 400;
+    }
+
     #schoolHeader {
         display: flex;
         justify-content: center;

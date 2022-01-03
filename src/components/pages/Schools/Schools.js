@@ -9,7 +9,6 @@ import { serverURL } from "../../../Global";
 const IndividualSchool = ({ searchInput }) => {
 
     const [schoolData, setSchoolData] = useState([]);
-    const [dataStatus, setDataStatus] = useState('');
     const [filteredSchoolData, setFilteredSchoolData] = useState([]);
 
     useEffect(() => {
@@ -18,7 +17,7 @@ const IndividualSchool = ({ searchInput }) => {
                 setSchoolData(response.data);
                 setFilteredSchoolData(response.data);
             })
-            .catch(() => setDataStatus('error'))
+            .catch((err) => alert(err))
     },[]);
 
     useEffect(() => {
