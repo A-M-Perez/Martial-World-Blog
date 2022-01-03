@@ -5,23 +5,24 @@ import '../../../styles/pages/schools/Schools.css';
 import axios from 'axios';
 import { serverURL } from "../../../Global";
 
+
 const IndividualSchool = ({ searchInput }) => {
 
     const [schoolData, setSchoolData] = useState([]);
-    const [status, setStatus] = useState('Success');
+    const [dataStatus, setDataStatus] = useState('');
     const [filteredSchoolData, setFilteredSchoolData] = useState([]);
 
-    useEffect(
-        function getSchool() {
-            axios.get(`${serverURL}/api/get_school`)
-                .then((res) => {
-                    setSchoolData(res.data);
-                })
-                .catch(() => setStatus('Error'))
-        }, []);
+    useEffect(() => {
+        axios.get(`${serverURL}/api/get_school`)
+            .then((response) => {
+                setSchoolData(response.data);
+                setFilteredSchoolData(response.data);
+            })
+            .catch(() => setDataStatus('error'))
+    },[]);
 
     useEffect(() => {
-        if (schoolData.length != 0) {
+        if (schoolData.length !== 0) {
             const filteredSchools = schoolData.filter(school => {
                 let name = school.name;
                 if (name.toLowerCase().includes(searchInput.toLowerCase(), 0)) { return school }
@@ -29,13 +30,12 @@ const IndividualSchool = ({ searchInput }) => {
             setFilteredSchoolData(filteredSchools);
         }
     }, [searchInput]);
-
-
-    if (filteredSchoolData.length != 0) {
+  
+    if (filteredSchoolData.length !== 0) {
         const listOfSchools = filteredSchoolData.map(school => {
             return (
-                <NavLink to={`/Schools/School/${school.id}`} className='schoolNavLink'>
-                    <div key={school.name} id='schoolsSummary'>
+                <NavLink key={school.name} to={`/Schools/School/${school.id}`} className='schoolNavLink'>
+                    <div id='schoolsSummary'>
                         <img src={require(`../../../assets/img/schools/${school.logo}`)} alt='School logo' />
                         <div>
                             <p><strong>Name:</strong> {school.name}</p>
@@ -53,7 +53,7 @@ const IndividualSchool = ({ searchInput }) => {
             </React.Fragment>
         );
     } else {
-        if (schoolData.length != 0 && searchInput !== '') {
+        if (schoolData.length !== 0 && searchInput !== '') {
             return (
                 <p id='loadingMessage'>Sorry, there are no matching results</p>
             )
@@ -65,7 +65,6 @@ const IndividualSchool = ({ searchInput }) => {
     };
 };
 
-//PARENT COMPONENT - 
 const Schools = () => {
 
     const [searchInput, setSearchInput] = useState('');
