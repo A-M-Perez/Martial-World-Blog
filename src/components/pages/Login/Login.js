@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../../../styles/pages/login/Login.css'
 import '../../../styles/pages/Home.css'
 import axios from 'axios';
-import { guestUser, serverURL, user, userSignedIn } from '../../../Global';
+import { serverURL, userSignedIn } from '../../../Global';
 
 axios.defaults.withCredentials = true;
 
-const Login = ({ openModal, message }) => {
+const Login = ({ openModal, message, authentication, userInfo }) => {
 
     const [signInStatus, setSignInStatus] = useState(null);
 
@@ -16,11 +16,11 @@ const Login = ({ openModal, message }) => {
 
     useEffect(() => {
 
-        if (!guestUser) {
+        if (!userInfo.guestUserName) {
             if (signInStatus) {
                 switch (signInStatus) {
                     case 'success':
-                        message('WELCOME', `${user}!`, true);
+                        message('WELCOME', `${userInfo.userName}!`, true);
                         userSignedIn = true;
                         break;
                     case 'wrongPassword':
@@ -49,8 +49,8 @@ const Login = ({ openModal, message }) => {
 
         axios.post(`${serverURL}/api/login_user`, submittedLoginForm)
             .then((response) => {
+                authentication(true, response.data.name, '');
                 setSignInStatus(response.data.status);
-                user = response.data.name;
             })
             .catch((err) => {
                 alert(err);
@@ -69,7 +69,7 @@ const Login = ({ openModal, message }) => {
 
         axios.post(`${serverURL}/api/login_guestUser`, submittedGuestLogin)
             .then((response) => {
-                guestUser = response.data.user;
+                authentication(true, '', response.data.user);
                 setSignInStatus(response.data.status)
             })
             .catch((err) => {
@@ -83,6 +83,7 @@ const Login = ({ openModal, message }) => {
             {/* REGULAR LOG IN FORM */}
             {!userSignedIn && <section id='login-form'>
                 <h2>Sign in</h2>
+                <h3>Log in to post, like(?) and comment(?) articles</h3>
                 <form id='user-login' onSubmit={getLoginForm}>
                     <label id='user' htmlFor='user'>User e-mail:&nbsp;</label>
                     <input type='text' name='user' placeholder='User e-mail...' ref={loginUserEmail} />
@@ -96,19 +97,19 @@ const Login = ({ openModal, message }) => {
             </section>}
 
             {userSignedIn && <section id='login-form'>
-                <p id='alreadySignedIn'>You are already signed in as <span id='userName'>{user}</span></p>
+                <p id='alreadySignedIn'>You are already signed in as <span id='userName'>{userInfo.userName}</span></p>
             </section>}
 
             <div id='separator' />
 
             {/* LOG IN FORM FOR GUESTS */}
             <aside id='guest-login-section'>
-                {!guestUser && <form id='guest-login' onSubmit={getGuestLoginForm}>
+                {!userInfo.guestUserName && <form id='guest-login' onSubmit={getGuestLoginForm}>
                     <button type='submit' id='guest-login-btn'>GUEST Log in</button>
                     <label id='guest-nickname' htmlFor='guest-nickname'>Choose a nickname:&nbsp;</label>
                     <input type='text' name='guest-nickname' placeholder='Enter nickname...' ref={guestNickname} />
                 </form>}
-                {guestUser && <p id='alreadySignedIn'>Temporarily logged in as <span id='userName'>{guestUser}</span></p>}
+                {userInfo.guestUserName && <p id='alreadySignedIn'>Temporarily logged in as <span id='userName'>{userInfo.guestUserName}</span></p>}
                 <p>If you are visiting this site for the first time or do not have an user but want to check out the community, just choose a nickname and <b>sign in as a Guest user</b>.</p>
             </aside>
 

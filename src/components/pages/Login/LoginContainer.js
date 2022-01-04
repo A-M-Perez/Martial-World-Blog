@@ -3,7 +3,7 @@ import Login from "./Login";
 import SignUpModal from "./SignUpModal";
 import ConfirmationMessage from "../ConfirmationMsg";
 
-const LoginContainer = () => {
+const LoginContainer = ({authentication, userInfo}) => {
 
     const [modalOpen, setModalOpen] = useState(false);
     const [messageTitle, setMessageTitle] = useState('');
@@ -26,7 +26,7 @@ const LoginContainer = () => {
 
     return (
         <>
-            <Login openModal={openModal} message={confirmationMessageContent} />
+            <Login openModal={openModal} message={confirmationMessageContent} authentication={authentication} userInfo={userInfo}/>
             {modalOpen ? <SignUpModal closeModal={closeModal} message={confirmationMessageContent} /> : null}
             {showConfirmationMessage && <ConfirmationMessage messageTitle={messageTitle} messageContent={messageContent} visibility={confirmationMessageContent} />}
         </>

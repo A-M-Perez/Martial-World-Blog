@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import '../../../styles/pages/blog/Members.css';
 
-const Members = ({toggleView}) => {
+const Members = () => {
 
     return (
         <aside id='blogMembers'>
