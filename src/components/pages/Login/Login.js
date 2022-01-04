@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../../../styles/pages/login/Login.css'
 import '../../../styles/pages/Home.css'
 import axios from 'axios';
-import { serverURL, userSignedIn } from '../../../Global';
+import { serverURL } from '../../../Global';
 
 axios.defaults.withCredentials = true;
 
@@ -21,7 +21,6 @@ const Login = ({ openModal, message, authentication, userInfo }) => {
                 switch (signInStatus) {
                     case 'success':
                         message('WELCOME', `${userInfo.userName}!`, true);
-                        userSignedIn = true;
                         break;
                     case 'wrongPassword':
                         message('SORRY', `Wrong password, please try again.`, true);
@@ -77,11 +76,25 @@ const Login = ({ openModal, message, authentication, userInfo }) => {
             });
     };
 
+    //FOR BOTH METHODS
+    function logOut() {
+
+        axios.get(`${serverURL}/api/logout`)
+            .then((response) => {
+                authentication(false, '', '');
+                setSignInStatus(response.data.status)
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
+
     return (
         <section id='login'>
 
             {/* REGULAR LOG IN FORM */}
-            {!userSignedIn && <section id='login-form'>
+            {!userInfo.userName && <section id='login-form'>
                 <h2>Sign in</h2>
                 <h3>Log in to post, like(?) and comment(?) articles</h3>
                 <form id='user-login' onSubmit={getLoginForm}>
@@ -96,8 +109,11 @@ const Login = ({ openModal, message, authentication, userInfo }) => {
                 <button type='button' id='sign-up-btn' onClick={openModal}>Sign up</button>
             </section>}
 
-            {userSignedIn && <section id='login-form'>
+            {userInfo.userName && <section id='login-form'>
                 <p id='alreadySignedIn'>You are already signed in as <span id='userName'>{userInfo.userName}</span></p>
+                <div id='logOutContainer'>
+                    <button type='button' id='logOutBtn' onClick={logOut}>Log out</button>
+                </div>
             </section>}
 
             <div id='separator' />
@@ -109,7 +125,14 @@ const Login = ({ openModal, message, authentication, userInfo }) => {
                     <label id='guest-nickname' htmlFor='guest-nickname'>Choose a nickname:&nbsp;</label>
                     <input type='text' name='guest-nickname' placeholder='Enter nickname...' ref={guestNickname} />
                 </form>}
-                {userInfo.guestUserName && <p id='alreadySignedIn'>Temporarily logged in as <span id='userName'>{userInfo.guestUserName}</span></p>}
+                {userInfo.guestUserName &&
+                    <section>
+                        <p id='alreadySignedIn'>Temporarily logged in as <span id='userName'>{userInfo.guestUserName}</span></p>
+                        <div id='logOutContainer'>
+                            <button id='logOutBtn' type='button' onClick={logOut}>Log out</button>
+                        </div>
+                    </section>
+                }
                 <p>If you are visiting this site for the first time or do not have an user but want to check out the community, just choose a nickname and <b>sign in as a Guest user</b>.</p>
             </aside>
 

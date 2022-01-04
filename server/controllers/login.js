@@ -88,6 +88,12 @@ const controller = {
 
         req.session.nickname = req.body.nickname;
         res.send({ user: req.session.nickname, status: 'success' })
+    },
+    logOutUser: (req, res) => {
+
+        req.session.destroy();
+        res.send({ status: false })
+
     }
 };
 

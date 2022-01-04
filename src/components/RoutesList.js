@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Navigate, BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./layout/Navbar";
 import SiteHeader from './layout/SiteHeader';
 import Home from "./pages/Home";
@@ -28,14 +28,14 @@ const RoutesList = () => {
 
     const [createArticleAuthorization, setCreateArticleAuthorization] = useState(<LoginContainer authentication={authenticateUser} userInfo={{ isUserAuthenticated, userName, guestUserName }} />);
 
-    useEffect(()=>{
+    useEffect(() => {
         if (isUserAuthenticated) {
             setCreateArticleAuthorization(<CreateArticles />)
         } else {
-            setCreateArticleAuthorization(<LoginContainer authentication={authenticateUser} userInfo={{ isUserAuthenticated, userName, guestUserName }} />)
+            setCreateArticleAuthorization(<Navigate to='/Login' />)
         }
     }, [isUserAuthenticated])
-    
+
 
     return (
         <Router>
