@@ -1,7 +1,31 @@
+import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import '../../../styles/pages/blog/Members.css';
+import { serverURL } from '../../../Global';
+import { useEffect, useState } from 'react';
 
-const Members = () => {
+const Members = ({ search }) => {
+
+    const [articlesBySearchTerm, setArticlesBySearchTerm] = useState([]);
+
+    function getSearchedArticles() {
+
+        const searchTerm = {
+            term: document.getElementById('searchTermInput').value
+        };
+
+        axios.post(`${serverURL}/api/get_articles_by_search`, searchTerm)
+            .then((res) => {
+                setArticlesBySearchTerm(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
+    useEffect(() => {
+        search(articlesBySearchTerm);
+    }, [articlesBySearchTerm]);
 
     return (
         <aside id='blogMembers'>
@@ -11,7 +35,12 @@ const Members = () => {
             <hr />
             <h5>SEARCH</h5>
             <label htmlFor='searchArticle'>Find any article</label>
-            <input type='text' name='searchArticle' placeholder='Enter article title...' />
+            <div id='searchInputContainer'>
+                <input id='searchTermInput' type='text' name='searchArticle' placeholder='Enter article title...' onKeyPress={(e) => {
+                    if (e.key === 13) { getSearchedArticles() };
+                }} />
+                <i className="fas fa-search" id='searchIcon' onClick={getSearchedArticles} />
+            </div>
         </aside>
     );
 };

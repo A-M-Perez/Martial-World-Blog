@@ -5,8 +5,9 @@ import '../../../styles/pages/blog/ArticlesList.css';
 import { serverURL } from '../../../Global';
 import { NavLink } from 'react-router-dom';
 
-const ArticleSummary = ({ toggleView }) => {
+const ArticleSummary = ({ searchedArticles }) => {
 
+    const articlesBySearchTerm = '';
     const [articleData, setArticleData] = useState([]);
     const [status, setStatus] = useState('Success');
 
@@ -20,6 +21,34 @@ const ArticleSummary = ({ toggleView }) => {
                     setStatus('Error');
                 });
         }, []);
+
+
+    if (searchedArticles.length != 0) {
+        const listOfArticles = searchedArticles.map(article => {
+            return (
+                <div key={article.id} id='articleSummary'>
+                    <img alt='Article image' id='articleImage' />
+                    <h5>{article.title}</h5>
+                    <h6 >
+                        <Moment
+                            fromNow>
+                            {article.article_date}
+                        </Moment>
+                    </h6>
+                    <h6 >{article.author}</h6>
+                    <p >{article.article}
+                    </p>
+                    <NavLink to={`/Blog/Articles/${article.id}`}><button id='readMoreBtn'>Read more...</button></NavLink>
+                </div>
+            );
+        });
+
+        return (
+            <React.Fragment>
+                {listOfArticles}
+            </React.Fragment>
+        )
+    };
 
     if (articleData.length != 0) {
         const listOfArticles = articleData.map(article => {
@@ -40,24 +69,29 @@ const ArticleSummary = ({ toggleView }) => {
                 </div>
             );
         });
+
         return (
             <React.Fragment>
                 {listOfArticles}
             </React.Fragment>
         )
+    } else if (articleData.length === 0) {
+        return (
+            <p id='articlesMessage'>Sorry, we could not find any articles.</p>
+        )
     } else {
         return (
-            <p id='loadingMessage'>Loading articles...</p>
+            <p id='articlesMessage'>Loading articles...</p>
         )
     };
 };
 
-const ArticlesList = ({ toggleView }) => {
+const ArticlesList = ({ searchedArticles }) => {
 
     return (
         <section id='articlesList'>
             <h2>ARTICLES</h2>
-            <ArticleSummary toggleView={toggleView} />
+            <ArticleSummary searchedArticles={searchedArticles} />
         </section>
     );
 };
