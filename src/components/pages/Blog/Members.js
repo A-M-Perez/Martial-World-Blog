@@ -24,7 +24,11 @@ const Members = ({ search }) => {
     };
 
     useEffect(() => {
-        search(articlesBySearchTerm);
+        if (articlesBySearchTerm.length !== 0) {
+            search(articlesBySearchTerm);
+        } else if (articlesBySearchTerm === 0) {
+            articlesBySearchTerm.push('notFound')
+        };
     }, [articlesBySearchTerm]);
 
     return (

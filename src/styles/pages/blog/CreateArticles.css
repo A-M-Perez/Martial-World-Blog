@@ -85,6 +85,11 @@
                 font-size: 1em;
             }
 
+                #imageUploader {
+                    color: white;
+                    font-family: 'Open Sans', sans-serif;
+                }
+
             #createArticleForm input{         
                 width: 60%;
                 margin-left: 10px;

@@ -39,11 +39,10 @@ const RoutesList = () => {
 
     const [searchedArticles, setSearchedArticles] = useState([]);
 
-    function passSearchedArticlesResults(searchedArticles) {
+    function passSearchedArticlesResults(searchedArticles, isActive) {
         setSearchedArticles(searchedArticles);
     };
 
-    
     return (
         <Router>
             <Navbar />
@@ -53,7 +52,7 @@ const RoutesList = () => {
                 <Route path='/Blog' exact element={
                     <section id='blogContainer'>
                         <div id='articlesBackground'>
-                            <ArticlesList searchedArticles={searchedArticles}/>
+                            <ArticlesList searchedArticles={searchedArticles} />
                             <Members search={passSearchedArticlesResults} />
                         </div>
                     </section>

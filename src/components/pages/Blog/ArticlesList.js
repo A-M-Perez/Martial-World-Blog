@@ -7,7 +7,6 @@ import { NavLink } from 'react-router-dom';
 
 const ArticleSummary = ({ searchedArticles }) => {
 
-    const articlesBySearchTerm = '';
     const [articleData, setArticleData] = useState([]);
     const [status, setStatus] = useState('Success');
 
@@ -22,8 +21,7 @@ const ArticleSummary = ({ searchedArticles }) => {
                 });
         }, []);
 
-
-    if (searchedArticles.length != 0) {
+    if (searchedArticles.length !== 0) {
         const listOfArticles = searchedArticles.map(article => {
             return (
                 <div key={article.id} id='articleSummary'>
@@ -75,7 +73,7 @@ const ArticleSummary = ({ searchedArticles }) => {
                 {listOfArticles}
             </React.Fragment>
         )
-    } else if (articleData.length === 0) {
+    } else if (articleData.length === 0 || searchedArticles.length === 0) {
         return (
             <p id='articlesMessage'>Sorry, we could not find any articles.</p>
         )

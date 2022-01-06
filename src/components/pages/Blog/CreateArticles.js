@@ -1,7 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../../../styles/pages/blog/CreateArticles.css';
 import axios from 'axios';
 import { serverURL } from '../../../Global';
+import ConfirmationMessage from '../ConfirmationMsg';
 
 let cocAcknowledged = false;
 
@@ -49,11 +51,29 @@ const CreateArticles = () => {
                 blogArticleText: articleText.current.value
             }
 
-            axios.post(`${serverURL}/api/post_article`, submittedArticleForm);
+            axios.post(`${serverURL}/api/post_article`, submittedArticleForm)
+                .then((response) => {
+                    if (response) {
+                        confirmationMessageContent('POSTED', 'successfully', true);
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
 
         } else if (cocAcknowledged === false) {
-            alert('confirma el COC');
+            confirmationMessageContent('Please Acknowledge our', 'CODE OF CONDUCT', true)
         };
+    };
+
+    const [messageTitle, setMessageTitle] = useState('');
+    const [messageContent, setMessageContent] = useState('');
+    const [showConfirmationMessage, setShowConfirmationMessage] = useState(false);
+
+    const confirmationMessageContent = (title, content, showMessage) => {
+        setMessageTitle(title);
+        setMessageContent(content);
+        setShowConfirmationMessage(showMessage);
     };
 
     return (
@@ -65,12 +85,15 @@ const CreateArticles = () => {
                 <form id='createArticleForm' onSubmit={postArticle}>
                     <label htmlFor='articleTitle'>Title:&nbsp;</label>
                     <input type='text' name='articleTitle' placeholder="Enter article title here..." ref={articleTitle} /><br /><br />
-                    <label>Image:&nbsp;</label><br /><br />
+                    <label>Image:&nbsp;
+                        <input type='file' id='imageUploader' accept='image/png' />
+                    </label><br /><br />
                     <label htmlFor='articleText'>Article text:&nbsp;</label>
                     <textarea name='articleText' placeholder="Write your article here..." ref={articleText} /><br /><br />
                     <button type='submit' id='login-btn'>Post</button>
                 </form>
             </div>
+            {showConfirmationMessage && <ConfirmationMessage messageTitle={messageTitle} messageContent={messageContent} visibility={confirmationMessageContent} />}
         </section>
     )
 };
