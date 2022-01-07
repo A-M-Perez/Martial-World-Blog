@@ -15,7 +15,7 @@ const controller = {
 
         const articleId = req.params.id;
         const sqlGetArticle = "SELECT * FROM blog_articles WHERE id = ? LIMIT 1;";
-        
+
         db.query(sqlGetArticle, articleId, (err, result) => {
             res.send(result);
         });
@@ -40,6 +40,31 @@ const controller = {
         db.query(sqlGetArticle, searchTerm, (err, result) => {
             res.send(result);
         });
+    },
+
+    getRelatedArticles: (req, res) => {
+
+        const rawSearchTerm = req.body;
+        let relatedArticlesSearchTerm = [];
+
+        rawSearchTerm.map((word, index) => {
+            if (index === (rawSearchTerm.length - 1)) {
+                relatedArticlesSearchTerm.push(`title LIKE '%${word}%'`);
+            } else {
+                relatedArticlesSearchTerm.push(`title LIKE '%${word}%' OR`);
+            }
+        });
+
+        relatedArticlesSearchTerm = relatedArticlesSearchTerm.join(' ');
+        const sqlGetArticle = `SELECT article_date, title, author FROM blog_articles WHERE ${relatedArticlesSearchTerm} LIMIT 10;`;
+
+        db.query(sqlGetArticle, relatedArticlesSearchTerm)
+            .then((result) => {
+                res.send(result);
+            })
+            .catch((err) => {
+                res.send(err)
+            });
     }
 };
 

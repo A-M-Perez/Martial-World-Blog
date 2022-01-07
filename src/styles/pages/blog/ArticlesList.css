@@ -28,6 +28,7 @@
             height: 120px;
             float: left;
             margin-bottom: 15px;
+            overflow: hidden;
         }
 
         #articleImage:after {

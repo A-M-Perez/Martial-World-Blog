@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useRef } from 'react';
 import '../../../styles/pages/blog/CreateArticles.css';
 import axios from 'axios';
 import { serverURL } from '../../../Global';
@@ -7,7 +6,7 @@ import ConfirmationMessage from '../ConfirmationMsg';
 
 let cocAcknowledged = false;
 
-const CodeOfConduct = () => {
+const CodeOfConduct = ({ checked }) => {
 
     function checkCodeOfConduct(e) {
         if (e.target.checked === true) {
@@ -16,6 +15,8 @@ const CodeOfConduct = () => {
             cocAcknowledged = false;
         };
     };
+
+    let codeOfConductStatus = checked;
 
     return (
         <aside id='codeOfConduct'>
@@ -30,7 +31,7 @@ const CodeOfConduct = () => {
                     <li>Rule #4</li>
                 </ul>
             </div>
-            <input type='checkbox' name='cocAcknowledgement' onChange={checkCodeOfConduct} id='acknowledgeCheckBox' /><label htmlFor='cocAcknowledgement' id='acknowledgeText'>I acknowledge the code of conduct for posting articles.</label>
+            <input checked={codeOfConductStatus} type='checkbox' name='cocAcknowledgement' onChange={checkCodeOfConduct} id='acknowledgeCheckBox' /><label htmlFor='cocAcknowledgement' id='acknowledgeText'>I acknowledge the code of conduct for posting articles.</label>
         </aside>
     );
 };
@@ -39,6 +40,8 @@ const CreateArticles = () => {
 
     let articleTitle = useRef();
     let articleText = useRef();
+
+    const [codeOfConductChecked, setCodeOfConductChecked] = useState();
 
     function postArticle(e) {
         e.preventDefault();
@@ -55,6 +58,9 @@ const CreateArticles = () => {
                 .then((response) => {
                     if (response) {
                         confirmationMessageContent('POSTED', 'successfully', true);
+                        clearFormAfterPosting();
+                        setCodeOfConductChecked(false);
+                        cocAcknowledged = false;
                     }
                 })
                 .catch((err) => {
@@ -76,9 +82,14 @@ const CreateArticles = () => {
         setShowConfirmationMessage(showMessage);
     };
 
+    function clearFormAfterPosting() {
+        const form = document.getElementById('createArticleForm');
+        form.reset();
+    };
+
     return (
         <section id='createArticleContainer'>
-            <CodeOfConduct />
+            <CodeOfConduct checked={codeOfConductChecked} />
             <div id='createArticleSection'>
                 <h2 id='createArticleTitle'>CREATE ARTICLE</h2>
                 <hr />
