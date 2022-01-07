@@ -11,30 +11,47 @@ const RelatedArticle = ({ titlesRelatedTo }) => {
     const keyWordsArray = titlesRelatedTo.replaceAll(RegExpToClearSearch, '').split(' ');
     const [relatedArticleData, setRelatedArticleData] = useState([]);
 
-    axios.post(`${serverURL}/api/get_relatedArticles`, keyWordsArray)
-        .then((res) => {
-            setRelatedArticleData(res.data);
-        })
-        .catch((err) =>
-            console.log(err)
-        );
+    useEffect(() => {
+        axios.post(`${serverURL}/api/get_relatedArticles`, keyWordsArray)
+            .then((res) => {
+                setRelatedArticleData(res.data);
+            })
+            .catch((err) =>
+                console.log(err)
+            );
+    }, [])
 
-        return (
-                        <div>
-        
-                        </div>)
-
-    if (relatedArticleData.length === 0) {
-
-        const allArticles = relatedArticleData.map(relatedARticle => {
+    if (relatedArticleData.length !== 0) {
+        const listOfRelatedArticles = relatedArticleData.map(relatedArticle => {
 
             return (
-                <div key={relatedARticle.title}>
-
+                <div key={relatedArticle.title} id='relatedArticle'>
+                    <h5 className='relatedArticleTitle'>{relatedArticle.title}</h5>
+                    <h6 id='relatedArticleInfo'>
+                        <Moment
+                            fromNow>
+                            {relatedArticle.article_date}
+                        </Moment>
+                        , {relatedArticle.author}
+                    </h6>
                 </div>
             )
+
         });
+
+        return (
+            <React.Fragment>
+                {listOfRelatedArticles}
+            </React.Fragment>
+        )
+
+    } else {
+        return (
+            <h5 className='relatedArticleTitle'>No related articles</h5>
+        )
     };
+
+
 };
 
 const RelatedArticlesList = ({ titlesRelatedTo }) => {
@@ -43,7 +60,7 @@ const RelatedArticlesList = ({ titlesRelatedTo }) => {
         <aside id='relatedArticlesSection'>
             <h4>Related Articles</h4>
             <hr />
-            <div id='relatedArticle'>
+            <div id='relatedArticleContainer'>
                 <RelatedArticle titlesRelatedTo={titlesRelatedTo} />
             </div>
         </aside>
