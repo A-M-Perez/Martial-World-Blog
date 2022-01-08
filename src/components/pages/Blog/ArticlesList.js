@@ -52,7 +52,7 @@ const ArticleSummary = ({ searchedArticles }) => {
         const listOfArticles = articleData.map(article => {
             return (
                 <div key={article.id} id='articleSummary'>
-                    <img alt='Article image' id='articleImage' src={require(`../../../assets/img/articles/${article.image}`)}/>
+                    <img alt='Article image' id='articleImage' src={require(`../../../assets/img/articles/${article.image}`)} />
                     <h5>{article.title}</h5>
                     <h6 >
                         <Moment

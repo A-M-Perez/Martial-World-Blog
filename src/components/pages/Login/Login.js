@@ -3,6 +3,7 @@ import '../../../styles/pages/login/Login.css'
 import '../../../styles/pages/Home.css'
 import axios from 'axios';
 import { serverURL } from '../../../Global';
+import PageTransitionAnimation from '../../layout/PageTransitionAnimation';
 
 axios.defaults.withCredentials = true;
 
@@ -91,52 +92,54 @@ const Login = ({ openModal, message, authentication, userInfo }) => {
 
 
     return (
-        <section id='login'>
+        <PageTransitionAnimation>
+            <section id='login'>
 
-            {/* REGULAR LOG IN FORM */}
-            {!userInfo.userName && <section id='login-form'>
-                <h2>Sign in</h2>
-                <h3>Log in to post, like(?) and comment(?) articles</h3>
-                <form id='user-login' onSubmit={getLoginForm}>
-                    <label id='user' htmlFor='user'>User e-mail:&nbsp;</label>
-                    <input type='text' name='user' placeholder='User e-mail...' ref={loginUserEmail} />
-                    <label id='password' htmlFor='password'>Password:&nbsp;</label>
-                    <input type='password' name='password' placeholder='Enter password...' ref={loginUserPassword} />
-                    <button type='submit' id='login-btn'>Log in</button>
-                </form>
-                <span id='not-user'>Not an user yet?</span>
-                <br />
-                <button type='button' id='sign-up-btn' onClick={openModal}>Sign up</button>
-            </section>}
+                {/* REGULAR LOG IN FORM */}
+                {!userInfo.userName && <section id='login-form'>
+                    <h2>Sign in</h2>
+                    <h3>Log in to post, like(?) and comment(?) articles</h3>
+                    <form id='user-login' onSubmit={getLoginForm}>
+                        <label id='user' htmlFor='user'>User e-mail:&nbsp;</label>
+                        <input type='text' name='user' placeholder='User e-mail...' ref={loginUserEmail} />
+                        <label id='password' htmlFor='password'>Password:&nbsp;</label>
+                        <input type='password' name='password' placeholder='Enter password...' ref={loginUserPassword} />
+                        <button type='submit' id='login-btn'>Log in</button>
+                    </form>
+                    <span id='not-user'>Not an user yet?</span>
+                    <br />
+                    <button type='button' id='sign-up-btn' onClick={openModal}>Sign up</button>
+                </section>}
 
-            {userInfo.userName && <section id='login-form'>
-                <p id='alreadySignedIn'>You are already signed in as <span id='userName'>{userInfo.userName}</span></p>
-                <div id='logOutContainer'>
-                    <button type='button' id='logOutBtn' onClick={logOut}>Log out</button>
-                </div>
-            </section>}
+                {userInfo.userName && <section id='login-form'>
+                    <p id='alreadySignedIn'>You are already signed in as <span id='userName'>{userInfo.userName}</span></p>
+                    <div id='logOutContainer'>
+                        <button type='button' id='logOutBtn' onClick={logOut}>Log out</button>
+                    </div>
+                </section>}
 
-            <div id='separator' />
+                <div id='separator' />
 
-            {/* LOG IN FORM FOR GUESTS */}
-            <aside id='guest-login-section'>
-                {!userInfo.guestUserName && <form id='guest-login' onSubmit={getGuestLoginForm}>
-                    <button type='submit' id='guest-login-btn'>GUEST Log in</button>
-                    <label id='guest-nickname' htmlFor='guest-nickname'>Choose a nickname:&nbsp;</label>
-                    <input type='text' name='guest-nickname' placeholder='Enter nickname...' ref={guestNickname} />
-                </form>}
-                {userInfo.guestUserName &&
-                    <section>
-                        <p id='alreadySignedIn'>Temporarily logged in as <span id='userName'>{userInfo.guestUserName}</span></p>
-                        <div id='logOutContainer'>
-                            <button id='logOutBtn' type='button' onClick={logOut}>Log out</button>
-                        </div>
-                    </section>
-                }
-                <p>If you are visiting this site for the first time or do not have an user but want to check out the community, just choose a nickname and <b>sign in as a Guest user</b>.</p>
-            </aside>
+                {/* LOG IN FORM FOR GUESTS */}
+                <aside id='guest-login-section'>
+                    {!userInfo.guestUserName && <form id='guest-login' onSubmit={getGuestLoginForm}>
+                        <button type='submit' id='guest-login-btn'>GUEST Log in</button>
+                        <label id='guest-nickname' htmlFor='guest-nickname'>Choose a nickname:&nbsp;</label>
+                        <input type='text' name='guest-nickname' placeholder='Enter nickname...' ref={guestNickname} />
+                    </form>}
+                    {userInfo.guestUserName &&
+                        <section>
+                            <p id='alreadySignedIn'>Temporarily logged in as <span id='userName'>{userInfo.guestUserName}</span></p>
+                            <div id='logOutContainer'>
+                                <button id='logOutBtn' type='button' onClick={logOut}>Log out</button>
+                            </div>
+                        </section>
+                    }
+                    <p>If you are visiting this site for the first time or do not have an user but want to check out the community, just choose a nickname and <b>sign in as a Guest user</b>.</p>
+                </aside>
 
-        </section>
+            </section>
+        </PageTransitionAnimation>
     )
 };
 

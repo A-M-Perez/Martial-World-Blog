@@ -13,6 +13,7 @@ import CreateArticles from "./pages/Blog/CreateArticles";
 import Members from "./pages/Blog/Members";
 import ArticlesList from './pages/Blog/ArticlesList';
 import '../../src/styles/pages/blog/Blog.css';
+import PageTransitionAnimation from './layout/PageTransitionAnimation';
 
 const RoutesList = () => {
 
@@ -50,21 +51,25 @@ const RoutesList = () => {
             <Routes>
                 <Route path='/' exact element={<Home />} />
                 <Route path='/Blog' exact element={
-                    <section id='blogContainer'>
-                        <div id='articlesBackground'>
-                            <ArticlesList searchedArticles={searchedArticles} />
-                            <Members search={passSearchedArticlesResults} />
-                        </div>
-                    </section>
+                    <PageTransitionAnimation>
+                        <section id='blogContainer'>
+                            <div id='articlesBackground'>
+                                <ArticlesList searchedArticles={searchedArticles} />
+                                <Members search={passSearchedArticlesResults} />
+                            </div>
+                        </section>
+                    </PageTransitionAnimation>
                 } />
                 <Route path='/Blog/Create_article' exact element={createArticleAuthorization} />
                 <Route path='/Blog/Articles/:id' exact element={
-                    <section id='blogContainer'>
-                        <div id='articlesBackground'>
-                            <Article />
-                            <Members search={passSearchedArticlesResults} />
-                        </div>
-                    </section>
+                    <PageTransitionAnimation>
+                        <section id='blogContainer'>
+                            <div id='articlesBackground'>
+                                <Article />
+                                <Members search={passSearchedArticlesResults} />
+                            </div>
+                        </section>
+                    </PageTransitionAnimation>
                 } />
                 <Route path='/Schools' exact element={<Schools />} />
                 <Route path='/Schools/School/:id' exact element={<SchoolDetails />} />

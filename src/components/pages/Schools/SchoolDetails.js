@@ -5,6 +5,7 @@ import Geocode from 'react-geocode';
 import SchoolMap from './SchoolMap';
 import { serverURL, googleAPIKey } from "../../../Global";
 import axios from 'axios';
+import PageTransitionAnimation from '../../layout/PageTransitionAnimation';
 
 Geocode.setApiKey(googleAPIKey);
 Geocode.setLanguage('en');
@@ -43,45 +44,49 @@ const SchoolDetails = () => {
 
     if (schoolData.length !== 0) {
         return (
-            <section id='schoolContainer'>
-                <div key={schoolData.id} id='schoolHeader'>
-                    <img id='schoolLogo' src={require(`../../../assets/img/schools/${schoolData.logo}`)} alt='School logo' />
-                    <h3>{schoolData.name}</h3>
-                </div>
-                <div id='schoolInfoContainer'>
-                    <div id='addressSection'>
-                        <h6><strong>Address:</strong> {schoolAddress}</h6>
-                        {schoolLocation && <SchoolMap location={schoolLocation} />}
-                        {!schoolLocation &&
-                            <>
-                                <SchoolMap location={schoolLocation} />
-                                <p>Loading actual location...</p>
-                            </>}
+            <PageTransitionAnimation>
+                <section id='schoolContainer'>
+                    <div key={schoolData.id} id='schoolHeader'>
+                        <img id='schoolLogo' src={require(`../../../assets/img/schools/${schoolData.logo}`)} alt='School logo' />
+                        <h3>{schoolData.name}</h3>
                     </div>
-                    <div id='infoSection'>
-                        <ul key={schoolData.id} id='infoSummary'>
-                            <li><strong>Training Schedule:</strong> {schoolData.schedule}</li>
-                            <li><strong>Description:</strong><br /><br />
-                                {schoolData.description}</li>
-                            <li><strong>Contact information:</strong>
-                                <ul key={schoolData.name}>
-                                    <li>Email: {schoolData.email}</li>
-                                    <li>Phone #: {schoolData.phone}</li>
-                                    <li>Website: {schoolData.website}</li>
-                                </ul>
-                            </li>
-                        </ul>
+                    <div id='schoolInfoContainer'>
+                        <div id='addressSection'>
+                            <h6><strong>Address:</strong> {schoolAddress}</h6>
+                            {schoolLocation && <SchoolMap location={schoolLocation} />}
+                            {!schoolLocation &&
+                                <>
+                                    <SchoolMap location={schoolLocation} />
+                                    <p>Loading actual location...</p>
+                                </>}
+                        </div>
+                        <div id='infoSection'>
+                            <ul key={schoolData.id} id='infoSummary'>
+                                <li><strong>Training Schedule:</strong> {schoolData.schedule}</li>
+                                <li><strong>Description:</strong><br /><br />
+                                    {schoolData.description}</li>
+                                <li><strong>Contact information:</strong>
+                                    <ul key={schoolData.name}>
+                                        <li>Email: {schoolData.email}</li>
+                                        <li>Phone #: {schoolData.phone}</li>
+                                        <li>Website: {schoolData.website}</li>
+                                    </ul>
+                                </li>
+                            </ul>
 
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </PageTransitionAnimation>
         );
     } else {
         return (
-            <section id='schoolContainer'>
-                <p id='loadingMessage'>Loading school information...<br /><br />
-                    <span id='subLoadingMessage'>Please wait a few moments or refresh the page</span></p>
-            </section>
+            <PageTransitionAnimation>
+                <section id='schoolContainer'>
+                    <p id='loadingMessage'>Loading school information...<br /><br />
+                        <span id='subLoadingMessage'>Please wait a few moments or refresh the page</span></p>
+                </section>
+            </PageTransitionAnimation>
         );
     };
 };

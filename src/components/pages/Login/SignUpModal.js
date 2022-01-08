@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
 import '../../../styles/pages/login/SignUp.css'
 import { serverURL, user, userEmail } from '../../../Global';
+import PageTransitionAnimation from '../../layout/PageTransitionAnimation';
 
 axios.defaults.withCredentials = true;
 
@@ -18,7 +19,7 @@ const SignUpModal = ({ closeModal, message }) => {
         if (signUpStatus === 'success') {
             message('THANK YOU!', `User ${user} has been successfully created. Please log in for access.`, true);
             closeModal();
-        } else if (signUpUserEmail != '' && signUpStatus ) {
+        } else if (signUpUserEmail != '' && signUpStatus) {
             alert("Sorry, seems like there has been an error. Please reload the page and try again.");
             closeModal();
         }
@@ -51,6 +52,7 @@ const SignUpModal = ({ closeModal, message }) => {
     };
 
     return (
+        <PageTransitionAnimation>
             <div id='background-layer'>
                 <form id='user-creation-form' onSubmit={getSignUpForm}>
                     <button type='button' id='close-btn' onClick={closeModal}
@@ -66,6 +68,7 @@ const SignUpModal = ({ closeModal, message }) => {
                     <button type='submit' id='user-creation-btn'>Create user</button>
                 </form>
             </div>
+        </PageTransitionAnimation>
     );
 };
 

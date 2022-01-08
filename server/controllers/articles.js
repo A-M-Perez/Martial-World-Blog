@@ -56,7 +56,7 @@ const controller = {
         });
 
         relatedArticlesSearchTerm = relatedArticlesSearchTerm.join(' ');
-        const sqlGetArticle = `SELECT article_date, title, author FROM blog_articles WHERE ${relatedArticlesSearchTerm} LIMIT 10;`;
+        const sqlGetArticle = `SELECT id, article_date, title, author FROM blog_articles WHERE ${relatedArticlesSearchTerm} LIMIT 10;`;
 
         db.query(sqlGetArticle, relatedArticlesSearchTerm)
             .then((result) => {

@@ -3,6 +3,7 @@ import '../../../styles/pages/blog/CreateArticles.css';
 import axios from 'axios';
 import { serverURL } from '../../../Global';
 import ConfirmationMessage from '../ConfirmationMsg';
+import PageTransitionAnimation from '../../layout/PageTransitionAnimation';
 
 let cocAcknowledged = false;
 
@@ -88,24 +89,26 @@ const CreateArticles = () => {
     };
 
     return (
-        <section id='createArticleContainer'>
-            <CodeOfConduct checked={codeOfConductChecked} />
-            <div id='createArticleSection'>
-                <h2 id='createArticleTitle'>CREATE ARTICLE</h2>
-                <hr />
-                <form id='createArticleForm' onSubmit={postArticle}>
-                    <label htmlFor='articleTitle'>Title:&nbsp;</label>
-                    <input type='text' name='articleTitle' placeholder="Enter article title here..." ref={articleTitle} /><br /><br />
-                    <label>Image:&nbsp;
-                        <input type='file' id='imageUploader' accept='image/png' />
-                    </label><br /><br />
-                    <label htmlFor='articleText'>Article text:&nbsp;</label>
-                    <textarea name='articleText' placeholder="Write your article here..." ref={articleText} /><br /><br />
-                    <button type='submit' id='login-btn'>Post</button>
-                </form>
-            </div>
-            {showConfirmationMessage && <ConfirmationMessage messageTitle={messageTitle} messageContent={messageContent} visibility={confirmationMessageContent} />}
-        </section>
+        <PageTransitionAnimation>
+            <section id='createArticleContainer'>
+                <CodeOfConduct checked={codeOfConductChecked} />
+                <div id='createArticleSection'>
+                    <h2 id='createArticleTitle'>CREATE ARTICLE</h2>
+                    <hr />
+                    <form id='createArticleForm' onSubmit={postArticle}>
+                        <label htmlFor='articleTitle'>Title:&nbsp;</label>
+                        <input type='text' name='articleTitle' placeholder="Enter article title here..." ref={articleTitle} /><br /><br />
+                        <label>Image:&nbsp;
+                            <input type='file' id='imageUploader' accept='image/png' />
+                        </label><br /><br />
+                        <label htmlFor='articleText'>Article text:&nbsp;</label>
+                        <textarea name='articleText' placeholder="Write your article here..." ref={articleText} /><br /><br />
+                        <button type='submit' id='login-btn'>Post</button>
+                    </form>
+                </div>
+                {showConfirmationMessage && <ConfirmationMessage messageTitle={messageTitle} messageContent={messageContent} visibility={confirmationMessageContent} />}
+            </section>
+        </PageTransitionAnimation>
     )
 };
 

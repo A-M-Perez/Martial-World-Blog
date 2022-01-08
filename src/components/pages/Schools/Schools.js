@@ -4,7 +4,7 @@ import '../../../styles/layout/Navbar.css';
 import '../../../styles/pages/schools/Schools.css';
 import axios from 'axios';
 import { serverURL } from "../../../Global";
-
+import PageTransitionAnimation from '../../layout/PageTransitionAnimation';
 
 const IndividualSchool = ({ searchInput }) => {
 
@@ -18,7 +18,7 @@ const IndividualSchool = ({ searchInput }) => {
                 setFilteredSchoolData(response.data);
             })
             .catch((err) => alert(err))
-    },[]);
+    }, []);
 
     useEffect(() => {
         if (schoolData.length !== 0) {
@@ -29,7 +29,7 @@ const IndividualSchool = ({ searchInput }) => {
             setFilteredSchoolData(filteredSchools);
         }
     }, [searchInput]);
-  
+
     if (filteredSchoolData.length !== 0) {
         const listOfSchools = filteredSchoolData.map(school => {
             return (
@@ -73,18 +73,19 @@ const Schools = () => {
     };
 
     return (
-        <section id='schools'>
-            <h3>If you have a school and would like to include it in the site, please <NavLink to='/AboutUs' className='clickable link'>contact us</NavLink></h3>
+        <PageTransitionAnimation>
+            <section id='schools'>
+                <h3>If you have a school and would like to include it in the site, please <NavLink to='/AboutUs' className='clickable link'>contact us</NavLink></h3>
 
-            <label id="searchBox">Search for schools:&nbsp;
-                <br />
-                <input type='text' name='searchSchool' placeholder="School name..." href={'searchSchool'} onChange={getSearchInput} />
-            </label>
-            <section id='schoolsSummaryContainer'>
-                <IndividualSchool searchInput={searchInput} />
+                <label id="searchBox">Search for schools:&nbsp;
+                    <br />
+                    <input type='text' name='searchSchool' placeholder="School name..." href={'searchSchool'} onChange={getSearchInput} />
+                </label>
+                <section id='schoolsSummaryContainer'>
+                    <IndividualSchool searchInput={searchInput} />
+                </section>
             </section>
-        </section>
-
+        </PageTransitionAnimation>
     )
 };
 

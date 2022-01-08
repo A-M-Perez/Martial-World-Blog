@@ -19,20 +19,19 @@ const Navbar = () => {
         document.getElementById('responsiveMenu').className = responsive;
     };
 
-    //FORMAT HEADER WHEN SCROLLING
     window.addEventListener('scroll', () => {
         if (window.scrollY !== 0) {
-            document.getElementById('pageHeader').className = 'main-navbar scrolledHeader'; //FORMAT ICONS+LINKS
-            document.getElementById('title').className = 'title formatedTitle'; //FORMAT TITLE
+            document.getElementById('pageHeader').className = 'main-navbar scrolledHeader';
+            document.getElementById('title').className = 'title formatedTitle';
             document.querySelectorAll('.logo').forEach(item => {
                 item.classList.add('formatedLogo');
-            }); //FORMAT LOGO
+            });
         } else {
-            document.getElementById('pageHeader').className = 'main-navbar';//FORMAT ICONS+LINKS
-            document.getElementById('title').className = 'title';//FORMAT TITLE
+            document.getElementById('pageHeader').className = 'main-navbar';
+            document.getElementById('title').className = 'title';
             document.querySelectorAll('.logo').forEach(item => {
                 item.classList.remove('formatedLogo');
-            }); //FORMAT LOGO
+            });
 
         }
     });

@@ -4,6 +4,7 @@ import '../../../styles/pages/blog/Articles.css'
 import { serverURL } from '../../../Global';
 import axios from 'axios';
 import Moment from 'react-moment';
+import { NavLink } from 'react-router-dom';
 
 const RelatedArticle = ({ titlesRelatedTo }) => {
 
@@ -21,10 +22,12 @@ const RelatedArticle = ({ titlesRelatedTo }) => {
             );
     }, [])
 
+
     if (relatedArticleData.length !== 0) {
         const listOfRelatedArticles = relatedArticleData.map(relatedArticle => {
 
             return (
+                <NavLink to={`/Blog/Articles/${relatedArticle.id}`} id='relatedArticleNavLink'>
                 <div key={relatedArticle.title} id='relatedArticle'>
                     <h5 className='relatedArticleTitle'>{relatedArticle.title}</h5>
                     <h6 id='relatedArticleInfo'>
@@ -35,21 +38,22 @@ const RelatedArticle = ({ titlesRelatedTo }) => {
                         , {relatedArticle.author}
                     </h6>
                 </div>
+                </NavLink >
             )
 
         });
 
-        return (
-            <React.Fragment>
-                {listOfRelatedArticles}
-            </React.Fragment>
-        )
+return (
+    <React.Fragment>
+        {listOfRelatedArticles}
+    </React.Fragment>
+)
 
     } else {
-        return (
-            <h5 className='relatedArticleTitle'>No related articles</h5>
-        )
-    };
+    return (
+        <h5 className='relatedArticleTitle'>No related articles</h5>
+    )
+};
 
 
 };
@@ -85,7 +89,7 @@ const Article = () => {
                 .catch((err) => {
                     console.log(err)
                 });
-        }, []);
+        }, [articlelId]);
 
     let articleTitle = '';
 
@@ -95,21 +99,21 @@ const Article = () => {
 
     if (articleData.length !== 0) {
         return (
-            <React.Fragment>
-                <RelatedArticlesList titlesRelatedTo={articleTitle} />
-                <section id='article' key={articleData.id}>
-                    <img alt='Article Image' id='articleImage' src={require(`../../../assets/img/articles/${articleData.image}`)} />
-                    <h2>{articleData.title}</h2>
-                    <h5>
-                        <Moment
-                            fromNow>
-                            {articleData.article_date}
-                        </Moment>
-                        &nbsp;- {articleData.author}
-                    </h5>
-                    <p>{articleData.article}</p>
-                </section>
-            </React.Fragment>
+                <React.Fragment>
+                    <RelatedArticlesList titlesRelatedTo={articleTitle} />
+                    <section id='article' key={articleData.id}>
+                        <img alt='Article Image' id='articleImage' src={require(`../../../assets/img/articles/${articleData.image}`)} />
+                        <h2>{articleData.title}</h2>
+                        <h5>
+                            <Moment
+                                fromNow>
+                                {articleData.article_date}
+                            </Moment>
+                            &nbsp;- {articleData.author}
+                        </h5>
+                        <p>{articleData.article}</p>
+                    </section>
+                </React.Fragment>
         );
     } else {
         return (

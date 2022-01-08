@@ -4,6 +4,7 @@ import '../../styles/pages/Home.css';
 import axios from 'axios';
 import { serverURL } from '../../Global';
 import ConfirmationMessage from './ConfirmationMsg';
+import PageTransitionAnimation from '../layout/PageTransitionAnimation';
 
 const AboutUs = () => {
 
@@ -43,30 +44,32 @@ const AboutUs = () => {
     };
 
     return (
-        <section id='about-us'>
-            <section id='about-us-text'>
-                <h2 id='about-us-title'>About Us</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. At reiciendis sequi necessitatibus ex optio ab laudantium illo vel, nostrum impedit numquam blanditiis provident. Expedita itaque nisi saepe, enim maiores perspiciatis!</p>
-                <p>Reiciendis quae eligendi necessitatibus est similique nam obcaecati itaque! Cumque esse facilis nesciunt necessitatibus qui recusandae, praesentium labore perspiciatis dolorum a deserunt, cum, non commodi. Pariatur est esse vero voluptas.</p>
+        <PageTransitionAnimation>
+            <section id='about-us'>
+                <section id='about-us-text'>
+                    <h2 id='about-us-title'>About Us</h2>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. At reiciendis sequi necessitatibus ex optio ab laudantium illo vel, nostrum impedit numquam blanditiis provident. Expedita itaque nisi saepe, enim maiores perspiciatis!</p>
+                    <p>Reiciendis quae eligendi necessitatibus est similique nam obcaecati itaque! Cumque esse facilis nesciunt necessitatibus qui recusandae, praesentium labore perspiciatis dolorum a deserunt, cum, non commodi. Pariatur est esse vero voluptas.</p>
+                </section>
+                <aside id='contact-us'>
+                    <h3 id='contact-us-title'>Contact us</h3>
+                    <hr />
+                    <form id='contact-us-form' onSubmit={getContactForm}>
+                        <label htmlFor='email'>E-mail:&nbsp;
+                            <input type='email' name='email' id='contactEmail' placeholder="Enter your e-mail address..." ref={contactEmailRef}></input>
+                        </label>
+                        <label htmlFor='subject'>Subject:&nbsp;
+                            <input type='text' name='subject' id='contactSubject' placeholder="Enter a subject..." ref={contactSubjectRef}></input>
+                        </label>
+                        <label htmlFor='message'>Message:&nbsp;
+                            <textarea name='message' id='contactMessage' placeholder='Enter your message here...' ref={contactMessageRef}></textarea>
+                        </label>
+                        <button type='submit'>Send</button>
+                    </form>
+                </aside>
+                {showConfirmationMessage && <ConfirmationMessage messageTitle={messageTitle} messageContent={messageContent} visibility={confirmationMessageContent} />}
             </section>
-            <aside id='contact-us'>
-                <h3 id='contact-us-title'>Contact us</h3>
-                <hr />
-                <form id='contact-us-form' onSubmit={getContactForm}>
-                    <label htmlFor='email'>E-mail:&nbsp;
-                        <input type='email' name='email' id='contactEmail' placeholder="Enter your e-mail address..." ref={contactEmailRef}></input>
-                    </label>
-                    <label htmlFor='subject'>Subject:&nbsp;
-                        <input type='text' name='subject' id='contactSubject' placeholder="Enter a subject..." ref={contactSubjectRef}></input>
-                    </label>
-                    <label htmlFor='message'>Message:&nbsp;
-                        <textarea name='message' id='contactMessage' placeholder='Enter your message here...' ref={contactMessageRef}></textarea>
-                    </label>
-                    <button type='submit'>Send</button>
-                </form>
-            </aside>
-            {showConfirmationMessage && <ConfirmationMessage messageTitle={messageTitle} messageContent={messageContent} visibility={confirmationMessageContent} />}
-        </section>
+        </PageTransitionAnimation>
     );
 };
 
