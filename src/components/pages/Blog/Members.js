@@ -26,6 +26,7 @@ const Members = ({ search }) => {
     useEffect(() => {
         if (articlesBySearchTerm.length !== 0) {
             search(articlesBySearchTerm);
+            document.getElementById('searchTermInput').value = '';
         } else if (articlesBySearchTerm === 0) {
             articlesBySearchTerm.push('notFound')
         };
@@ -41,7 +42,7 @@ const Members = ({ search }) => {
             <label htmlFor='searchArticle'>Find any article</label>
             <div id='searchInputContainer'>
                 <input id='searchTermInput' type='text' name='searchArticle' placeholder='Enter article title...' onKeyPress={(e) => {
-                    if (e.key === 13) { getSearchedArticles() };
+                    if (e.key === 'Enter') { getSearchedArticles() };
                 }} />
                 <i className="fas fa-search" id='searchIcon' onClick={getSearchedArticles} />
             </div>

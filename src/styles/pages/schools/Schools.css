@@ -3,6 +3,14 @@
     padding: 0;
 }
 
+.separator {    
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    background-color: rgb(190, 190, 190);
+}
+
 #schools {    
     text-align: center;
     margin-bottom: 100px;
@@ -39,7 +47,7 @@
         font-size: 0.6em;
     }
 
-    #schoolsSummaryContainer {
+    .schoolsSummaryContainer {
         width: 100%;
         display: flex;
         flex-wrap: wrap;
@@ -53,7 +61,7 @@
         all: initial;
         margin-left: 1%;
         margin-bottom: 1%;
-        width: 23%;
+        width: 30%;
         height: 270px;
     }
 
@@ -72,8 +80,8 @@
 
                 #schoolsSummary:hover {
                     cursor: pointer;
-                    transform: scale(1.05);
-                    transition: ease all 500ms;
+                    transform: scale(1.03);
+                    transition: ease all 300ms;
                 }
 
             #schoolsSummary img{
@@ -105,49 +113,56 @@
     color: black;
 }
 
-/* RESPONSIVE DESIGN */
-@media screen and (max-width: 1300px) {
-    .schoolNavLink {
-        width: 30%;
-    }
+#paginateContainer {
+    margin-top: 0;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-@media screen and (max-width: 1050px) {
-    
-    #schoolsSummaryContainer {
-        justify-content: center;
-    }
-
-        .schoolNavLink {
-            width: 40%;
-        }
-}
-
-@media screen and (max-width: 750px) {
-    .schoolNavLink {
-        width: 60%;
-        margin-bottom: 20px;
-    }
-}
-
-@media screen and (max-width: 550px) {
-    .schoolNavLink {
+    #paginateContainer .paginationBtns {
+        margin-top: 0;
+        list-style-type:none;
+        display: flex;
+        justify-content: center;        
+        align-items: center;
         width: 80%;
-        margin-bottom: 20px;
+        margin-left: 10%;
+        height: 25px;
     }
-}
 
-@media screen and (max-width: 400px) {
-    .schoolNavLink {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-}
+        #paginateContainer a  {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1em;
+            font-weight: 400;
+            margin: 15px;
+            box-sizing: border-box;
+            padding-left: 5px;
+            padding-right: 5px;
+            cursor: pointer;
+        }
 
-@media screen and (max-width: 240px) {
-    .schoolNavLink {
-        width: 100%;
-        margin-bottom: 20px;
-        height: auto;
+            #paginateContainer a:hover {
+                font-weight: 700;
+                font-size: 1.1em;
+                transition: all ease-in-out 500ms;
+                cursor: pointer;
+            }
+
+    #paginateContainer .paginationDisabled a {
+        color: rgb(150, 150, 150);
+        cursor: default;
     }
-}
+
+        #paginateContainer .paginationDisabled a:hover {
+            font-size: 1em;
+            font-weight: 400;
+        }
+
+    #paginateContainer .paginationActive {
+        font-weight: 700;
+        background-color: rgb(90, 90, 90);
+        box-shadow: 0px 0px 2px 1px rgb(90, 90, 90);
+        color: rgb(240, 240, 240);
+        border-radius: 15px;
+        transition: all ease-in-out 300ms;
+    }        

@@ -7,12 +7,13 @@ import Moment from 'react-moment';
 import { NavLink } from 'react-router-dom';
 import PageTransitionAnimation from '../../layout/PageTransitionAnimation';
 
-const RelatedArticle = ({ titlesRelatedTo, IdRelatedto }) => {
+const RelatedArticle = ({ titlesRelatedTo, idRelatedto }) => {
 
-    const RegExpToClearSearch = /a\s|the\s|at\s|in_|on_|for\s|of\s|my\s|his\s|her\s|he_|she_|they_|them_|about_/ig;
+    const RegExpToClearSearch = /a\s|the\s|at\s|in\s|on\s|for\s|of\s|my\s|his\s|her\s|he_|she_|they_|them_|about_|he\s|she\s|they\s|them\s|about\s/ig;
     const keyWordsArray = titlesRelatedTo.replaceAll(RegExpToClearSearch, '').split(' ');
     const [relatedArticleData, setRelatedArticleData] = useState([]);
     const [temporaryResponse, setTemporaryResponse] = useState([]);
+
 
     useEffect(() => {
         axios.post(`${serverURL}/api/get_relatedArticles`, keyWordsArray)
@@ -22,14 +23,17 @@ const RelatedArticle = ({ titlesRelatedTo, IdRelatedto }) => {
             .catch((err) =>
                 console.log(err)
             );
-    }, [])
+    }, []);
 
 
     useEffect(() => {
-        let tempArray = temporaryResponse.filter(item => item.id !== IdRelatedto);
-        setRelatedArticleData(tempArray);
+        if (temporaryResponse.length !== 0) {
+            let tempArray = temporaryResponse.filter(item => item.id !== idRelatedto);
+            setRelatedArticleData(tempArray);
+        } else {
+            setRelatedArticleData(temporaryResponse);
+        };
     }, [temporaryResponse]);
-
 
 
     if (relatedArticleData.length !== 0) {
@@ -69,14 +73,14 @@ const RelatedArticle = ({ titlesRelatedTo, IdRelatedto }) => {
 
 };
 
-const RelatedArticlesList = ({ titlesRelatedTo, IdRelatedto }) => {
+const RelatedArticlesList = ({ titlesRelatedTo, idRelatedto }) => {
 
     return (
         <aside id='relatedArticlesSection'>
             <h4>Related Articles</h4>
             <hr />
             <div id='relatedArticleContainer'>
-                <RelatedArticle titlesRelatedTo={titlesRelatedTo} IdRelatedto={IdRelatedto} />
+                <RelatedArticle titlesRelatedTo={titlesRelatedTo} idRelatedto={idRelatedto} />
             </div>
         </aside>
     );
@@ -86,21 +90,21 @@ const RelatedArticlesList = ({ titlesRelatedTo, IdRelatedto }) => {
 const Article = () => {
 
     const params = useParams();
-    const articlelId = params.id;
+    const articleId = params.id;
 
     const [articleData, setArticleData] = useState([]);
 
     useEffect(
         function getArticleById() {
 
-            axios.get(`${serverURL}/api/get_article/${articlelId}`)
+            axios.get(`${serverURL}/api/get_article/${articleId}`)
                 .then((res) => {
                     setArticleData(res.data[0]);
                 })
                 .catch((err) => {
                     console.log(err)
                 });
-        }, [articlelId]);
+        }, [articleId]);
 
     let articleTitle = '';
     let articleID = '';
@@ -113,7 +117,7 @@ const Article = () => {
     if (articleData.length !== 0) {
         return (
             <React.Fragment>
-                <RelatedArticlesList titlesRelatedTo={articleTitle} IdRelatedto={articleID} />
+                <RelatedArticlesList titlesRelatedTo={articleTitle} idRelatedto={articleID} />
                 <section id='article' key={articleData.id}>
                     <img alt='Article Image' id='articleImage' src={require(`../../../assets/img/articles/${articleData.image}`)} />
                     <h2>{articleData.title}</h2>
