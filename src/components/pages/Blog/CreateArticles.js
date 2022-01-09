@@ -47,8 +47,6 @@ const CreateArticles = () => {
     function postArticle(e) {
         e.preventDefault();
 
-        const submittedArticleForm = {};
-
         if (cocAcknowledged === true) {
             const submittedArticleForm = {
                 blogArticleTitle: articleTitle.current.value,

@@ -1,10 +1,11 @@
+import React from 'react';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import '../../../styles/pages/blog/Members.css';
 import { serverURL } from '../../../Global';
 import { useEffect, useState } from 'react';
 
-const Members = ({ search }) => {
+const Members = ({ search, userInfo }) => {
 
     const [articlesBySearchTerm, setArticlesBySearchTerm] = useState([]);
 
@@ -32,11 +33,33 @@ const Members = ({ search }) => {
         };
     }, [articlesBySearchTerm]);
 
+    console.log(userInfo.userName, !userInfo.userName, userInfo.guestUserName, !userInfo.guestUserName)
+
     return (
         <aside id='blogMembers'>
             <h4>MEMBERS ONLY</h4>
-            <NavLink to={'/Blog/Create_article'}><button type='button' id='guest-login-btn'>CREATE ARTICLE</button></NavLink>
-            <NavLink className='BlogNavLink' to={'/Blog/Create_article'}><p>Guests can create an article <span>here</span></p></NavLink>
+
+            {userInfo.userName && !userInfo.guestUserName &&
+                <React.Fragment>
+                    <NavLink to={'/Blog/Create_article'}><button type='button' id='guest-login-btn'>CREATE ARTICLE</button></NavLink>
+                    <NavLink className='BlogNavLink' to={'/Login'}><p>Guests can create an article <span>here</span></p></NavLink>
+                </React.Fragment>
+            }
+
+            {!userInfo.userName && userInfo.guestUserName &&
+                <React.Fragment>
+                    <NavLink to={'/Login'}><button type='button' id='guest-login-btn'>CREATE ARTICLE</button></NavLink>
+                    <NavLink className='BlogNavLink' to={'/Blog/Create_article'}><p>Guests can create an article <span>here</span></p></NavLink>
+                </React.Fragment>
+            }
+
+            {!userInfo.userName && !userInfo.guestUserName &&
+                <React.Fragment>
+                    <NavLink to={'/Blog/Create_article'}><button type='button' id='guest-login-btn'>CREATE ARTICLE</button></NavLink>
+                    <NavLink className='BlogNavLink' to={'/Blog/Create_article'}><p>Guests can create an article <span>here</span></p></NavLink>
+                </React.Fragment>
+            }
+            
             <hr />
             <h5>SEARCH</h5>
             <label htmlFor='searchArticle'>Find any article</label>

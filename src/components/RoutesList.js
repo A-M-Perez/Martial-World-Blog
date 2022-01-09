@@ -40,7 +40,7 @@ const RoutesList = () => {
 
     const [searchedArticles, setSearchedArticles] = useState([]);
 
-    function passSearchedArticlesResults(searchedArticles, isActive) {
+    function passSearchedArticlesResults(searchedArticles) {
         setSearchedArticles(searchedArticles);
     };
 
@@ -55,7 +55,7 @@ const RoutesList = () => {
                         <section id='blogContainer'>
                             <div id='articlesBackground'>
                                 <ArticlesList searchedArticles={searchedArticles} />
-                                <Members search={passSearchedArticlesResults} />
+                                <Members search={passSearchedArticlesResults} userInfo={{ isUserAuthenticated, userName, guestUserName }} />
                             </div>
                         </section>
                     </PageTransitionAnimation>
@@ -66,7 +66,7 @@ const RoutesList = () => {
                         <section id='blogContainer'>
                             <div id='articlesBackground'>
                                 <Article />
-                                <Members search={passSearchedArticlesResults} />
+                                <Members search={passSearchedArticlesResults} userInfo={{ isUserAuthenticated, userName, guestUserName }} />
                             </div>
                         </section>
                     </PageTransitionAnimation>
