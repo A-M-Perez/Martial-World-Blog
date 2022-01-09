@@ -101,9 +101,9 @@ const Login = ({ openModal, message, authentication, userInfo }) => {
                     <h3>Log in to post, like(?) and comment(?) articles</h3>
                     <form id='user-login' onSubmit={getLoginForm}>
                         <label id='user' htmlFor='user'>User e-mail:&nbsp;</label>
-                        <input type='text' name='user' placeholder='User e-mail...' ref={loginUserEmail} />
+                        <input type='text' name='user' placeholder='User e-mail...' ref={loginUserEmail} maxLength='50' />
                         <label id='password' htmlFor='password'>Password:&nbsp;</label>
-                        <input type='password' name='password' placeholder='Enter password...' ref={loginUserPassword} />
+                        <input type='password' name='password' placeholder='Enter password...' ref={loginUserPassword} minLength='8' maxLength='15' />
                         <button type='submit' id='login-btn'>Log in</button>
                     </form>
                     <span id='not-user'>Not an user yet?</span>
@@ -124,12 +124,14 @@ const Login = ({ openModal, message, authentication, userInfo }) => {
                 <aside id='guest-login-section'>
                     {!userInfo.guestUserName && <form id='guest-login' onSubmit={getGuestLoginForm}>
                         <button type='submit' id='guest-login-btn'>GUEST Log in</button>
-                        <label id='guest-nickname' htmlFor='guest-nickname'>Choose a nickname:&nbsp;</label>
-                        <input type='text' name='guest-nickname' placeholder='Enter nickname...' ref={guestNickname} />
+                        <label id='guest-nickname' htmlFor='guest-nickname' dataToolTip='User nickname cannot be more than 30 characters long'
+                            className='toolTipAvailable'>Choose a nickname:&nbsp;</label>
+                        <input type='text' name='guest-nickname' placeholder='Enter nickname...' ref={guestNickname}
+                            maxLength='30' />
                     </form>}
                     {userInfo.guestUserName &&
                         <section>
-                            <p id='alreadySignedIn'>Temporarily logged in as <span id='userName'>{userInfo.guestUserName}</span></p>
+                            <p id='alreadySignedIn'>Temporarily logged in as<br /><span id='userName'>{userInfo.guestUserName}</span></p>
                             <div id='logOutContainer'>
                                 <button id='logOutBtn' type='button' onClick={logOut}>Log out</button>
                             </div>

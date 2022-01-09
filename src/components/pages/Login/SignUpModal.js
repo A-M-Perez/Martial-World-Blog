@@ -57,14 +57,17 @@ const SignUpModal = ({ closeModal, message }) => {
                 <form id='user-creation-form' onSubmit={getSignUpForm}>
                     <button type='button' id='close-btn' onClick={closeModal}
                     >&#10006;</button>
-                    <label htmlFor='user-email' id='user-email'>E-mail:&nbsp;</label>
-                    <input type='email' name='user-email' ref={signUpUserEmail} />
-                    <label htmlFor='user-name' id='user-name'>Name:&nbsp;</label>
-                    <input name='user-name' id='user-name' ref={signUpUserName} />
-                    <label htmlFor='user-password' id='user-password'>Password:&nbsp;</label>
-                    <input type='password' name='user-password' ref={signUpUserPassword} />
+                    <label htmlFor='user-email' id='user-email' dataToolTip='Email cannot be more than 50 characters long'
+                        className='toolTipAvailable'>E-mail:&nbsp;</label>
+                    <input type='email' name='user-email' ref={signUpUserEmail} maxLength='50' />
+                    <label htmlFor='user-name' id='user-name' dataToolTip='Name cannot be more than 30 characters long'
+                        className='toolTipAvailable'>Name:&nbsp;</label>
+                    <input name='user-name' id='user-name' ref={signUpUserName} maxLength='30' />
+                    <label htmlFor='user-password' id='user-password' dataToolTip='Password should be between 8 and 15 characters long'
+                        className='toolTipAvailable'>Password:&nbsp;</label>
+                    <input type='password' name='user-password' ref={signUpUserPassword} minLength='8' maxLength='15' />
                     <label htmlFor='user-password' id='user-password-check'>Re-enter Password:&nbsp;</label>
-                    <input type='password' name='user-password-check' ref={signUpUserPasswordCheck} />
+                    <input type='password' name='user-password-check' ref={signUpUserPasswordCheck} minLength='8' maxLength='15' />
                     <button type='submit' id='user-creation-btn'>Create user</button>
                 </form>
             </div>

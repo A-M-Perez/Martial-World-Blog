@@ -9,10 +9,12 @@
     font-family: 'Open Sans', sans-serif;
     font-size: 1.5em;
     font-weight: 700;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
     #userName {
-        font-size: 1.8em;
+        font-size: 1.3em;
         color: rgb(0, 0, 200);
     }
 
@@ -167,6 +169,30 @@
     width: 100%;
     text-align: center;
 }
+
+#guest-login-section .toolTipAvailable::before {
+    content: attr(dataToolTip);
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    width: max-content;
+    max-width: 50%;
+    height: auto;
+    background: rgb(239, 241, 107);
+    border-radius: 15px;
+    box-sizing: border-box;
+    padding: 3px;
+    transform: translateY(-5px);
+    text-align: center;
+    font-size: 0.9em;
+}
+
+#guest-login-section .toolTipAvailable:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transition: all ease-in-out 200ms;
+}
+
 
 /* RESPONSIVE DESIGN FOR SCREENS BELOW 700px */
 @media screen and (max-width: 700px) {
