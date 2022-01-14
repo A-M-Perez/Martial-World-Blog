@@ -37,7 +37,7 @@ const CodeOfConduct = ({ checked }) => {
     );
 };
 
-const CreateArticles = () => {
+const CreateArticles = ({userName, guestUserName, userEmail}) => {
 
     let articleTitle = useRef();
     let articleText = useRef();
@@ -50,7 +50,10 @@ const CreateArticles = () => {
         if (cocAcknowledged === true) {
             const submittedArticleForm = {
                 blogArticleTitle: articleTitle.current.value,
-                blogArticleText: articleText.current.value
+                blogArticleText: articleText.current.value,
+                blogArticleUser: userName,
+                blogArticleGuestUserName: guestUserName,
+                blogArticleUserEmail: userEmail
             }
 
             axios.post(`${serverURL}/api/post_article`, submittedArticleForm)

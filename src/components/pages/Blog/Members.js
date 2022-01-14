@@ -33,8 +33,7 @@ const Members = ({ search, userInfo }) => {
         };
     }, [articlesBySearchTerm]);
 
-    console.log(userInfo.userName, !userInfo.userName, userInfo.guestUserName, !userInfo.guestUserName)
-
+    
     return (
         <aside id='blogMembers'>
             <h4>MEMBERS ONLY</h4>

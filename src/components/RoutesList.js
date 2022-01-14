@@ -20,23 +20,29 @@ const RoutesList = () => {
     const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
     const [userName, setUserName] = useState('');
     const [guestUserName, setGuestUserName] = useState('');
+    const [userEmail, setUserEmail] = useState('');
+    const [updateValues, setUpdateValues] = useState(true);
 
-    function authenticateUser(isAuthenticated, authenticatedUser, authenticatedGuestUser) {
+    function authenticateUser(isAuthenticated, authenticatedUser, authenticatedGuestUser, authenticatedUserEmail = '') {
         setIsUserAuthenticated(isAuthenticated);
         setUserName(authenticatedUser);
         setGuestUserName(authenticatedGuestUser);
+        setUserEmail(authenticatedUserEmail);
+        setUpdateValues(!updateValues);
     };
 
-    const [createArticleAuthorization, setCreateArticleAuthorization] = useState(<LoginContainer authentication={authenticateUser} userInfo={{ isUserAuthenticated, userName, guestUserName }} />);
+    const [createArticleAuthorization, setCreateArticleAuthorization] = useState(<LoginContainer authentication={authenticateUser}
+        userInfo={{ isUserAuthenticated, userName, guestUserName }} />);
 
     useEffect(() => {
-        if (isUserAuthenticated) {
-            setCreateArticleAuthorization(<CreateArticles />)
+        if (userName) {
+            setCreateArticleAuthorization(<CreateArticles userName={userName} userEmail={userEmail} />)
+        } else if (guestUserName) {
+            setCreateArticleAuthorization(<CreateArticles guestUserName={guestUserName} />)
         } else {
             setCreateArticleAuthorization(<Navigate to='/Login' />)
         }
-    }, [isUserAuthenticated])
-
+    }, [updateValues]);
 
     const [searchedArticles, setSearchedArticles] = useState([]);
 
@@ -65,7 +71,7 @@ const RoutesList = () => {
                     <PageTransitionAnimation>
                         <section id='blogContainer'>
                             <div id='articlesBackground'>
-                                <Article />
+                                <Article userEmail={userEmail} />
                                 <Members search={passSearchedArticlesResults} userInfo={{ isUserAuthenticated, userName, guestUserName }} />
                             </div>
                         </section>

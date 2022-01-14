@@ -49,7 +49,7 @@ const Login = ({ openModal, message, authentication, userInfo }) => {
 
         axios.post(`${serverURL}/api/login_user`, submittedLoginForm)
             .then((response) => {
-                authentication(true, response.data.name, '');
+                authentication(true, response.data.name, '', response.data.email);
                 setSignInStatus(response.data.status);
             })
             .catch((err) => {

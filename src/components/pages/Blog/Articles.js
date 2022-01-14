@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import '../../../styles/pages/blog/Articles.css'
 import { serverURL } from '../../../Global';
 import axios from 'axios';
@@ -87,12 +87,15 @@ const RelatedArticlesList = ({ titlesRelatedTo, idRelatedto }) => {
 };
 
 
-const Article = () => {
+const Article = ({ userEmail }) => {
 
     const params = useParams();
     const articleId = params.id;
+    const navigate = useNavigate();
 
     const [articleData, setArticleData] = useState([]);
+    const [editIconClass, setEditIconClass] = useState('fas fa-edit articleIcons iconHidden');
+    const [deleteIconClass, setDeleteIconClass] = useState('fas fa-trash-alt articleIcons iconHidden');
 
     useEffect(
         function getArticleById() {
@@ -106,6 +109,31 @@ const Article = () => {
                 });
         }, [articleId]);
 
+    useEffect(() => {
+        if (articleData.author_email === userEmail) {
+            setEditIconClass('fas fa-edit articleIcons iconVisible');
+            setDeleteIconClass('fas fa-trash-alt articleIcons iconVisible');
+        };
+    }, [articleData]);
+
+
+    function editArticle() {
+        alert('edited')
+    };
+
+    function deleteArticle() {
+        
+        axios.post(`${serverURL}/api/delete_article/${articleId}`, {id: articleId})
+                .then((response) => {
+                    if (response) {
+                        navigate('/Blog');
+                    };
+                })
+                .catch((err) => {
+                    console.log(err)
+                });
+    };
+
     let articleTitle = '';
     let articleID = '';
 
@@ -115,6 +143,7 @@ const Article = () => {
     };
 
     if (articleData.length !== 0) {
+
         return (
             <React.Fragment>
                 <RelatedArticlesList titlesRelatedTo={articleTitle} idRelatedto={articleID} />
@@ -128,6 +157,8 @@ const Article = () => {
                         </Moment>
                         &nbsp;- {articleData.author}
                     </h5>
+                    <i id='deleteIcon' className={deleteIconClass} onClick={deleteArticle}></i>
+                    <i id='editIcon' className={editIconClass} onClick={editArticle}></i>
                     <p>{articleData.article}</p>
                 </section>
             </React.Fragment>

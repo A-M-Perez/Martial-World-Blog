@@ -24,10 +24,19 @@ const controller = {
     postArticle: (req, res) => {
 
         const articleDate = new Date().toISOString().slice(0, 10);
-        const { blogArticleTitle, blogArticleText } = req.body;
-        const sqlPostArticle = "INSERT INTO blog_articles(article_date, title, article, author) VALUES(?, ?, ?, ?) ;";
+        const { blogArticleTitle, blogArticleText, blogArticleUser, blogArticleGuestUserName, blogArticleUserEmail } = req.body;
+        let blogArticleAuthor = '';
 
-        db.query(sqlPostArticle, [articleDate, blogArticleTitle, blogArticleText, 'martin'], (err, result) => {
+        if (blogArticleUser) {
+            blogArticleAuthor = blogArticleUser
+        } else if (blogArticleGuestUserName) {
+            blogArticleAuthor = `Guest user ${blogArticleGuestUserName}`
+        };
+
+        const sqlPostArticle = "INSERT INTO blog_articles(article_date, title, article, author, author_email) VALUES(?, ?, ?, ?, ?) ;";
+
+
+        db.query(sqlPostArticle, [articleDate, blogArticleTitle, blogArticleText, blogArticleAuthor, blogArticleUserEmail], (err, result) => {
             res.send(result);
         });
     },
@@ -65,7 +74,27 @@ const controller = {
             .catch((err) => {
                 res.send(err)
             });
-    }
+    },
+
+    editArticle: (req, res) => {
+
+        // const searchTerm = req.body.term;
+        // const sqlGetArticle = "SELECT * FROM blog_articles WHERE title LIKE CONCAT('%', ?, '%') LIMIT 20;";
+
+        // db.query(sqlGetArticle, searchTerm, (err, result) => {
+        //     res.send(result);
+        // });
+    },
+
+    deleteArticle: (req, res) => {
+
+        const articleId = req.body.id;
+        const sqlGetArticle = "DELETE FROM blog_articles WHERE id = ?;";
+
+        db.query(sqlGetArticle, articleId, (err, result) => {
+            res.send(result);
+        });
+    },
 };
 
 module.exports = controller;
