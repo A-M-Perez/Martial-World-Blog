@@ -78,12 +78,32 @@ const controller = {
 
     editArticle: (req, res) => {
 
-        // const searchTerm = req.body.term;
-        // const sqlGetArticle = "SELECT * FROM blog_articles WHERE title LIKE CONCAT('%', ?, '%') LIMIT 20;";
+        // let image = false;
+        const articleDate = new Date().toISOString().slice(0, 10);
+        const { blogArticleTitle, blogArticleText, blogArticleID } = req.body;
 
-        // db.query(sqlGetArticle, searchTerm, (err, result) => {
+        // if (image) {
+        //     const sqlGetArticle = `UPDATE blog_articles 
+        // SET article_date = ?,
+        // SET title = ?,
+        // SET article = ?,
+        // SET image = ?,
+        //     WHERE id = ?`;
+
+        // db.query(sqlGetArticle, [articleDate, blogArticleTitle, blogArticleText, , blogArticleID], (err, result) => {
         //     res.send(result);
         // });
+
+        const sqlEditArticle = `UPDATE blog_articles SET 
+        article_date = ?,
+        title = ?,
+        article = ?
+            WHERE id = ? LIMIT 1`;
+
+        db.query(sqlEditArticle, [articleDate, blogArticleTitle, blogArticleText, blogArticleID], (err, result) => {
+            res.send(result);
+        });
+
     },
 
     deleteArticle: (req, res) => {

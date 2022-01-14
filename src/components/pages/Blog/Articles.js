@@ -87,7 +87,7 @@ const RelatedArticlesList = ({ titlesRelatedTo, idRelatedto }) => {
 };
 
 
-const Article = ({ userEmail }) => {
+const Article = ({ userEmail, passEditableArticleInfo }) => {
 
     const params = useParams();
     const articleId = params.id;
@@ -116,22 +116,24 @@ const Article = ({ userEmail }) => {
         };
     }, [articleData]);
 
-
     function editArticle() {
-        alert('edited')
+
+        passEditableArticleInfo(true, articleID, articleTitle, articleData.article);
+        navigate('/Blog/Edit_article');
+
     };
 
     function deleteArticle() {
-        
-        axios.post(`${serverURL}/api/delete_article/${articleId}`, {id: articleId})
-                .then((response) => {
-                    if (response) {
-                        navigate('/Blog');
-                    };
-                })
-                .catch((err) => {
-                    console.log(err)
-                });
+
+        axios.post(`${serverURL}/api/delete_article/${articleId}`, { id: articleId })
+            .then((response) => {
+                if (response) {
+                    navigate('/Blog');
+                };
+            })
+            .catch((err) => {
+                console.log(err)
+            });
     };
 
     let articleTitle = '';

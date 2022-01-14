@@ -12,6 +12,7 @@ import Article from './pages/Blog/Articles';
 import CreateArticles from "./pages/Blog/CreateArticles";
 import Members from "./pages/Blog/Members";
 import ArticlesList from './pages/Blog/ArticlesList';
+import EditArticles from './pages/Blog/EditArticles';
 import '../../src/styles/pages/blog/Blog.css';
 import PageTransitionAnimation from './layout/PageTransitionAnimation';
 
@@ -33,6 +34,18 @@ const RoutesList = () => {
 
     const [createArticleAuthorization, setCreateArticleAuthorization] = useState(<LoginContainer authentication={authenticateUser}
         userInfo={{ isUserAuthenticated, userName, guestUserName }} />);
+
+    const [editableArticleInfo, setEditableArticleInfo] = useState({});
+    // const [showEditableArticle, setShowEditableArticle] = useState();
+
+    function passEditableArticleInfo(articleEditable = false, articleId, articleTitle, articleText) {
+        setEditableArticleInfo({
+            editable: articleEditable,
+            id: articleId,
+            title: articleTitle,
+            article: articleText
+        });
+    };
 
     useEffect(() => {
         if (userName) {
@@ -67,11 +80,12 @@ const RoutesList = () => {
                     </PageTransitionAnimation>
                 } />
                 <Route path='/Blog/Create_article' exact element={createArticleAuthorization} />
+                <Route path='/Blog/Edit_article' exact element={<EditArticles editableArticleInfo={editableArticleInfo} />} />
                 <Route path='/Blog/Articles/:id' exact element={
                     <PageTransitionAnimation>
                         <section id='blogContainer'>
                             <div id='articlesBackground'>
-                                <Article userEmail={userEmail} />
+                                <Article userEmail={userEmail} passEditableArticleInfo={passEditableArticleInfo} />
                                 <Members search={passSearchedArticlesResults} userInfo={{ isUserAuthenticated, userName, guestUserName }} />
                             </div>
                         </section>

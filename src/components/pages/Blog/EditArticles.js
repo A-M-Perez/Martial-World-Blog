@@ -37,36 +37,45 @@ const CodeOfConduct = ({ checked }) => {
     );
 };
 
-const CreateArticles = ({ userName, guestUserName, userEmail }) => {
+const EditArticles = ({ editableArticleInfo }) => {
+
+    const [editableArticleTitle, setEditableArticleTitle] = useState(editableArticleInfo.title);
+    const [editableArticleText, setEditableArticleText] = useState(editableArticleInfo.article);
 
     let articleTitle = useRef();
     let articleText = useRef();
 
     const [codeOfConductChecked, setCodeOfConductChecked] = useState();
 
-    function postArticle(e) {
+    function editArticleTitle(e) {
+     setEditableArticleTitle(e.target.value);
+    };
+
+    function editArticleText(e) {
+        setEditableArticleText(e.target.value);
+       };
+
+    function editArticle(e) {
         e.preventDefault();
 
         if (cocAcknowledged === true) {
-            const submittedArticleForm = {
+            const editedArticleForm = {
                 blogArticleTitle: articleTitle.current.value,
                 blogArticleText: articleText.current.value,
-                blogArticleUser: userName,
-                blogArticleGuestUserName: guestUserName,
-                blogArticleUserEmail: userEmail
+                blogArticleID: editableArticleInfo.id
             }
 
-            axios.post(`${serverURL}/api/post_article`, submittedArticleForm)
+            axios.post(`${serverURL}/api/edit_article/${editableArticleInfo.id}`, editedArticleForm)
                 .then((response) => {
                     if (response) {
-                        confirmationMessageContent('POSTED', 'successfully', true);
+                        confirmationMessageContent('EDITED', 'successfully', true);
                         clearFormAfterPosting();
                         setCodeOfConductChecked(false);
                         cocAcknowledged = false;
-                    }
+                    };
                 })
                 .catch((err) => {
-                    console.log(err);
+                    console.log(err)
                 });
 
         } else if (cocAcknowledged === false) {
@@ -94,24 +103,23 @@ const CreateArticles = ({ userName, guestUserName, userEmail }) => {
             <section id='createArticleContainer'>
                 <CodeOfConduct checked={codeOfConductChecked} />
                 <div id='createArticleSection'>
-                    <h2 id='createArticleTitle'>CREATE ARTICLE</h2>
+                    <h2 id='createArticleTitle'>EDIT ARTICLE</h2>
                     <hr />
-                    <form id='createArticleForm' onSubmit={postArticle}>
+                    <form id='createArticleForm' onSubmit={editArticle}>
                         <label htmlFor='articleTitle'>Title:&nbsp;</label>
-                        <input type='text' name='articleTitle' placeholder="Enter article title here..." ref={articleTitle} /><br /><br />
+                        <input type='text' name='articleTitle' value={editableArticleTitle} onChange={editArticleTitle} ref={articleTitle} /><br /><br />
                         <label>Image:&nbsp;
                             <input type='file' id='imageUploader' accept='image/png' />
                         </label><br /><br />
                         <label htmlFor='articleText'>Article text:&nbsp;</label>
-                        <textarea name='articleText' placeholder="Write your article here..." ref={articleText} /><br /><br />
+                        <textarea name='articleText' value={editableArticleText} onChange={editArticleText} ref={articleText} /><br /><br />
                         <button type='submit' id='login-btn'>Post</button>
                     </form>
                 </div>
                 {showConfirmationMessage && <ConfirmationMessage messageTitle={messageTitle} messageContent={messageContent} visibility={confirmationMessageContent} />}
             </section>
         </PageTransitionAnimation>
-
     )
 };
 
-export default CreateArticles;
+export default EditArticles;
