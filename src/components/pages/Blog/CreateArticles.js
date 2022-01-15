@@ -63,7 +63,7 @@ const CreateArticles = ({ userName, guestUserName, userEmail }) => {
             axios.post(`${serverURL}/api/post_article`, submittedArticleForm)
                 .then((response) => {
                     if (response) {
-                        confirmationMessageContent('POSTED', 'successfully', true);
+                        confirmationMessageContent('POSTED', 'successfully', true, '/Blog');
                         clearFormAfterPosting();
                         setCodeOfConductChecked(false);
                         cocAcknowledged = false;
@@ -81,11 +81,13 @@ const CreateArticles = ({ userName, guestUserName, userEmail }) => {
     const [messageTitle, setMessageTitle] = useState('');
     const [messageContent, setMessageContent] = useState('');
     const [showConfirmationMessage, setShowConfirmationMessage] = useState(false);
+    const [navigateToPath, setNavigateToPath] = useState('');
 
-    const confirmationMessageContent = (title, content, showMessage) => {
+    const confirmationMessageContent = (title, content, showMessage, path) => {
         setMessageTitle(title);
         setMessageContent(content);
         setShowConfirmationMessage(showMessage);
+        setNavigateToPath(path);
     };
 
     function clearFormAfterPosting() {
@@ -111,7 +113,7 @@ const CreateArticles = ({ userName, guestUserName, userEmail }) => {
                         <button type='submit' id='login-btn'>Post</button>
                     </form>
                 </div>
-                {showConfirmationMessage && <ConfirmationMessage messageTitle={messageTitle} messageContent={messageContent} visibility={confirmationMessageContent} />}
+                {showConfirmationMessage && <ConfirmationMessage messageTitle={messageTitle} messageContent={messageContent} visibility={confirmationMessageContent} navigateTo={navigateToPath} />}
             </section>
         </PageTransitionAnimation>
 

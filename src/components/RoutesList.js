@@ -36,7 +36,6 @@ const RoutesList = () => {
         userInfo={{ isUserAuthenticated, userName, guestUserName }} />);
 
     const [editableArticleInfo, setEditableArticleInfo] = useState({});
-    // const [showEditableArticle, setShowEditableArticle] = useState();
 
     function passEditableArticleInfo(articleEditable = false, articleId, articleTitle, articleText) {
         setEditableArticleInfo({

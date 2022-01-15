@@ -6,6 +6,7 @@ import axios from 'axios';
 import Moment from 'react-moment';
 import { NavLink } from 'react-router-dom';
 import PageTransitionAnimation from '../../layout/PageTransitionAnimation';
+import ConfirmationMessage from '../ConfirmationMsg';
 
 const RelatedArticle = ({ titlesRelatedTo, idRelatedto }) => {
 
@@ -13,7 +14,6 @@ const RelatedArticle = ({ titlesRelatedTo, idRelatedto }) => {
     const keyWordsArray = titlesRelatedTo.replaceAll(RegExpToClearSearch, '').split(' ');
     const [relatedArticleData, setRelatedArticleData] = useState([]);
     const [temporaryResponse, setTemporaryResponse] = useState([]);
-
 
     useEffect(() => {
         axios.post(`${serverURL}/api/get_relatedArticles`, keyWordsArray)
@@ -24,7 +24,6 @@ const RelatedArticle = ({ titlesRelatedTo, idRelatedto }) => {
                 console.log(err)
             );
     }, []);
-
 
     useEffect(() => {
         if (temporaryResponse.length !== 0) {
@@ -116,6 +115,18 @@ const Article = ({ userEmail, passEditableArticleInfo }) => {
         };
     }, [articleData]);
 
+    const [messageTitle, setMessageTitle] = useState('');
+    const [messageContent, setMessageContent] = useState('');
+    const [showConfirmationMessage, setShowConfirmationMessage] = useState(false);
+    const [navigateToPath, setNavigateToPath] = useState('');
+
+    const confirmationMessageContent = (title, content, showMessage, path) => {
+        setMessageTitle(title);
+        setMessageContent(content);
+        setShowConfirmationMessage(showMessage);
+        setNavigateToPath(path);
+    };
+
     function editArticle() {
 
         passEditableArticleInfo(true, articleID, articleTitle, articleData.article);
@@ -128,7 +139,7 @@ const Article = ({ userEmail, passEditableArticleInfo }) => {
         axios.post(`${serverURL}/api/delete_article/${articleId}`, { id: articleId })
             .then((response) => {
                 if (response) {
-                    navigate('/Blog');
+                    confirmationMessageContent('DELETED', 'successfully', true, '/Blog');
                 };
             })
             .catch((err) => {
@@ -163,6 +174,7 @@ const Article = ({ userEmail, passEditableArticleInfo }) => {
                     <i id='editIcon' className={editIconClass} onClick={editArticle}></i>
                     <p>{articleData.article}</p>
                 </section>
+                {showConfirmationMessage && <ConfirmationMessage messageTitle={messageTitle} messageContent={messageContent} visibility={confirmationMessageContent} navigateTo={navigateToPath} />}
             </React.Fragment>
         );
     } else {
