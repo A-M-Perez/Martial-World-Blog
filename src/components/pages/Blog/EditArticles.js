@@ -44,16 +44,20 @@ const EditArticles = ({ editableArticleInfo }) => {
 
     let articleTitle = useRef();
     let articleText = useRef();
-
+    const [uploadedImage, setUploadedImage] = useState(null);
     const [codeOfConductChecked, setCodeOfConductChecked] = useState();
 
+    function uploadImage(e) {
+        setUploadedImage(e.target.files[0]);
+    };
+
     function editArticleTitle(e) {
-     setEditableArticleTitle(e.target.value);
+        setEditableArticleTitle(e.target.value);
     };
 
     function editArticleText(e) {
         setEditableArticleText(e.target.value);
-       };
+    };
 
     function editArticle(e) {
         e.preventDefault();
@@ -109,7 +113,7 @@ const EditArticles = ({ editableArticleInfo }) => {
                         <label htmlFor='articleTitle'>Title:&nbsp;</label>
                         <input type='text' name='articleTitle' value={editableArticleTitle} onChange={editArticleTitle} ref={articleTitle} /><br /><br />
                         <label>Image:&nbsp;
-                            <input type='file' id='imageUploader' accept='image/png' />
+                            <input type='file' id='imageUploader' accept='image/png' onChange={uploadImage} />
                         </label><br /><br />
                         <label htmlFor='articleText'>Article text:&nbsp;</label>
                         <textarea name='articleText' value={editableArticleText} onChange={editArticleText} ref={articleText} /><br /><br />

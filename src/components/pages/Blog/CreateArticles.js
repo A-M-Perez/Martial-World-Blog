@@ -41,8 +41,12 @@ const CreateArticles = ({ userName, guestUserName, userEmail }) => {
 
     let articleTitle = useRef();
     let articleText = useRef();
-
+    const [uploadedImage, setUploadedImage] = useState(null);
     const [codeOfConductChecked, setCodeOfConductChecked] = useState();
+
+    function uploadImage(e) {
+        setUploadedImage(e.target.files[0]);
+    };
 
     function postArticle(e) {
         e.preventDefault();
@@ -100,7 +104,7 @@ const CreateArticles = ({ userName, guestUserName, userEmail }) => {
                         <label htmlFor='articleTitle'>Title:&nbsp;</label>
                         <input type='text' name='articleTitle' placeholder="Enter article title here..." ref={articleTitle} /><br /><br />
                         <label>Image:&nbsp;
-                            <input type='file' id='imageUploader' accept='image/png' />
+                            <input type='file' id='imageUploader' accept='image/png' onChange={uploadImage} />
                         </label><br /><br />
                         <label htmlFor='articleText'>Article text:&nbsp;</label>
                         <textarea name='articleText' placeholder="Write your article here..." ref={articleText} /><br /><br />

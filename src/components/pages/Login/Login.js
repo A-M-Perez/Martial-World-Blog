@@ -112,7 +112,7 @@ const Login = ({ openModal, message, authentication, userInfo }) => {
                 </section>}
 
                 {userInfo.userName && <section id='login-form'>
-                    <p id='alreadySignedIn'>You are already signed in as <span id='userName'>{userInfo.userName}</span></p>
+                    <p id='alreadySignedIn'>You are already signed in as<br/><span id='userName'>{userInfo.userName}</span></p>
                     <div id='logOutContainer'>
                         <button type='button' id='logOutBtn' onClick={logOut}>Log out</button>
                     </div>
