@@ -15,11 +15,11 @@
     #user-creation-form {
         position: fixed;
         z-index: 60;
-        width: 20%;
-        margin-left: 40%;
-        margin-right: 40%;
+        width: 30%;
+        margin-left: 35%;
+        margin-right: 35%;
         height: auto;
-        margin-top: 8%;
+        margin-top: 13%;
         margin-bottom: 30%;
         background-color: rgb(20,20,20);
         border-radius: 20px;
@@ -95,50 +95,52 @@
 }
 
 
-/* RESPONSIVE DESIGN FOR SCREENS BELOW 1300px */
-@media screen and (max-width: 1300px) {
-    #user-creation-form {
-        width: 30%;
-        margin-top: 13%;       
-        margin-left: 35%;
-        margin-right: 35%;
-    }
-}
-
-/* RESPONSIVE DESIGN FOR SCREENS BELOW 900px */
-@media screen and (max-width: 900px) {
+/* RESPONSIVE DESIGN  */
+@media screen and (max-width: 1024px) {
     #user-creation-form {
         width: 40%;
-        margin-top: 20%;       
+        margin-top: 15%;       
         margin-left: 30%;
         margin-right: 30%;
     }
 }
 
-/* RESPONSIVE DESIGN FOR SCREENS BELOW 570px */
-@media screen and (max-width: 570px) {
+@media screen and (max-width: 960px) {
     #user-creation-form {
-        width: 50%;
-        margin-top: 30%;       
-        margin-left: 25%;
-        margin-right: 25%;
-    }
-
-    #user-creation-form label {
-        font-size: 1.2em;
+        margin-top: 20%;
     }
 }
 
-/* RESPONSIVE DESIGN FOR SCREENS BELOW 425px */
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 540px) {
     #user-creation-form {
+        margin-top: 30%;
         width: 70%;
-        margin-top: 40%;       
         margin-left: 15%;
         margin-right: 15%;
     }
+}
 
-    #user-creation-form label {
-        font-size: 1.1em;
+@media screen and (max-width: 480px) {
+    #user-creation-form {
+        margin-top: 35%;
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    #user-creation-form {
+        width: 90%;
+        margin-left: 3.5%;
+        margin-right: 5%;
+    }
+}
+
+@media screen and (max-width: 280px) {
+    #user-creation-form {
+        width: 95%;
+        margin-left: 0;
+        margin-right: 0;
     }
 }
