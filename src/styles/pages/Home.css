@@ -38,3 +38,25 @@ ul {
     margin-top: 10px;
     margin-left: 30px;
 }
+
+/* RESPONSIVE DESIGN */
+@media screen and (min-width: 768px) and (min-height: 1024px) {
+    h1 {
+        font-size: 3.5em;
+    }
+
+        h2 {
+            font-size: 1.8em;
+        }
+
+        p, ul {
+            font-size: 1.3em;
+        }
+}
+
+@media screen and (max-width: 280px) {
+    main {
+        width: 80vw; 
+        margin-left: 10%;
+    }
+}
