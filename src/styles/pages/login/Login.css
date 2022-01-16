@@ -4,7 +4,9 @@
 }
 
 #alreadySignedIn {
+    width: 100%;
     margin-top: 10%;
+    margin-left: 0;
     text-align: center;
     font-family: 'Open Sans', sans-serif;
     font-size: 1.5em;
@@ -195,6 +197,79 @@
 
 
 /* RESPONSIVE DESIGN */
-@media screen and (max-width: px) {
-    
+@media screen and (max-width: 820px) {
+    #login-form {
+        padding-left: 10%;
+    }
+
+    #guest-login-section {
+        padding-right: 5%;
+    }
+}
+
+@media screen and (max-width: 768px) and (min-height: 1024px) {
+    #user-login input {
+        margin-top: 3%;
+        width: 90%;
+    }   
+
+    #guest-login input {
+        margin-top: 5%;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    #login{
+        display: block;
+    }
+ 
+        #login-form {
+            width: 100%;
+        }
+
+        #separator {
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+            margin-top: 15%;
+            margin-bottom: 5%;
+            border-bottom: 2px solid rgb(50, 50, 50, 0.2);
+            border-left: 0px solid rgb(50, 50, 50, 0.2);
+        }
+
+        #guest-login-section {
+            width: 100%;
+        }
+
+        #guest-login {
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+}
+
+@media screen and (max-width: 414px) {
+    #user-login input {
+        width: 90%;
+    }   
+
+    #guest-login input {
+        margin-top: 5%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    #user-login input {
+        height: 24px;
+    }   
+}
+
+@media screen and (max-width: 280px) {
+    #user-login input {
+        margin-top: 5%;
+    }   
+
+    #guest-login input {
+        height: 28px;
+    }
 }
