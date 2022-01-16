@@ -12,8 +12,16 @@ footer {
     z-index: 20;
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (min-width: 1279px) {
     footer {
-        font-size: 0.6em;
+        height: 30px;
+        font-size: 0.8em;
+    }
+}
+
+@media screen and (min-height: 1367px) {
+    footer {
+        height: 30px;
+        font-size: 0.9em;
     }
 }

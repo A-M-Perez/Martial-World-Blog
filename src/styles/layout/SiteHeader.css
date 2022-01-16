@@ -18,6 +18,8 @@
 
     #headerImageContainer{
         margin-top: 4%;
+        margin-left: 2%;
+        margin-right: 2%;
         width: 10%;
         height: 50%;
         position: relative;
@@ -84,221 +86,249 @@
                     }
 
 /* RESPONSIVE DESIGN */
-
-/* GOING UP FROM 1250 */
-@media screen and (min-width: 1300px) {
+@media screen and (min-width: 1240px) {
     #headerImageContainer{
         margin-top: 4%;
+        margin-left: 2.5%;
+        margin-right: 2.5%;
         width: 9%;
+        height: 45%;
     }
+
+    .siteHeaderTitle {    
+        font-size: 1.8em;
+    }
+        
+            @keyframes showNameInCenter {
+                0% {
+                    font-size: 1.8em;
+                    opacity: 0.4;
+                }
+
+                100% {
+                    font-size: 3.5em;
+                    opacity: 1;
+                }
+            }
 }
 
-@media screen and (min-width: 1400px) {
-    #headerImageContainer{
-        margin-top: 3.5%;
-        width: 8.5%;
-    }
-}
-
-@media screen and (min-width: 1500px) {
+@media screen and (min-width: 1366px) {
     #headerImageContainer{
         width: 8%;
     }
 }
 
-@media screen and (min-width: 1600px) {
-    #headerImageContainer{
-        width: 7.5%;
-    }
-}
-
-@media screen and (min-width: 1700px) {
-    #headerImageContainer{
-        margin-top: 3%;
-        width: 7.2%;
-    }
-
-    #siteHeader {
-        justify-content: space-evenly;
-    }
-}
-
-@media screen and (min-width: 1800px) {
-    #headerImageContainer{
-        margin-top: 2.8%;
-        width: 6.7%;
-    }
-}
-
-@media screen and (min-width: 1900px) {
+@media screen and (min-width: 1920px) {
     #headerImageContainer{
         margin-top: 2.5%;
-        width: 6.5%;
+        width: 7%;
+        height: 50%;
     }
-}
 
-@media screen and (min-width: 2000px) {
-    #headerImageContainer{
-        width: 6%;
+    .siteHeaderTitle {    
+        font-size: 2.2em;
     }
-}
-
-@media screen and (min-width: 2200px) {
-    #headerImageContainer{
-        margin-top: 2.3%;
-        width: 5.5%;
-    }
-}
-
-@media screen and (min-width: 2400px) {
-    #headerImageContainer{
-        margin-top: 2%;
-        width: 5%;
-    }
-}
-
-/* GOING DOWN FROM 1250 */
-@media screen and (max-width: 1150px) {
-    #headerImageContainer{
-        margin-top: 4%;
-        width: 11%;
-    }
-}
-
-@media screen and (max-width: 1100px) {
-    #headerImageContainer{
-        margin-top: 4.8%;
-        height: 48%;
         
-    }
+            @keyframes showNameInCenter {
+                0% {
+                    font-size: 2.2em;
+                    opacity: 0.4;
+                }
+
+                100% {
+                    font-size: 4.3em;
+                    opacity: 1;
+                }
+            }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1024px) {
     #headerImageContainer{
         margin-top: 5%;
-        height: 48%;
-        width: 12%;
-    }
-}
-
-@media screen and (max-width: 900px) {
-    #headerImageContainer{
-        margin-top: 5.5%;
+        margin-left: 3.5%;
+        margin-right: 3.5%;
+        width: 10.5%;
         height: 45%;
-        width: 12.5%;
     }
 
-    .siteHeaderTitle {
-        font-size: 1.5em;
+    .siteHeaderTitle {    
+        font-size: 1.8em;
     }
+        
+            @keyframes showNameInCenter {
+                0% {
+                    font-size: 1.8em;
+                    opacity: 0.4;
+                }
 
-    @keyframes showNameInCenter {
-        0% {
-            font-size: 1.5em;
-            opacity: 0.4;
-        }
+                100% {
+                    font-size: 3.5em;
+                    opacity: 1;
+                }
+            }
+}
 
-        100% {
-            font-size: 3.5em;
-            opacity: 1;
-        }
+@media screen and (max-width: 960px) {
+    #headerImageContainer{
+        width: 12%;
+        height: 47%;
     }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 820px) {
     #headerImageContainer{
         margin-top: 7%;
-        height: 40%;
+        margin-left: 2%;
+        margin-right: 2%;
         width: 12%;
+        height: 40%;
     }
 
-    .siteHeaderTitle {
-        font-size: 1.2em;
+    .siteHeaderTitle {    
+        font-size: 1.5em;
     }
+        
+            @keyframes showNameInCenter {
+                0% {
+                    font-size: 1.5em;
+                    opacity: 0.4;
+                }
 
-    @keyframes showNameInCenter {
-        0% {
-            font-size: 1.2em;
-            opacity: 0.4;
-        }
+                100% {
+                    font-size: 3.2em;
+                    opacity: 1;
+                }
+            }
+}
 
-        100% {
-            font-size: 3.1em;
-            opacity: 1;
-        }
+@media screen and (max-width: 768px) {
+    #headerImageContainer{
+        width: 13%;
     }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 540px) {
     #headerImageContainer{
-        margin-top: 7.5%;
-        height: 50%;
-        width: 18%;
+        padding: 0;
+        margin: -2px;
+        width: auto;
     }
 
-    .siteHeaderTitle {
-        font-size: 2em;
-    }
-
-    @keyframes showNameInCenter {
-        0% {
-            font-size: 2em;
-            opacity: 0.4;
-        }
-
-        100% {
-            font-size: 4em;
-            opacity: 1;
-        }
-    }
-    
-    .headerImage {
-        visibility: hidden;
-    }
-
-    .siteHeaderTitle {
-        visibility: hidden;
-    }
-
-    #index_2 {
-        visibility: visible;
-    }
-
-    #indexName_2 {
-        visibility: visible;
-    }
-}
-
-@media screen and (max-width: 600px) {
     #headerImageContainer{
-        margin-top: 8%;
-        height: 48%;
-        width: 20%;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    #headerImageContainer{
-        position: absolute;
         margin-top: 10%;
-        left: 40%;
-        height: 9%;
-        width: 24%;
+        height: 45%;
     }
 
-    .siteHeaderTitle {
-        font-size: 2em;
+    .headerImage {
+     visibility: hidden;
     }
 
-    @keyframes showNameInCenter {
-        0% {
-            font-size: 2em;
-            opacity: 0.4;
+        #index_2 {
+            visibility: visible;
         }
 
-        100% {
-            font-size: 4em;
-            opacity: 1;
-        }
+    .siteHeaderTitle {    
+        visibility: hidden;
     }
+
+        #indexName_2 {
+            visibility: visible;
+        }
+        
+            @keyframes showNameInCenter {
+                0% {
+                    font-size: 1.8em;
+                    opacity: 0.4;
+                }
+
+                100% {
+                    font-size: 3.8em;
+                    opacity: 1;
+                }
+            }
+}
+
+@media screen and (max-width: 480px) {
+    #headerImageContainer{
+        margin: -8px;
+    }
+
+    #headerImageContainer{
+        margin-top: 10%;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    #headerImageContainer{
+        margin: -12px;
+    }
+
+    #headerImageContainer{
+        margin-top: 12%;
+    }
+}
+
+@media screen and (max-width: 393px) {
+    #headerImageContainer{
+        margin: -15px;
+    }
+
+    #headerImageContainer{
+        margin-top: 13%;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    #headerImageContainer{
+        margin: -17px;
+    }
+
+    #headerImageContainer{
+        margin-top: 13%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    #headerImageContainer{
+        margin-top: 15%;
+    }
+
+    .siteHeaderTitle {    
+        font-size: 1.5em;
+    }
+        
+            @keyframes showNameInCenter {
+                0% {
+                    font-size: 1.7em;
+                    opacity: 0.4;
+                }
+
+                100% {
+                    font-size: 3.4em;
+                    opacity: 1;
+                }
+            }
+}
+
+@media screen and (max-width: 280px) {
+    #headerImageContainer{
+        margin-top: 19%;
+        height: 40%;
+    }
+
+    .siteHeaderTitle {    
+        font-size: 1.4em;
+    }
+        
+            @keyframes showNameInCenter {
+                0% {
+                    font-size: 1.4em;
+                    opacity: 0.4;
+                }
+
+                100% {
+                    font-size: 3em;
+                    opacity: 1;
+                }
+            }
 }
