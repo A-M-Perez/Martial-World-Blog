@@ -6,14 +6,19 @@
 .separator {    
     width: 80%;
     margin-left: 10%;
+    margin-right: 10%;
     margin-top: 3px;
     margin-bottom: 3px;
     background-color: rgb(190, 190, 190);
 }
 
 #schools {    
+    width: 100vw;
     text-align: center;
     margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
     #schools .link {
@@ -32,20 +37,21 @@
     }
 
     #searchBox {
-        width: 100%;
-        text-align: left;
+        width: 60%;
+        margin-left: 20%;
+        margin-right: 20%;
+        text-align: center;
         font-family: 'Open Sans', sans-serif;
         font-size: 1.5em;
-        clear: both;
     }
 
-    #searchBox input{
-        width: 50%;
-        margin-bottom: 1%;
-        font-family: 'Open Sans', sans-serif;
-        font-weight: 300;
-        font-size: 0.6em;
-    }
+        #searchBox input{
+            width: 60%;
+            margin-bottom: 1%;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 300;
+            font-size: 0.6em;
+        }
 
     .schoolsSummaryContainer {
         width: 100%;
@@ -53,7 +59,7 @@
         flex-wrap: wrap;
         box-sizing: border-box;
         padding: 1%;
-        justify-content: left;
+        justify-content: space-evenly;
     }
 
         
@@ -165,4 +171,67 @@
         color: rgb(240, 240, 240);
         border-radius: 15px;
         transition: all ease-in-out 300ms;
-    }        
+    }
+
+/* REPONSIVE DESIGN */
+@media screen and (max-width: 820px) {
+    .schoolsSummaryContainer {
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .schoolNavLink {
+        all: initial;
+        margin-left: 1%;
+        margin-bottom: 1%;
+        width: 80%;
+    }
+}   
+
+@media screen and (max-width: 480px) {
+    #searchBox {
+        width: 80%;
+        height: auto;
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-bottom: 2%;
+    }
+
+        #searchBox input {    
+            height: 30px;
+            box-sizing: border-box;
+            padding: 0%;
+        }
+    
+    #schools h3{
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+
+@media screen and (max-width: 390px) {
+        #searchBox input {    
+            margin-top: 5%;
+            height: 35px;
+            box-sizing: border-box;
+            padding: 0%;
+        }
+}   
+
+@media screen and (max-width: 360px) {
+    #searchBox {
+        width: 88%;
+        height: auto;
+        margin-left: 6%;
+        margin-right: 6%;
+        margin-bottom: 2%;
+    }
+
+    #searchBox input {    
+        margin-top: 7%;
+        height: 35px;   
+    }
+}   

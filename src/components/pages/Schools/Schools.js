@@ -115,7 +115,7 @@ const Schools = () => {
                     <input type='text' name='searchSchool' placeholder="School name..." href={'searchSchool'} onChange={getSearchInput} />
                 </label>
                 <hr className='separator' />
-                <section id='schoolsSummaryContainer'>
+                <section id='individualSchoolSummaryContainer'>
                     <IndividualSchool searchInput={searchInput} />
                 </section>
             </section>
