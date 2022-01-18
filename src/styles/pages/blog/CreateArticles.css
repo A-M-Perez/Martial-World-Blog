@@ -82,6 +82,11 @@
                 font-size: 1em;
             }
 
+                #createArticleForm #imageContainer {
+                    width: 100%;
+                    display: flex;
+                }
+
                 #imageUploader {
                     color: white;
                     font-family: 'Open Sans', sans-serif;
@@ -105,6 +110,70 @@
                 }
 
 /* RESPONSIVE DESIGN */
-@media screen and (max-width: 960px) {
+@media screen and (min-width: 1920px) {
+    #textareaContainer{
+        margin-right: 70%;
+    }
+}
 
+@media screen and (max-width: 820px) {
+    #codeOfConduct {
+        height: 450px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #createArticleContainer {
+        display: block;
+        padding: 2%;
+    }   
+
+    #codeOfConduct {
+        width: 80%;
+        margin-left: 10%;
+        height: 300px;
+    }
+
+    #createArticleSection {
+        width: 80%;
+        margin-left: 10%;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    #codeOfConduct {
+        width: 90%;
+        margin-left: 5%;
+        height: 300px;
+    }
+
+    #createArticleSection {
+        width: 90%;
+        margin-left: 5%;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    #codeOfConduct {
+        width: 95%;
+        margin-left: 2.5%;
+        height: 300px;
+    }
+
+    #createArticleSection {
+        width: 95%;
+        margin-left: 2.5%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    #createArticleForm #imageContainer #imageUploader {
+        font-size: 0.8em;
+    }
+}
+
+@media screen and (max-width: 280px) {
+    #createArticleForm #imageContainer #imageUploader {
+        font-size: 0.7em;
+    }
 }

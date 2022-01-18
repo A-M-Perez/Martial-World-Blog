@@ -105,10 +105,9 @@ const CreateArticles = ({ userName, guestUserName, userEmail }) => {
                     <form id='createArticleForm' onSubmit={postArticle}>
                         <label htmlFor='articleTitle'>Title:&nbsp;</label>
                         <input type='text' name='articleTitle' placeholder="Enter article title here..." ref={articleTitle} /><br /><br />
-                        <label>Image:&nbsp;
-                            <input type='file' id='imageUploader' accept='image/png' onChange={uploadImage} />
-                        </label><br /><br />
-                        <label htmlFor='articleText'>Article text:&nbsp;</label>
+                        <label id='imageContainer'>Image:&nbsp;<input type='file' id='imageUploader' accept='image/png' onChange={uploadImage} />
+                        </label><br />
+                        <label id='textareaContainer' htmlFor='articleText'>Article text:&nbsp;</label>
                         <textarea name='articleText' placeholder="Write your article here..." ref={articleText} /><br /><br />
                         <button type='submit' id='login-btn'>Post</button>
                     </form>
