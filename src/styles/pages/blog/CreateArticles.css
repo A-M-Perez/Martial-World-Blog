@@ -3,7 +3,6 @@
     padding: 0;
 }
 
-/* CONTAINER -------------------------------------- */
 #createArticleContainer {
     width: 100%;
     height: auto;
@@ -14,7 +13,6 @@
     margin-bottom: 100px;
 }
 
-    /* CODE OF CONDUCT ------------------------------- */
     #codeOfConduct {
         width: 25%;
         height: 400px;
@@ -54,7 +52,6 @@
             font-size: 1em;
         }
 
-    /* CREATE ARTICLE --------------------------- */
     #createArticleSection {
         width: 69%;
         box-sizing: border-box;
@@ -106,3 +103,8 @@
                 #createArticleBtn:hover {
                     cursor: pointer;
                 }
+
+/* RESPONSIVE DESIGN */
+@media screen and (max-width: 960px) {
+
+}

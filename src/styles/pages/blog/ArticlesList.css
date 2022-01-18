@@ -148,4 +148,49 @@
         color: rgb(240, 240, 240);
         border-radius: 15px;
         transition: all ease-in-out 300ms;
-    }        
+    }
+
+/* RESPONSIVE DESIGN */
+@media screen and (min-width: 1920px) {
+    #articleImage {
+        height: 150px;
+    }  
+}
+
+@media screen and (max-width: 820px) {
+    #articlesList {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .separator {    
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    #articleImage {
+        margin-top: 20px;
+        height: 105px;
+    }   
+}
+
+@media screen and (max-width: 414px) {
+    #articleSummary h5 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    #articleImage {
+        height: 70px;
+        margin-top: 40px;
+    }   
+
+    #readMoreBtn {
+        margin-left: 23%;
+    }
+}
