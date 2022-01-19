@@ -3,14 +3,12 @@
     padding: 0px;
 }
 
-/* FORMAT LINKS */
 .clickable {
     cursor: pointer;
     text-decoration: inherit;
     color: inherit;
 }
 
-/* MAIN NAVIGATION BAR */
 .main-navbar {
     width: 100vw;
     height: 50px;
@@ -24,7 +22,6 @@
     transition: all 200ms ease-in;
 }
 
-    /* SOCIAL MEDIA ICONS */
     .navbar-icons {
         width: 7%;
         display: flex;
@@ -38,7 +35,6 @@
             transition: all 300ms;
         }
 
-    /* LOGO AND 'MARTIAL WORLD' TITLE */
     #navbar-title {
         width: 60%;
         padding-left: 2%;
@@ -56,7 +52,6 @@
             color: rgb(32, 32, 32);
         }
     
-    /* LINKS TO OTHER PAGES */
     .navbar-links {
         width: 33%;
         display: flex;
@@ -83,7 +78,6 @@
             display: none;
         }
 
-/* FORMAT HEADER WHEN SCROLLING PAGE */
 .scrolledHeader {
     transition: all 200ms ease-in;
     background-color:  rgb(32, 32, 32);
@@ -103,122 +97,134 @@
     color: rgb(230, 220, 220);
 }
 
-/* RESPONSIVE DESIGN FOR SCREENS BELOW 900px */
-@media screen and (max-width: 900px) {
+/* RESPONSIVE DESIGN */
+@media screen and (min-width: 1920px) {
+    .navbar-links {
+        font-size: 1.2em;
+    }
+
+    .navbar-icons {
+        font-size: 1.2em;
+    }
+
+    #navbar-title {
+        transform: scale(1.2);
+    }
+}
+
+@media screen and (max-width: 1024px) {
     .navbar-icons {
         width: 10%;
     }
+}
+
+@media screen and (max-width: 820px) {
+    .navbar-icons {
+        width: 13%;
+    }
 
     #navbar-title {
         width: 50%;
     }
 
     .navbar-links {
-        width: 40%;
+        width: 45%;
     }
 }
 
-/* RESPONSIVE DESIGN FOR SCREENS BELOW 700px */
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 540px) {
     .main-navbar {
-        height: fit-content;
-        padding-top: 10px;
+        padding-top: 2%;
+        padding-bottom: 2%;
+    }
+
+        .navbar-icons {
+            width: 20%;
+        }
+
+        #navbar-title {
+            width: 50%;
+            padding: 0;
+            display: block;
+            text-align: center;
+        }
+
+            .title {
+                font-size: 1.2em;
+                flex: 1;
+            }
+
+        .navbar-links {
+            width: 20%;
+            display: block;
+            position: absolute;        
+            top: 0;
+            right: 0;
+        }
+            
+            .navbar-links .link:first-child {
+                display: block;            
+                position: relative;
+                padding-top: 20%;
+                right: 50%;
+                text-align: right;
+            }
+
+                .navbar-links .link:first-child:hover {
+                    transform: scale(1);
+                }
+
+            .navbar-links .link:not(:first-child) {
+                display: none;
+            }
+
+            .navbar-links.responsive .link:first-child {
+                display: block;            
+                position: relative;
+                padding-top: 20%;
+                right: 10%;
+                text-align: right;
+            }
+            
+                .navbar-links.responsive .link:first-child:hover {
+                    transform: scale(1);
+                }
+
+            .navbar-links.responsive .link:not(:first-child) {           
+                display: block;
+                position: relative;
+                width: auto;
+                right: 5%;
+                padding-right: 5%;
+                background-color: rgb(32, 32, 32);
+                color: rgb(226, 222, 222);
+                font-weight: 700;
+                text-align: right;
+            }
+
+                .navbar-links.responsive .link:not(:first-child):hover {           
+                    background-color: rgb(60, 60, 60);
+                }
+}
+
+@media screen and (max-width: 320px) {
+    .navbar-icons {
+        width: 25%;
+        margin-left: 5%;
     }
     
-    .navbar-icons {
-        width: 15%;
-    }
-
-    #navbar-title {
-        width: 35%;
-        padding: 0;
-        display: block;
-        text-align: center;
-    }
-
-    .navbar-links {
-        width: 55%;
-    }
-}
-
-/* RESPONSIVE DESIGN WITH 'HAMBURGER MENU' FOR SCREENS BELOW 550px*/
-@media screen and (max-width: 550px) {
-    .navbar-icons {
-        width: 20%;
-    }
-
-    #navbar-title {
-        width: 50%;
-        padding: 0;
-        display: block;
-        text-align: center;
-    }
-
-        .title {
-            font-size: 1.2em;
-            flex: 1;
-        }
-
-    .navbar-links {
-        width: 20%;
-        display: block;
-        position: absolute;        
-        top: 0;
-        right: 0;
-    }
-        
-        .navbar-links .link:first-child {
-            display: block;            
-            position: relative;
-            padding-top: 20%;
-            right: 50%;
-            text-align: right;
-        }
-
-            .navbar-links .link:first-child:hover {
-                transform: scale(1);
-            }
-
-        .navbar-links .link:not(:first-child) {
-            display: none;
-        }
-
-        .navbar-links.responsive .link:first-child {
-            display: block;            
-            position: relative;
-            padding-top: 20%;
-            right: 10%;
-            text-align: right;
-        }
-        
-            .navbar-links.responsive .link:first-child:hover {
-                transform: scale(1);
-            }
-
-        .navbar-links.responsive .link:not(:first-child) {           
-            display: block;
-            position: relative;
-            width: auto;
-            right: 5%;
-            padding-right: 5%;
-            background-color: rgb(32, 32, 32);
-            color: rgb(226, 222, 222);
-            font-weight: 700;
-            text-align: right;
-        }
-
-            .navbar-links.responsive .link:not(:first-child):hover {           
-                background-color: rgb(60, 60, 60);
-            }
-}
-
-/* RESPONSIVE DESIGN FOR SCREENS BELOW 320px */
-@media screen and (max-width: 320px) {
-    .navbar-icons .link {
+    /* .navbar-icons .link {
         margin-left: 7px;
     }
 
         .navbar-links .link:first-child {
             right: 30%;
-        }
+        } */
+}
+
+@media screen and (max-width: 280px) {
+    .navbar-icons {
+        width: 27%;
+        margin-left: 2%;
+    }
 }
