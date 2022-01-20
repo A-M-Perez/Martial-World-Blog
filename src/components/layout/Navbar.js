@@ -49,11 +49,11 @@ const Navbar = () => {
             </div>
             <ul className="navbar-links" id='responsiveMenu'>
                 <a className="clickable a" onClick={expandMenu}><i className="fa fa-bars link" /></a>
-                <NavLink to='/' className="clickable link">Home</NavLink>
-                <NavLink to='/Blog' className="clickable link">Blog</NavLink>
-                <NavLink to='/Schools' className="clickable link">Schools</NavLink>
-                <NavLink to='/AboutUs' className="clickable link">About us</NavLink>
-                <NavLink to='/Login' className="clickable link">Login</NavLink>
+                <NavLink to='/' className="clickable link" onClick={expandMenu}>Home</NavLink>
+                <NavLink to='/Blog' className="clickable link" onClick={expandMenu}>Blog</NavLink>
+                <NavLink to='/Schools' className="clickable link" onClick={expandMenu}>Schools</NavLink>
+                <NavLink to='/AboutUs' className="clickable link" onClick={expandMenu}>About us</NavLink>
+                <NavLink to='/Login' className="clickable link" onClick={expandMenu}>Login</NavLink>
             </ul>
         </nav>
     );
