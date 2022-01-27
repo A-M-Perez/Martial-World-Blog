@@ -5,7 +5,7 @@ import '../../../styles/pages/blog/Members.css';
 import { serverURL } from '../../../Global';
 import { useEffect, useState } from 'react';
 
-const Members = ({ search, userInfo }) => {
+const Members = ({ search, userInfo, searchDisabled }) => {
 
     const [articlesBySearchTerm, setArticlesBySearchTerm] = useState([]);
 
@@ -65,7 +65,7 @@ const Members = ({ search, userInfo }) => {
             <div id='searchInputContainer'>
                 <input id='searchTermInput' type='text' name='searchArticle' placeholder='Enter article title...' onKeyPress={(e) => {
                     if (e.key === 'Enter') { getSearchedArticles() };
-                }} />
+                }} disabled={searchDisabled} />
                 <i className="fas fa-search" id='searchIcon' onClick={getSearchedArticles} />
             </div>
         </aside>

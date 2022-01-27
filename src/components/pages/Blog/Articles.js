@@ -86,7 +86,7 @@ const RelatedArticlesList = ({ titlesRelatedTo, idRelatedto }) => {
 };
 
 
-const Article = ({ userEmail, passEditableArticleInfo }) => {
+const Article = ({ userEmail, guestUserName, passEditableArticleInfo }) => {
 
     const params = useParams();
     const articleId = params.id;
@@ -109,7 +109,7 @@ const Article = ({ userEmail, passEditableArticleInfo }) => {
         }, [articleId]);
 
     useEffect(() => {
-        if (articleData.author_email === userEmail) {
+        if (articleData.author_email === userEmail || articleData.author == `Guest user ${guestUserName}`) {
             setEditIconClass('fas fa-edit articleIcons iconVisible');
             setDeleteIconClass('fas fa-trash-alt articleIcons iconVisible');
         };

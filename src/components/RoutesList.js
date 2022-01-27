@@ -84,8 +84,8 @@ const RoutesList = () => {
                     <PageTransitionAnimation>
                         <section id='blogContainer'>
                             <div id='articlesBackground'>
-                                <Article userEmail={userEmail} passEditableArticleInfo={passEditableArticleInfo} />
-                                <Members search={passSearchedArticlesResults} userInfo={{ isUserAuthenticated, userName, guestUserName }} />
+                                <Article userEmail={userEmail} guestUserName={guestUserName} passEditableArticleInfo={passEditableArticleInfo} />
+                                <Members searchDisabled={true} userInfo={{ isUserAuthenticated, userName, guestUserName }} />
                             </div>
                         </section>
                     </PageTransitionAnimation>
