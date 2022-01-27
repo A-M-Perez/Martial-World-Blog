@@ -18,12 +18,13 @@ const RelatedArticle = ({ titlesRelatedTo, idRelatedto }) => {
     useEffect(() => {
         axios.post(`${serverURL}/api/get_relatedArticles`, keyWordsArray)
             .then((res) => {
-                setTemporaryResponse(res.data);
+                let responseArray = res.data;
+                setTemporaryResponse([...responseArray]);
             })
             .catch((err) =>
                 console.log(err)
             );
-    }, []);
+    },[idRelatedto]);
 
     useEffect(() => {
         if (temporaryResponse.length !== 0) {
@@ -68,7 +69,6 @@ const RelatedArticle = ({ titlesRelatedTo, idRelatedto }) => {
             <h5 className='relatedArticleTitle'>No related articles</h5>
         )
     };
-
 
 };
 
