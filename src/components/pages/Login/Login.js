@@ -98,7 +98,7 @@ const Login = ({ openModal, message, authentication, userInfo }) => {
                 {/* REGULAR LOG IN FORM */}
                 {!userInfo.userName && <section id='login-form'>
                     <h2>Sign in</h2>
-                    <h3>Log in to post, like(?) and comment(?) articles</h3>
+                    <h3>Log in to post articles</h3>
                     <form id='user-login' onSubmit={getLoginForm}>
                         <label id='user' htmlFor='user'>User e-mail:&nbsp;</label>
                         <input type='text' name='user' placeholder='User e-mail...' ref={loginUserEmail} maxLength='50' />

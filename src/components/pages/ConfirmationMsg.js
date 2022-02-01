@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 
 const ConfirmationMessage = ({ messageTitle, messageContent, visibility, navigateTo }) => {
 
-    console.log(navigateTo)
     const navigate = useNavigate();
 
     return (
