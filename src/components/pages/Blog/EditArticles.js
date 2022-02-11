@@ -48,8 +48,9 @@ const EditArticles = ({ editableArticleInfo }) => {
     const [codeOfConductChecked, setCodeOfConductChecked] = useState();
 
     function uploadImage(e) {
+        if (e.target.files[0] !== undefined) {
         setUploadedImage(e.target.files[0]);
-    };
+    }};
 
     function editArticleTitle(e) {
         setEditableArticleTitle(e.target.value);
@@ -63,13 +64,13 @@ const EditArticles = ({ editableArticleInfo }) => {
         e.preventDefault();
 
         if (cocAcknowledged === true) {
-            const editedArticleForm = {
-                blogArticleTitle: articleTitle.current.value,
-                blogArticleText: articleText.current.value,
-                blogArticleID: editableArticleInfo.id
-            }
+            const formData = new FormData();
+            formData.append('blogArticleImage', uploadedImage);
+            formData.append('blogArticleTitle', articleTitle.current.value);
+            formData.append('blogArticleText', articleText.current.value);
+            formData.append('blogArticleID', editableArticleInfo.id);
 
-            axios.post(`${serverURL}/api/edit_article/${editableArticleInfo.id}`, editedArticleForm)
+            axios.post(`${serverURL}/api/edit_article/${editableArticleInfo.id}`, formData, { headers: { 'Content-Type': 'multipart/form-data' } })
                 .then((response) => {
                     if (response) {
                         confirmationMessageContent('EDITED', 'successfully', true, '/Blog');
