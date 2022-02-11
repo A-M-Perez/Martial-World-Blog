@@ -1,4 +1,14 @@
 const db = require('../database');
+const util = require('util');
+const cloudinary = require('cloudinary').v2;
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUD_KEY,
+    api_secret: process.env.CLOUD_SECRET
+});
+const uploader = util.promisify(cloudinary.uploader.upload);
+const destroyer = util.promisify(cloudinary.uploader.destroy);
+
 
 const controller = {
 
@@ -23,22 +33,48 @@ const controller = {
 
     postArticle: (req, res) => {
 
-        const articleDate = new Date().toISOString().slice(0, 10);
-        const { blogArticleTitle, blogArticleText, blogArticleUser, blogArticleGuestUserName, blogArticleUserEmail } = req.body;
-        let blogArticleAuthor = '';
+        let imageID = '';
+        
+        async function uploadImage() {
+            try {
+                imageID = (await uploader(req.files.blogArticleImage.tempFilePath)).public_id;
+                
+                const articleDate = new Date().toISOString().slice(0, 10);
+                const { blogArticleTitle, blogArticleText, blogArticleUser, blogArticleGuestUserName, blogArticleUserEmail } = req.body;
+                let blogArticleAuthor = '';
+        
+                if (blogArticleUser) {
+                    blogArticleAuthor = blogArticleUser
+                } else if (blogArticleGuestUserName) {
+                    blogArticleAuthor = `Guest user ${blogArticleGuestUserName}`
+                };
+        
+                const sqlPostArticle = "INSERT INTO blog_articles(article_date, title, article, author, author_email, image) VALUES(?, ?, ?, ?, ?, ?) ;";
+        
+                db.query(sqlPostArticle, [articleDate, blogArticleTitle, blogArticleText, blogArticleAuthor, blogArticleUserEmail, imageID], (err, result) => {
+                    res.send(result);
+                });
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        uploadImage();
 
-        if (blogArticleUser) {
-            blogArticleAuthor = blogArticleUser
-        } else if (blogArticleGuestUserName) {
-            blogArticleAuthor = `Guest user ${blogArticleGuestUserName}`
-        };
+        // const articleDate = new Date().toISOString().slice(0, 10);
+        // const { blogArticleTitle, blogArticleText, blogArticleUser, blogArticleGuestUserName, blogArticleUserEmail } = req.body;
+        // let blogArticleAuthor = '';
 
-        const sqlPostArticle = "INSERT INTO blog_articles(article_date, title, article, author, author_email) VALUES(?, ?, ?, ?, ?) ;";
+        // if (blogArticleUser) {
+        //     blogArticleAuthor = blogArticleUser
+        // } else if (blogArticleGuestUserName) {
+        //     blogArticleAuthor = `Guest user ${blogArticleGuestUserName}`
+        // };
 
+        // const sqlPostArticle = "INSERT INTO blog_articles(article_date, title, article, author, author_email, image) VALUES(?, ?, ?, ?, ?, ?) ;";
 
-        db.query(sqlPostArticle, [articleDate, blogArticleTitle, blogArticleText, blogArticleAuthor, blogArticleUserEmail], (err, result) => {
-            res.send(result);
-        });
+        // db.query(sqlPostArticle, [articleDate, blogArticleTitle, blogArticleText, blogArticleAuthor, blogArticleUserEmail, imageID], (err, result) => {
+        //     res.send(result);
+        // });
     },
 
     getArticleBySearchTerm: (req, res) => {
@@ -78,21 +114,8 @@ const controller = {
 
     editArticle: (req, res) => {
 
-        // let image = false;
         const articleDate = new Date().toISOString().slice(0, 10);
         const { blogArticleTitle, blogArticleText, blogArticleID } = req.body;
-
-        // if (image) {
-        //     const sqlGetArticle = `UPDATE blog_articles 
-        // SET article_date = ?,
-        // SET title = ?,
-        // SET article = ?,
-        // SET image = ?,
-        //     WHERE id = ?`;
-
-        // db.query(sqlGetArticle, [articleDate, blogArticleTitle, blogArticleText, , blogArticleID], (err, result) => {
-        //     res.send(result);
-        // });
 
         const sqlEditArticle = `UPDATE blog_articles SET 
         article_date = ?,
@@ -114,7 +137,7 @@ const controller = {
         db.query(sqlGetArticle, articleId, (err, result) => {
             res.send(result);
         });
-    },
+    }
 };
 
 module.exports = controller;

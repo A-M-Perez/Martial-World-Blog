@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 //MAIL PORT
 const app2 = express();
-//delete line above
+//delete line above - created for mail server only
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
@@ -11,6 +11,7 @@ const session = require('express-session');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 const db = require('./database');
+const fileUpload = require('express-fileupload');
 
 //MAIL PORT
 app2.listen(587, (req, res) => {
@@ -29,7 +30,10 @@ const loginRoutes = require('./routes/login');
 const articleRoutes = require('./routes/articles');
 const contactRoutes = require('./routes/contactus');
 
-
+app.use(fileUpload({
+    useTempFiles: true,
+    tempFileDir: '/tmp/'
+}));
 app.use(cors({
     origin: [clientURL],
     methods: ['GET', 'POST'],

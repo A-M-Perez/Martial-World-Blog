@@ -4,6 +4,7 @@ import axios from 'axios';
 import { serverURL } from '../../../Global';
 import ConfirmationMessage from '../ConfirmationMsg';
 import PageTransitionAnimation from '../../layout/PageTransitionAnimation';
+const FormData = require('form-data');
 
 let cocAcknowledged = false;
 
@@ -52,15 +53,15 @@ const CreateArticles = ({ userName, guestUserName, userEmail }) => {
         e.preventDefault();
 
         if (cocAcknowledged === true) {
-            const submittedArticleForm = {
-                blogArticleTitle: articleTitle.current.value,
-                blogArticleText: articleText.current.value,
-                blogArticleUser: userName,
-                blogArticleGuestUserName: guestUserName,
-                blogArticleUserEmail: userEmail
-            }
+            const formData = new FormData();
+            formData.append('blogArticleImage', uploadedImage);
+            formData.append('blogArticleTitle', articleTitle.current.value);
+            formData.append('blogArticleText', articleText.current.value);
+            formData.append('blogArticleUser', userName);
+            formData.append('blogArticleGuestUserName', guestUserName);
+            formData.append('blogArticleUserEmail', userEmail);
 
-            axios.post(`${serverURL}/api/post_article`, submittedArticleForm)
+            axios.post(`${serverURL}/api/post_article`, formData, { headers: { 'Content-Type': 'multipart/form-data' } })
                 .then((response) => {
                     if (response) {
                         confirmationMessageContent('POSTED', 'successfully', true, '/Blog');
@@ -102,7 +103,7 @@ const CreateArticles = ({ userName, guestUserName, userEmail }) => {
                 <div id='createArticleSection'>
                     <h2 id='createArticleTitle'>CREATE ARTICLE</h2>
                     <hr />
-                    <form id='createArticleForm' onSubmit={postArticle}>
+                    <form id='createArticleForm' onSubmit={postArticle} encType='multipart/form-data'>
                         <label htmlFor='articleTitle'>Title:&nbsp;</label>
                         <input type='text' name='articleTitle' placeholder="Enter article title here..." ref={articleTitle} /><br /><br />
                         <label id='imageContainer'>Image:&nbsp;<input type='file' id='imageUploader' accept='image/png' onChange={uploadImage} />
