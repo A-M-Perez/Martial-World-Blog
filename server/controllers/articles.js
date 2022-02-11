@@ -7,8 +7,6 @@ cloudinary.config({
     api_secret: process.env.CLOUD_SECRET
 });
 const uploader = util.promisify(cloudinary.uploader.upload);
-const destroyer = util.promisify(cloudinary.uploader.destroy);
-
 
 const controller = {
 
@@ -33,12 +31,16 @@ const controller = {
 
     postArticle: (req, res) => {
 
+        let tempImageID = '';
         let imageID = '';
         
         async function uploadImage() {
             try {
-                imageID = (await uploader(req.files.blogArticleImage.tempFilePath)).public_id;
-                
+                tempImageID = (await uploader(req.files.blogArticleImage.tempFilePath)).public_id;
+                tempImageID = cloudinary.image(tempImageID);
+                imageID = tempImageID.split("'");
+                imageID = imageID[1];
+
                 const articleDate = new Date().toISOString().slice(0, 10);
                 const { blogArticleTitle, blogArticleText, blogArticleUser, blogArticleGuestUserName, blogArticleUserEmail } = req.body;
                 let blogArticleAuthor = '';
@@ -59,22 +61,6 @@ const controller = {
             }
         }
         uploadImage();
-
-        // const articleDate = new Date().toISOString().slice(0, 10);
-        // const { blogArticleTitle, blogArticleText, blogArticleUser, blogArticleGuestUserName, blogArticleUserEmail } = req.body;
-        // let blogArticleAuthor = '';
-
-        // if (blogArticleUser) {
-        //     blogArticleAuthor = blogArticleUser
-        // } else if (blogArticleGuestUserName) {
-        //     blogArticleAuthor = `Guest user ${blogArticleGuestUserName}`
-        // };
-
-        // const sqlPostArticle = "INSERT INTO blog_articles(article_date, title, article, author, author_email, image) VALUES(?, ?, ?, ?, ?, ?) ;";
-
-        // db.query(sqlPostArticle, [articleDate, blogArticleTitle, blogArticleText, blogArticleAuthor, blogArticleUserEmail, imageID], (err, result) => {
-        //     res.send(result);
-        // });
     },
 
     getArticleBySearchTerm: (req, res) => {

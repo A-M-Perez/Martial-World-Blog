@@ -24,7 +24,7 @@ const RelatedArticle = ({ titlesRelatedTo, idRelatedto }) => {
             .catch((err) =>
                 console.log(err)
             );
-    },[idRelatedto]);
+    }, [idRelatedto]);
 
     useEffect(() => {
         if (temporaryResponse.length !== 0) {
@@ -161,7 +161,7 @@ const Article = ({ userEmail, guestUserName, passEditableArticleInfo }) => {
             <React.Fragment>
                 <RelatedArticlesList titlesRelatedTo={articleTitle} idRelatedto={articleID} />
                 <section id='article' key={articleData.id}>
-                    <img alt='Article Image' id='articleImage' src={require(`../../../assets/img/articles/${articleData.image}`)} />
+                    <img alt='Article Image' id='articleImage' src={articleData.image} />
                     <h2>{articleData.title}</h2>
                     <h5>
                         <Moment

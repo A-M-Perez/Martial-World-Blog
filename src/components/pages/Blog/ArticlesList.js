@@ -39,7 +39,7 @@ const ArticleSummary = ({ searchedArticles }) => {
             .map(article => {
                 return (
                     <div key={article.id} id='articleSummary'>
-                        <img alt='Article image' id='articleImage' src={require(`../../../assets/img/articles/${article.image}`)} />
+                        <img alt='Article image' id='articleImage' src={article.image} />
                         <h5>{article.title}</h5>
                         <h6 >
                             <Moment
@@ -84,7 +84,7 @@ const ArticleSummary = ({ searchedArticles }) => {
             .map(article => {
                 return (
                     <div key={article.id} id='articleSummary'>
-                        <img alt='Article image' id='articleImage' src={require(`../../../assets/img/articles/${article.image}`)} />
+                        <img alt='Article image' id='articleImage' src={article.image} />
                         <h5>{article.title}</h5>
                         <h6 >
                             <Moment
