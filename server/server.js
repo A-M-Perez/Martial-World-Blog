@@ -19,8 +19,8 @@ app2.listen(587, (req, res) => {
 })
 
 //SERVER
-app.listen(3001, (req, res) => {
-    console.log('Running on Port 3001');
+app.listen(process.env.PORT || PORT, (req, res) => {
+    console.log(`Server running on Port ${PORT}`);
 });
 
 //ROUTES
