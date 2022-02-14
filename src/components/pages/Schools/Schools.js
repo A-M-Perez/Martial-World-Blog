@@ -24,7 +24,7 @@ const IndividualSchool = ({ searchInput }) => {
     //Pagination end
 
     useEffect(() => {
-        axios.get(`${serverURL}/api/get_school`)
+        axios.get(`${serverURL}api/get_school`)
             .then((response) => {
                 setSchoolData(response.data);
                 setFilteredSchoolData(response.data);
