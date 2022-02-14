@@ -47,7 +47,7 @@ const Login = ({ openModal, message, authentication, userInfo }) => {
             loginPassword: loginUserPassword.current.value
         }
 
-        axios.post(`${serverURL}/api/login_user`, submittedLoginForm)
+        axios.post(`${serverURL}api/login_user`, submittedLoginForm)
             .then((response) => {
                 authentication(true, response.data.name, '', response.data.email);
                 setSignInStatus(response.data.status);
@@ -67,7 +67,7 @@ const Login = ({ openModal, message, authentication, userInfo }) => {
             nickname: guestNickname.current.value
         };
 
-        axios.post(`${serverURL}/api/login_guestUser`, submittedGuestLogin)
+        axios.post(`${serverURL}api/login_guestUser`, submittedGuestLogin)
             .then((response) => {
                 authentication(true, '', response.data.user);
                 setSignInStatus(response.data.status)
@@ -80,7 +80,7 @@ const Login = ({ openModal, message, authentication, userInfo }) => {
     //FOR BOTH METHODS
     function logOut() {
 
-        axios.get(`${serverURL}/api/logout`)
+        axios.get(`${serverURL}api/logout`)
             .then((response) => {
                 authentication(false, '', '');
                 setSignInStatus(response.data.status)

@@ -20,7 +20,7 @@ const SchoolDetails = () => {
     const [schoolData, setSchoolData] = useState([]);
 
     useEffect(() => {
-        axios.get(`${serverURL}/api/get_school/${schoolId}`)
+        axios.get(`${serverURL}api/get_school/${schoolId}`)
             .then((response) => {
                 setSchoolData(response.data[0]);
             })

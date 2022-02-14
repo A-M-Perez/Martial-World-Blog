@@ -13,7 +13,7 @@ const ArticleSummary = ({ searchedArticles }) => {
 
     useEffect(
         function getArticles() {
-            axios.get(`${serverURL}/api/get_articles`)
+            axios.get(`${serverURL}api/get_articles`)
                 .then((res) => {
                     setArticleData(res.data);
                 })

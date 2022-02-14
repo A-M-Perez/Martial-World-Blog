@@ -61,7 +61,7 @@ const CreateArticles = ({ userName, guestUserName, userEmail }) => {
             formData.append('blogArticleGuestUserName', guestUserName);
             formData.append('blogArticleUserEmail', userEmail);
 
-            axios.post(`${serverURL}/api/post_article`, formData, { headers: { 'Content-Type': 'multipart/form-data' } })
+            axios.post(`${serverURL}api/post_article`, formData, { headers: { 'Content-Type': 'multipart/form-data' } })
                 .then((response) => {
                     if (response) {
                         confirmationMessageContent('POSTED', 'successfully', true, '/Blog');

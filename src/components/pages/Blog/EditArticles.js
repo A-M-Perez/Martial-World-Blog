@@ -70,7 +70,7 @@ const EditArticles = ({ editableArticleInfo }) => {
             formData.append('blogArticleText', articleText.current.value);
             formData.append('blogArticleID', editableArticleInfo.id);
 
-            axios.post(`${serverURL}/api/edit_article/${editableArticleInfo.id}`, formData, { headers: { 'Content-Type': 'multipart/form-data' } })
+            axios.post(`${serverURL}api/edit_article/${editableArticleInfo.id}`, formData, { headers: { 'Content-Type': 'multipart/form-data' } })
                 .then((response) => {
                     if (response) {
                         confirmationMessageContent('EDITED', 'successfully', true, '/Blog');

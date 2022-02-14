@@ -16,7 +16,7 @@ const RelatedArticle = ({ titlesRelatedTo, idRelatedto }) => {
     const [temporaryResponse, setTemporaryResponse] = useState([]);
 
     useEffect(() => {
-        axios.post(`${serverURL}/api/get_relatedArticles`, keyWordsArray)
+        axios.post(`${serverURL}api/get_relatedArticles`, keyWordsArray)
             .then((res) => {
                 let responseArray = res.data;
                 setTemporaryResponse([...responseArray]);
@@ -99,7 +99,7 @@ const Article = ({ userEmail, guestUserName, passEditableArticleInfo }) => {
     useEffect(
         function getArticleById() {
 
-            axios.get(`${serverURL}/api/get_article/${articleId}`)
+            axios.get(`${serverURL}api/get_article/${articleId}`)
                 .then((res) => {
                     setArticleData(res.data[0]);
                 })
@@ -136,7 +136,7 @@ const Article = ({ userEmail, guestUserName, passEditableArticleInfo }) => {
 
     function deleteArticle() {
 
-        axios.post(`${serverURL}/api/delete_article/${articleId}`, { id: articleId })
+        axios.post(`${serverURL}api/delete_article/${articleId}`, { id: articleId })
             .then((response) => {
                 if (response) {
                     confirmationMessageContent('DELETED', 'successfully', true, '/Blog');

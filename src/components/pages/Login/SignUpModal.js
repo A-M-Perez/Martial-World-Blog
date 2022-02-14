@@ -36,7 +36,7 @@ const SignUpModal = ({ closeModal, message }) => {
                 password: signUpUserPassword.current.value
             }
 
-            axios.post(`${serverURL}/api/insert_user`, submittedSignUpForm)
+            axios.post(`${serverURL}api/insert_user`, submittedSignUpForm)
                 .then((response) => {
                     setSignUpStatus(response.data.status);
                     user = response.data.name;

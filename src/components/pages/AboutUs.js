@@ -31,7 +31,7 @@ const AboutUs = () => {
             message: contactMessageRef.current.value
         }
 
-        axios.post(`${serverURL}/api/send_message`, submittedContactForm)
+        axios.post(`${serverURL}api/send_message`, submittedContactForm)
             .then((response) => {
                 confirmationMessageContent('THANK YOU!','Your message has been sent, we will contact you shortly.',response.data.status);
                 document.getElementById('contactEmail').value = '';

@@ -15,7 +15,7 @@ const Members = ({ search, userInfo, searchDisabled }) => {
             term: document.getElementById('searchTermInput').value
         };
 
-        axios.post(`${serverURL}/api/get_articles_by_search`, searchTerm)
+        axios.post(`${serverURL}api/get_articles_by_search`, searchTerm)
             .then((res) => {
                 setArticlesBySearchTerm(res.data);
             })
